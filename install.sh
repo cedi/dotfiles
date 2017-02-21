@@ -2,4 +2,10 @@
 
 cwd=$(pwd)
 
-ln -s "$cwd/profile" "~/.profile"
+# set up .profile
+ln -s $cwd/profile $cwd/../.profile
+
+# set up git
+sh $cwd/git.sh
+
+
