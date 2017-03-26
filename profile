@@ -228,9 +228,7 @@ alias vaup='vagrant up --provider virtualbox'
 alias vassh='vagrant ssh'
 alias vastart='vaup && vassh'
 
-alias vim='~/src/vim/src/vim'
-
-# Function for always using one (and only one) vim server, even when not
+	# Function for always using one (and only one) vim server, even when not
 # using gvim.
 # If you really want a new vim session, simply do not pass any
 # argument to this function.
