@@ -209,8 +209,8 @@ load_prompt
 # # / for folder
 # # * for executable 
 # # @ symlink
-alias ll='ls -lohFG'
-alias lla='ls -lohFGa' # same as ll but show hidden 
+alias ll='ls -lohFG --color'
+alias lla='ls -lohFGa --color' # same as ll but show hidden 
 
 #colorize grep
 alias grep='grep --color=auto'
