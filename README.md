@@ -26,3 +26,6 @@ The provided `.bashrc` is making use of a few Bash v4.x features, but will also 
 	$ ln -s ${HOME}/.dotfiles/bash/bashrc ${HOME}/.bashrc
 
 
+### VIM Installation
+
+For installing and configuring vim, please have a look at my dedicated vim repository here on [github](https://github.com/cedi/-vim).
