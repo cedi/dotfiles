@@ -56,8 +56,16 @@ plugins=(git debian colored-man-pages )
 
 source $ZSH/oh-my-zsh.sh
 
+source $ZSH_CUSTOM/aliases.zsh
+source $ZSH_CUSTOM/functions.zsh
+
 # Local configuration overwrite
 if [ -e "${HOME}/.zsh_local_overwrite.zsh" ]; then
   source ${HOME}/.zsh_local_overwrite.zsh
 fi
 
+precmd() {
+  if [[ -n "$TMUX" ]]; then
+    tmux setenv "$(tmux display -p 'TMUX_PWD_#D')" "$PWD"
+  fi
+}
