@@ -9,7 +9,7 @@ function theme_precmd {
     PR_FILLBAR=""
     PR_PWDLEN=""
 
-    local promptsize=${#${(%):---(%n@%m)---()--}}
+    local promptsize=${#${(%):---(%n@%m)--()}}
     local gitbranch="$PR_HBAR(${$(git symbolic-ref HEAD 2>/dev/null)##refs/heads/})"
     local gitbranchsize=${#${(S%%)gitbranch//$~zero/}}
     local pwdsize=${#${(%):-%~}}
@@ -17,7 +17,7 @@ function theme_precmd {
     if [[ "$promptsize + $gitbranchsize + $pwdsize" -gt $TERMWIDTH ]]; then
       ((PR_PWDLEN=$TERMWIDTH - $promptsize))
     else
-      PR_FILLBAR="\${(l.(($TERMWIDTH - ($promptsize + $gitbranchsize + $pwdsize)))..${PR_HBAR}.)}"
+      PR_FILLBAR="\${(l.(($TERMWIDTH - ($promptsize + $gitbranchsize + $pwdsize))).. .)}"
     fi
 
 }
@@ -69,10 +69,10 @@ setprompt () {
     # UTF-8 Fixed
 
     if [[ $(locale charmap) == "UTF-8" ]]; then
-	PR_SET_CHARSET=""
-	PR_SHIFT_IN=""
-	PR_SHIFT_OUT=""
-	PR_HBAR="─"
+    	PR_SET_CHARSET=""
+	    PR_SHIFT_IN=""
+	    PR_SHIFT_OUT=""
+	    PR_HBAR="─"
         PR_ULCORNER="┌"
         PR_LLCORNER="└"
         PR_LRCORNER="┘"
@@ -127,7 +127,7 @@ $PR_SET_CHARSET$PR_STITLE${(e)PR_TITLEBAR}\
 $PR_CYAN$PR_ULCORNER$PR_HBAR$PR_GREY(\
 $PR_GREEN%$PR_PWDLEN<...<%~%<<$PR_GREY)\
 $PR_GREY$PR_HBAR\
-$PR_GREY($PR_YELLOW${$(git symbolic-ref HEAD 2>/dev/null)##refs/heads/}$PR_GREY)$PR_CYAN$PR_HBAR$PR_HBAR${(e)PR_FILLBAR}$PR_HBAR$PR_GREY(\
+$PR_GREY($PR_YELLOW${$(git symbolic-ref HEAD 2>/dev/null)##refs/heads/}$PR_GREY)${(e)PR_FILLBAR}$PR_GREY(\
 $PR_CYAN%(!.%SROOT%s.%n)$PR_GREY@$PR_GREEN%m\
 $PR_GREY)$PR_CYAN$PR_HBAR$PR_URCORNER\
 
