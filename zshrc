@@ -62,12 +62,6 @@ plugins=(git debian zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 source $ZSH_CUSTOM/aliases.zsh
-source $ZSH_CUSTOM/functions.zsh
-
-# Local configuration overwrite
-if [ -e "${HOME}/.zsh_local_overwrite.zsh" ]; then
-  source ${HOME}/.zsh_local_overwrite.zsh
-fi
 
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
     source /etc/profile.d/vte.sh

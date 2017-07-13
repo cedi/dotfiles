@@ -22,8 +22,3 @@ alias cgrep='grep -rsniI'
 #easyer move up in folder
 alias ..='cd ..'
 
-# vagrant
-alias vaup='vagrant up --provider virtualbox'
-alias vassh='vagrant ssh'
-alias vastart='vaup && vassh'
-
