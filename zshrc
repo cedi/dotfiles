@@ -4,10 +4,15 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
+# Path to gcc/g++ 4.8
+export CC=/usr/bin/gcc-4.9
+export CXX=/usr/bin/g++-4.9
+export EDITOR=vim
+
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="cedi"
+ZSH_THEME="chirox"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -37,7 +42,7 @@ COMPLETION_WAITING_DOTS="true"
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-DISABLE_UNTRACKED_FILES_DIRTY="true"
+#DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -52,7 +57,7 @@ ZSH_CUSTOM=$HOME/dotfiles/oh-my-zsh/custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git debian colored-man-pages zsh-syntax-highlighting)
+plugins=(git debian zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -62,6 +67,10 @@ source $ZSH_CUSTOM/functions.zsh
 # Local configuration overwrite
 if [ -e "${HOME}/.zsh_local_overwrite.zsh" ]; then
   source ${HOME}/.zsh_local_overwrite.zsh
+fi
+
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+    source /etc/profile.d/vte.sh
 fi
 
 precmd() {
