@@ -3,6 +3,7 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
+export PATH=~/bin:$PATH
 
 # Path to gcc/g++ 4.8
 export CC=/usr/bin/gcc-4.9
