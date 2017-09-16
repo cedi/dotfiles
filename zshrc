@@ -6,9 +6,9 @@ export ZSH=$HOME/.oh-my-zsh
 export PATH=~/bin:$PATH
 
 # Path to gcc/g++ 4.8
-export CC=/usr/bin/gcc-4.9
-export CXX=/usr/bin/g++-4.9
 export EDITOR=vim
+export LD_LIBRARY_PATH=/usr/local/lib
+export PATH=/opt/Espressif/crosstool-NG/builds/xtensa-lx106-elf/bin:$PATH
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
