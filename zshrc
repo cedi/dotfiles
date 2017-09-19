@@ -9,6 +9,9 @@ export PATH=~/bin:$PATH
 export CC=/usr/bin/gcc-4.9
 export CXX=/usr/bin/g++-4.9
 export EDITOR=vim
+export GOPATH=$HOME/src/go
+
+export PATH=$PATH:/usr/local/go/bin
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -63,6 +66,7 @@ plugins=(git debian zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 source $ZSH_CUSTOM/aliases.zsh
+source $ZSH_CUSTOM/cfunctions.zsh
 
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
     source /etc/profile.d/vte.sh

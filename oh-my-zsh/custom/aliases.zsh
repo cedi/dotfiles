@@ -12,9 +12,9 @@ alias ll='ls -lohFG'
 alias lla='ls -lohFGa' # same as ll but show hidden 
 
 #colorize grep
-alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
+alias grep='grep --color=always'
+alias egrep='egrep --color=always'
+alias fgrep='fgrep --color=always'
 
 # easier grep
 alias cgrep='grep -rsniI'
