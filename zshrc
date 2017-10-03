@@ -1,11 +1,13 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 export PATH=~/bin:$PATH
 
 # Path to gcc/g++ 4.8
+export CC=/usr/bin/gcc
+export CXX=/usr/bin/g++
 export EDITOR=vim
 export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/src/go
