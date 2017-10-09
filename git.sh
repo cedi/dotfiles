@@ -1,6 +1,6 @@
 #!/bin/bash
 
-git config --global core.editor "vim"
+git config --global core.editor "nvim"
 git config --global user.email "cedi@users.noreply.github.com"
 git config --global user.name "cedi"
 
@@ -9,5 +9,5 @@ git config --global alias.lg2 "lg2 = log --graph --abbrev-commit --decorate --fo
 git config --global alias.lg !"git lg1"
 git config --global alias.ls !"git status"
 
-export VISUAL=vim
+export VISUAL=nvim
 export EDITOR="$VISUAL"
