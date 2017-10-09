@@ -3,7 +3,8 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
-export PATH=~/bin:$PATH
+export PATH=~/bin:$PATH:$HOME/.local/bin
+export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 
 # Path to gcc/g++ 4.8
 export EDITOR=vim

@@ -19,6 +19,7 @@ alias fgrep='fgrep --color=always'
 # easier grep
 alias cgrep='grep -rsniI'
 
-#easyer move up in folder
+# easier move up in folder
 alias ..='cd ..'
 
+alias vi='/usr/local/bin/vim'
