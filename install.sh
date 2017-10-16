@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# install zshrc
+ln -s "$HOME/.config/dotfiles/zshrc" "$HOME/.zshrc"
+
 # install profile file
 ln -s "$HOME/.config/dotfiles/profile" "$HOME/.profile"
 
