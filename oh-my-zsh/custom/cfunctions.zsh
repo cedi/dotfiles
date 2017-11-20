@@ -24,3 +24,8 @@ function vim {
   fi
 }
 
+function run_omc {
+    local wd=$(pwd)
+    local td=$(basename $wd)
+    docker run -tv $wd omc "${wd}/$@"
+}
