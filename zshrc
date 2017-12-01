@@ -3,12 +3,12 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
-export PATH=~/bin:$PATH:$HOME/.local/bin
+export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 
 # Path to gcc/g++ 4.8
-export CC=/usr/bin/gcc
-export CXX=/usr/bin/g++
+export CC=/usr/bin/gcc-4.9
+export CXX=/usr/bin/g++-4.9
 export EDITOR=vim
 export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/src/go
@@ -47,7 +47,7 @@ COMPLETION_WAITING_DOTS="true"
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-#DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -65,9 +65,7 @@ ZSH_CUSTOM=$HOME/.config/dotfiles/oh-my-zsh/custom
 plugins=(git debian zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
-
 source $ZSH_CUSTOM/aliases.zsh
-source $ZSH_CUSTOM/cfunctions.zsh
 
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
     source /etc/profile.d/vte.sh
@@ -79,3 +77,8 @@ precmd() {
   fi
 }
 
+PATH="/home/cedi/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/cedi/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/cedi/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/cedi/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/cedi/perl5"; export PERL_MM_OPT;
