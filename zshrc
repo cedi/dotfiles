@@ -6,10 +6,7 @@ export ZSH=$HOME/.oh-my-zsh
 export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 
-# Path to gcc/g++ 4.8
-export CC=/usr/bin/gcc-4.9
-export CXX=/usr/bin/g++-4.9
-export EDITOR=vim
+export EDITOR=nvim
 export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/src/go
 
