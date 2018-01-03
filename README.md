@@ -9,7 +9,7 @@
 
 I'd highly recommended to fork the repository prior to cloning, especially if you intend to ajdust the files.
 
-    $ git clone git@github.com:{username}/dotfiles.git ${HOME}/dotfiles
+    $ git clone git@github.com:cedi/dotfiles.git ${HOME}/.config/dotfiles
 
 ### ZSH Installation
 
@@ -17,13 +17,13 @@ The provided `.zshrc` is making use of Oh My ZSH by Robby Russell thus follow th
 
 After that create a symlink to the provided `.zshrc`
 
-	$ ln -s ${HOME}/.dotfiles/oh-my-zsh/zshrc ${HOME}/.zshrc
+	$ ln -s ${HOME}/.config/dotfiles/oh-my-zsh/zshrc ${HOME}/.zshrc
 
 ### BASH Installation
 
 The provided `.bashrc` is making use of a few Bash v4.x features, but will also work on bash version prior to that.
 
-	$ ln -s ${HOME}/.dotfiles/bash/bashrc ${HOME}/.bashrc
+	$ ln -s ${HOME}/.config/dotfiles/bash/bashrc ${HOME}/.bashrc
 
 
 ### VIM Installation
