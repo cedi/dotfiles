@@ -17,13 +17,13 @@ The provided `.zshrc` is making use of Oh My ZSH by Robby Russell thus follow th
 
 After that create a symlink to the provided `.zshrc`
 
-	$ ln -s ${HOME}/.config/dotfiles/oh-my-zsh/zshrc ${HOME}/.zshrc
+	$ ln -s ${HOME}/.config/dotfiles/zshrc ${HOME}/.zshrc
 
 ### BASH Installation
 
 The provided `.bashrc` is making use of a few Bash v4.x features, but will also work on bash version prior to that.
 
-	$ ln -s ${HOME}/.config/dotfiles/bash/bashrc ${HOME}/.bashrc
+	$ ln -s ${HOME}/.config/dotfiles/bashrc ${HOME}/.bashrc
 
 
 ### VIM Installation
