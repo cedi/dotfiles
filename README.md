@@ -10,21 +10,8 @@
 I'd highly recommended to fork the repository prior to cloning, especially if you intend to ajdust the files.
 
     $ git clone git@github.com:cedi/dotfiles.git ${HOME}/.config/dotfiles
-
-### ZSH Installation
-
-The provided `.zshrc` is making use of Oh My ZSH by Robby Russell thus follow the *Basic Installation* instructions [here](https://github.com/robbyrussell/oh-my-zsh).
-
-After that create a symlink to the provided `.zshrc`
-
-	$ ln -s ${HOME}/.config/dotfiles/zshrc ${HOME}/.zshrc
-
-### BASH Installation
-
-The provided `.bashrc` is making use of a few Bash v4.x features, but will also work on bash version prior to that.
-
-	$ ln -s ${HOME}/.config/dotfiles/bashrc ${HOME}/.bashrc
-
+    $ cd ${HOME}/.config/dotfiles
+    $ sh install.sh
 
 ### VIM Installation
 
