@@ -1,6 +1,8 @@
 ############################
 # Aliases
 
+alias ls='exa --git'
+
 # ls
 # o = omit group id
 # h = unit suffixes
@@ -8,8 +10,8 @@
 # # / for folder
 # # * for executable 
 # # @ symlink
-alias ll='ls -lohFG'
-alias lla='ls -lohFGa' # same as ll but show hidden 
+alias ll='ls --long --time-style=long-iso --time=modified'
+alias lla='ll --all' # same as ll but show hidden 
 
 #colorize grep
 alias grep='grep --color=always'

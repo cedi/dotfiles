@@ -17,5 +17,14 @@ ln -s "$HOME/.config/dotfiles/gdbinit" "$HOME/.gdbinit"
 ln -s "$HOME/.config/dotfiles/quiltrc" "$HOME/.quiltrc"
 
 # Install git defaults
-
 sh "$HOME/.config/dotfiles/git.sh"
+
+# install rust
+curl https://sh.rustup.rs -sSf | sh
+
+# install exa
+git clone https://github.com/ogham/exa.git
+cd exa
+make
+sudo make install
+cd ..

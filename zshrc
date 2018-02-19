@@ -7,7 +7,7 @@ export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 
 export EDITOR=nvim
-export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/usr/local/go/bin:$HOME/.cargo/bin
 export GOPATH=$HOME/src/go
 
 
