@@ -19,6 +19,9 @@ ln -s "$HOME/.config/dotfiles/quiltrc" "$HOME/.quiltrc"
 # Install git defaults
 sh "$HOME/.config/dotfiles/git.sh"
 
+# Install gitish
+ln -s "$HOME/.config/dotfiles/gitconfig" "$HOME/.gitconfig"
+
 # install rust
 curl https://sh.rustup.rs -sSf | sh
 
