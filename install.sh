@@ -29,5 +29,4 @@ curl https://sh.rustup.rs -sSf | sh
 git clone https://github.com/ogham/exa.git
 cd exa
 make
-sudo make install
-cd ..
+sudo ln -s exa/target/release/exa /usr/local/bin/exa
