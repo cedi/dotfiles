@@ -5,6 +5,21 @@
 ## Screenshot
 ![Screenshot](screenshot.png?raw=true)
 
+
+## Dependencies
+1. Rust installed
+
+    curl https://sh.rustup.rs -sSf | sh
+
+2. exa installed
+
+    cd $HOME/src
+    git clone https://github.com/ogham/exa.git
+    cd exa
+    make
+    sudo ln -s $HOME/src/exa/target/release/exa /usr/local/bin/exa
+
+
 ## Installation
 
 I'd highly recommended to fork the repository prior to cloning, especially if you intend to ajdust the files.
