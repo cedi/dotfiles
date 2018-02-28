@@ -21,12 +21,3 @@ sh "$HOME/.config/dotfiles/git.sh"
 
 # Install gitish
 ln -s "$HOME/.config/dotfiles/gitconfig" "$HOME/.gitconfig"
-
-# install rust
-curl https://sh.rustup.rs -sSf | sh
-
-# install exa
-git clone https://github.com/ogham/exa.git
-cd exa
-make
-sudo ln -s exa/target/release/exa /usr/local/bin/exa
