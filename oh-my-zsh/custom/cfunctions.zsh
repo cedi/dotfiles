@@ -6,20 +6,10 @@ function vim {
   nvr="nvr"
   if [ -z $nvr ]; then
     echo "$SHELL: vim: command not found"
+	$nvim "$@"
     return 127;
   fi
-  
-  $nvr --serverlist | grep nvimsocket > /dev/null
 
-  # If there is already a vimserver, use it unless no args were given
-  if [ $? -eq 0 ]; then
-         if [ $# -eq 0 ]; then
-                 $nvim
-         else
-                 $nvr --remote "$@"
-         fi
-  else
-         $nvim "$@"
-  fi
+  $nvr -s --servername 127.0.0.1:6789 "$@"
 }
 
