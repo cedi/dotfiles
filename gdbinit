@@ -1,5 +1,8 @@
 python
 
+# STL pretty print
+sys.path.insert(0, '/home/cedi/src/gdb_printers')
+
 # GDB dashboard - Modular visual interface for GDB in Python.
 #
 # https://github.com/cyrus-and/gdb-dashboard
@@ -12,6 +15,10 @@ import struct
 import termios
 import traceback
 import math
+import sys
+from libstdcxx.v6.printers import register_libstdcxx_printers
+
+register_libstdcxx_printers (None)
 
 # Common attributes ------------------------------------------------------------
 

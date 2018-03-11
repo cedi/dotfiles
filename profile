@@ -251,3 +251,5 @@ function idevim {
     $vim_orig --servername vim "$@"
   fi
 }
+
+export PATH="$HOME/.cargo/bin:$PATH"
