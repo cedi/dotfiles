@@ -21,3 +21,6 @@ sh "$HOME/.config/dotfiles/git.sh"
 
 # Install gitish
 ln -s "$HOME/.config/dotfiles/gitconfig" "$HOME/.gitconfig"
+
+# Install ctags config
+ln -s "$HOME/.config/dotfiles/ctags" "$HOME/.ctags"
