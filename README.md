@@ -14,11 +14,7 @@ $ curl https://sh.rustup.rs -sSf | sh
 
 2. exa installed
 ```
-$ cd $HOME/src
-$ git clone https://github.com/ogham/exa.git
-$ cd exa
-$ make
-$ sudo ln -s $HOME/src/exa/target/release/exa /usr/local/bin/exa
+$ cargo install exa
 ```
 
 3. zsh installed
@@ -26,6 +22,7 @@ $ sudo ln -s $HOME/src/exa/target/release/exa /usr/local/bin/exa
 ```
 $ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
+
 5. python3 installed
 5.1 pip3 installed
 
