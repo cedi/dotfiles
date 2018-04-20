@@ -8,15 +8,18 @@ alias ls='exa --git'
 # h = unit suffixes
 # -F show suffixes in file/folder names
 # # / for folder
-# # * for executable 
+# # * for executable
 # # @ symlink
 alias ll='ls --long --time-style=long-iso --time=modified'
-alias lla='ll --all' # same as ll but show hidden 
+alias lla='ll --all' # same as ll but show hidden
 
-#colorize grep
+# colorize grep
 alias grep='grep --color=always'
 alias egrep='egrep --color=always'
 alias fgrep='fgrep --color=always'
+
+# configure ripgrep
+alias crg='rg --pretty'
 
 # easier grep
 alias cgrep='grep -rsniI'
