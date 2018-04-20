@@ -26,7 +26,7 @@ function pingt() {
 
 	while :
 	do
-		ping -n -w1 -W1 -c1 "$ipAddr" | grep --color=never -E "rtt|100%"| sed -e "s/^/`date` /g";
+		ping -n -w1 -W1 -c1 "$ipAddr" | grep --color=never -E "rtt|100%"| sed -e "s/^/`date` - $ipAddr - /g";
 		sleep 1;
 	done
 }
