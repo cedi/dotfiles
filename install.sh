@@ -24,3 +24,6 @@ ln -s "$HOME/.config/dotfiles/gitconfig" "$HOME/.gitconfig"
 
 # Install ctags config
 ln -s "$HOME/.config/dotfiles/ctags" "$HOME/.ctags"
+
+# Install fzf
+$HOME/.config/dotfiles/fzf/install
