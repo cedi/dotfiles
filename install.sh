@@ -1,29 +1,25 @@
 #!/bin/bash
 
+localDir=$(PWD)
+
 # install zshrc
-ln -s "$HOME/.config/dotfiles/zshrc" "$HOME/.zshrc"
+ln -s "$localDir/zshrc" "$HOME/.zshrc"
 
 # install profile file
-ln -s "$HOME/.config/dotfiles/profile" "$HOME/.profile"
+ln -s "$localDir/profile" "$HOME/.profile"
 
 # install tmux.conf
-ln -s "$HOME/.config/dotfiles/tmux.conf" "$HOME/.tmux.conf"
-tmux source-file .tmux.conf # load the tmux config
+ln -s "$localDir/tmux.conf" "$HOME/.tmux.conf"
 
 # install gdbinit
-ln -s "$HOME/.config/dotfiles/gdbinit" "$HOME/.gdbinit"
+ln -s "$localDir/gdbinit" "$HOME/.gdbinit"
 
 # install quiltrc
-ln -s "$HOME/.config/dotfiles/quiltrc" "$HOME/.quiltrc"
+ln -s "$localDir/quiltrc" "$HOME/.quiltrc"
 
-# Install git defaults
-sh "$HOME/.config/dotfiles/git.sh"
-
-# Install gitish
-ln -s "$HOME/.config/dotfiles/gitconfig" "$HOME/.gitconfig"
+# Install gitconfig
+ln -s "$localDir/gitconfig" "$HOME/.gitconfig"
 
 # Install ctags config
-ln -s "$HOME/.config/dotfiles/ctags" "$HOME/.ctags"
+ln -s "$localDir/ctags" "$HOME/.ctags"
 
-# Install fzf
-$HOME/.config/dotfiles/fzf/install
