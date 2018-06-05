@@ -6,7 +6,7 @@ export ZSH=$HOME/.oh-my-zsh
 export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 
-export EDITOR=nvim
+export EDITOR=vim
 export PATH=$PATH:/usr/local/go/bin:$HOME/.cargo/bin
 export GOPATH=$HOME/src/go
 
@@ -59,7 +59,7 @@ ZSH_CUSTOM=$HOME/.config/dotfiles/oh-my-zsh/custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git debian zsh-syntax-highlighting)
+plugins=(git ssh-agent sudo colored-man-pages zsh-autosuggestions debian zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 source $ZSH_CUSTOM/aliases.zsh
