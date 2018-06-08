@@ -1,6 +1,6 @@
 #!/bin/bash
 
-localDir=$(PWD)
+localDir=$(pwd)
 
 # install zshrc
 ln -s "$localDir/zshrc" "$HOME/.zshrc"
