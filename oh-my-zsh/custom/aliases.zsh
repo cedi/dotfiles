@@ -19,7 +19,7 @@ alias egrep='egrep --color=always'
 alias fgrep='fgrep --color=always'
 
 # configure ripgrep
-alias crg='rg --pretty'
+alias crg='rg --pretty --ignore-case'
 
 # easier grep
 alias cgrep='grep -rsniI'
