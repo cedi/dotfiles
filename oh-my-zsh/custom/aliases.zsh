@@ -28,3 +28,6 @@ alias cgrep='grep -rsniI'
 alias ..='cd ..'
 
 alias vi='/usr/local/bin/vim'
+
+alias ip='ip -color '
+alias ipals='ip -oneline -color addr ls'
