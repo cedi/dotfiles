@@ -29,5 +29,5 @@ alias ..='cd ..'
 
 alias vi='/usr/local/bin/vim'
 
-alias ip='ip -c'
-alias ipals='ip -c -br a ls'
+alias ip='ip -color '
+alias ipals='ip -oneline -color addr ls'
