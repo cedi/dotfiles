@@ -1,19 +1,23 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
-export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 
 # Would you like to use another custom folder than $ZSH/custom?
 ZSH_CUSTOM=$HOME/.config/dotfiles/oh-my-zsh/custom
 
-# If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export GOPATH=$HOME/src/go
 
+# If you come from bash you might have to change your $PATH.
+export PATH=$PATH:$HOME/bin
+export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:/usr/local/bin
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$HOME/.cargo/bin
+export PATH=$PATH:$HOME/perl5/bin
+export PATH=$PATH:$GOPATH/bin
 
 export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 
 export EDITOR=vim
-export PATH=$PATH:/usr/local/go/bin:$HOME/.cargo/bin
-export GOPATH=$HOME/src/go
 
 
 # Set name of the theme to load. Optionally, if you set this to "random"
@@ -76,7 +80,6 @@ precmd() {
   fi
 }
 
-PATH="/home/cedi/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/home/cedi/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/home/cedi/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/cedi/perl5\""; export PERL_MB_OPT;
