@@ -31,3 +31,5 @@ alias vi='/usr/local/bin/vim'
 
 alias ip='ip -color '
 alias ipals='ip -oneline -color addr ls'
+
+alias :q='exit'
