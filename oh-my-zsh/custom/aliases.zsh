@@ -30,7 +30,7 @@ alias ..='cd ..'
 alias vi='/usr/local/bin/vim'
 
 alias ip='ip -color '
-alias ipals='ip -oneline -color addr ls'
-alias ipb='ip -br -c'
+alias ipb='ip -brief'
+alias ipals='ip -oneline addr ls'
 
 alias :q='exit'
