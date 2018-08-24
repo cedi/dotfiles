@@ -8,12 +8,13 @@ export GOPATH=$HOME/src/go
 
 # If you come from bash you might have to change your $PATH.
 export PATH=$PATH:$HOME/bin
+export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:$HOME/perl5/bin
-export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$HOME/.cargo/bin
+export PATH=$PATH:$HOME/.gem/ruby/2.5.0/bin
 
 export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 
