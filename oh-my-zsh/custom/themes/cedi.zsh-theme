@@ -17,4 +17,4 @@ add-zsh-hook precmd status_line
 
 PROMPT='%B$FG[045]${_prompt_symbol}%{$reset_color%}%b%f'
 #RPROMPT="%(?..%{$fg[red]%}%? ↵ %{$reset_color%})"
-RPROMPT='%{$fg[red]%}${exit_status}%{$reset_color%}'
+RPROMPT='%{$fg[red]%} ${exit_status} %{$reset_color%}'
