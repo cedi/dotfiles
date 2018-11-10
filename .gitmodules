@@ -4,3 +4,6 @@
 [submodule "oh-my-zsh/custom/plugins/zsh-autosuggestions"]
 	path = oh-my-zsh/custom/plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions.git
+[submodule "oh-my-zsh/custom/plugins/meaningful-error-codes"]
+	path = oh-my-zsh/custom/plugins/meaningful-error-codes
+	url = git@github.com:cedi/meaningful-error-codes.git
