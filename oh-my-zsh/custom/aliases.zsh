@@ -34,3 +34,6 @@ alias ipb='ip -brief'
 alias ipals='ip -oneline addr ls'
 
 alias :q='exit'
+
+alias de='setxkbmap de'
+alias us='setxkbmap us'
