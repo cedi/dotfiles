@@ -19,6 +19,7 @@ export PATH=$PATH:$HOME/.gem/ruby/2.5.0/bin
 export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 
 export EDITOR=vim
+export GO111MODULE=on
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
