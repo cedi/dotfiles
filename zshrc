@@ -19,6 +19,8 @@ export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 export EDITOR=vim
 export GO111MODULE=on
 
+export TerraformPath=/home/cedi/src/adjoe.io/terraform
+
 export PERL5LIB="/home/cedi/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"
 export PERL_LOCAL_LIB_ROOT="/home/cedi/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"
 export PERL_MB_OPT="--install_base \"/home/cedi/perl5\""
