@@ -20,6 +20,8 @@ export EDITOR=vim
 export GO111MODULE=on
 
 export TerraformPath=/home/cedi/src/adjoe.io/terraform
+export AWS_ACCESS_KEY_ID="foo"
+export AWS_SECRET_ACCESS_KEY="bar"
 
 export PERL5LIB="/home/cedi/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"
 export PERL_LOCAL_LIB_ROOT="/home/cedi/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"

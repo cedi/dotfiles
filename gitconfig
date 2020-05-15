@@ -8,3 +8,5 @@
 	lg2 = lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
 	lg = !git lg1
 	ls = status --short
+	fixup = "!f(){ git reset --soft HEAD~${1-1} && git commit --amend -C HEAD; };f"
+	fpush = push --force
