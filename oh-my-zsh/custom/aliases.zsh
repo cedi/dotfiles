@@ -37,3 +37,5 @@ alias :q='exit'
 
 alias de='setxkbmap de'
 alias us='setxkbmap us'
+
+alias newpasswd=“openssl rand -base64 32"
