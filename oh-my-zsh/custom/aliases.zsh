@@ -38,4 +38,13 @@ alias :q='exit'
 alias de='setxkbmap de'
 alias us='setxkbmap us'
 
-alias newpasswd=“openssl rand -base64 32"
+alias newpasswd="openssl rand -base64 32"
+eval $(thefuck --alias wtf)
+alias wtff='wtf --yeah'
+alias fuck=sudo
+
+alias adjoebackend='cd ~/src/go/src/adjoe.io/backend'
+alias adjoeterraform='cd ~/src/adjoe.io/terraform/'
+alias adjoewiki='cd ~/src/adjoe.io/backend.wiki/'
+
+
