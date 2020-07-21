@@ -39,9 +39,8 @@ alias de='setxkbmap de'
 alias us='setxkbmap us'
 
 alias newpasswd="openssl rand -base64 32"
+
+# "not so nice lanugage" but great features
 eval $(thefuck --alias wtf)
 alias wtff='wtf --yeah'
 alias fuck=sudo
-
-alias imkeprod='export KUBECONFIG=/Users/cedi/.config/kube/prod.imke'
-alias imkedev='export KUBECONFIG=/Users/cedi/.config/kube/dev'
