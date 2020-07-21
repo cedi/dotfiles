@@ -43,8 +43,5 @@ eval $(thefuck --alias wtf)
 alias wtff='wtf --yeah'
 alias fuck=sudo
 
-alias adjoebackend='cd ~/src/go/src/adjoe.io/backend'
-alias adjoeterraform='cd ~/src/adjoe.io/terraform/'
-alias adjoewiki='cd ~/src/adjoe.io/backend.wiki/'
-
-
+alias imkeprod='export KUBECONFIG=/Users/cedi/.config/kube/prod.imke'
+alias imkedev='export KUBECONFIG=/Users/cedi/.config/kube/dev'

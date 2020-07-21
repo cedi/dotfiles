@@ -10,3 +10,5 @@
 	ls = status --short
 	fixup = "!f(){ git reset --soft HEAD~${1-1} && git commit --amend -C HEAD; };f"
 	fpush = push --force
+[gpg]
+	program = gpg2
