@@ -36,7 +36,11 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # # # # #
 # Plugins
-plugins=(git ssh-agent sudo colored-man-pages zsh-autosuggestions debian zsh-syntax-highlighting meaningful-error-codes helm kubectl iterm2 osx)
+if [[ "$OSTYPE" == "darwin"* ]]; then
+	plugins=(git ssh-agent sudo colored-man-pages zsh-autosuggestions debian zsh-syntax-highlighting meaningful-error-codes helm kubectl iterm2 osx)
+else
+	plugins=(git ssh-agent sudo colored-man-pages zsh-autosuggestions debian zsh-syntax-highlighting meaningful-error-codes helm kubectl)
+fi
 
 # # # # #
 # Load custom modules
