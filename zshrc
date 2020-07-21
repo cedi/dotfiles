@@ -3,6 +3,8 @@ export ZSH=$HOME/.oh-my-zsh
 
 ZSH_CUSTOM=$HOME/.config/dotfiles/oh-my-zsh/custom
 
+# # # # #
+# Environment Variables
 export GOPATH=$HOME/src/go
 
 export PATH=$PATH:$HOME/bin
@@ -21,23 +23,29 @@ export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 export EDITOR=nvim
 export GO111MODULE=on
 
-#export PERL5LIB="/home/cedi/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"
-#export PERL_LOCAL_LIB_ROOT="/home/cedi/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"
-#export PERL_MB_OPT="--install_base \"/home/cedi/perl5\""
-#export PERL_MM_OPT="INSTALL_BASE=/home/cedi/perl5"
-
+# # # # #
+# Themes
 #ZSH_THEME="cedi"
 ZSH_THEME="zsh-multiline/multiline"
+
+# # # # #
+# Git integration config
 HYPHEN_INSENSITIVE="true"
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# # # # #
+# Plugins
 plugins=(git ssh-agent sudo colored-man-pages zsh-autosuggestions debian zsh-syntax-highlighting meaningful-error-codes helm kubectl iterm2 osx)
 
+# # # # #
+# Load custom modules
 source $ZSH/oh-my-zsh.sh
 source $ZSH_CUSTOM/aliases.zsh
 source $ZSH_CUSTOM/cfunctions.zsh
 
-
+# # # # #
+# tmux config
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
     source /etc/profile.d/vte.sh
 fi
@@ -48,19 +56,21 @@ precmd() {
   fi
 }
 
+# # # # #
+# Load fzf
 if [ -d ~/.fzf ]; then
 	# Setup fzf
 	# ---------
-	if [[ ! "$PATH" == */home/cedi/.fzf/bin* ]]; then
-		export PATH="$PATH:/home/cedi/.fzf/bin"
+	if [[ ! "$PATH" == */.fzf/bin* ]]; then
+		export PATH="$PATH:$HOME/.fzf/bin"
 	fi
 
 	# Auto-completion
 	# ---------------
-	[[ $- == *i* ]] && source "/home/cedi/.fzf/shell/completion.zsh" 2> /dev/null
+	[[ $- == *i* ]] && source "$HOME/.fzf/shell/completion.zsh" 2> /dev/null
 
 	# Key bindings
 	# ------------
-	source "/home/cedi/.fzf/shell/key-bindings.zsh"
+	source "$HOME/.fzf/shell/key-bindings.zsh"
 fi
 
