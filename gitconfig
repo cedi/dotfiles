@@ -1,8 +1,9 @@
 [core]
 	editor = nvim
 [user]
-	email = cedi@users.noreply.github.com
+	email = cedric.kienzler@innovo-cloud.de
 	name = cedi
+	signingkey = 63E5A5E896C1F8F48ECB3937AA9D3D9680F29477
 [alias]
 	lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
 	lg2 = lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all

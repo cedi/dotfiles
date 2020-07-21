@@ -29,9 +29,11 @@ alias ..='cd ..'
 
 alias vi='/usr/local/bin/vim'
 
-alias ip='ip -color '
-alias ipb='ip -brief'
-alias ipals='ip -oneline addr ls'
+if [[ "$OSTYPE" != "darwin"* ]]; then
+	alias ip='ip -color '
+	alias ipb='ip -brief'
+	alias ipals='ip -oneline addr ls'
+fi
 
 alias :q='exit'
 
