@@ -26,8 +26,8 @@ export GO111MODULE=on
 export KUBECONFIG="$(find ~/.kube/configs \( -type f -o -type l \) -exec printf '%s:' '{}' +)"
 
 # # # # #
-if [[ "$OSTYPE" == "darwin"* ]]; then
 # make cursor movement convenient in macOS
+if [[ "$OSTYPE" == "darwin"* ]]; then
 	bindkey "[D" backward-word
 	bindkey "[C" forward-word
 	bindkey "^[a" beginning-of-line
