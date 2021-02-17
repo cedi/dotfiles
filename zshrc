@@ -32,7 +32,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 	bindkey "[C" forward-word
 	bindkey "^[a" beginning-of-line
 	bindkey "^[e" end-of-line
-	fi
+fi
 
 
 # # # # #
