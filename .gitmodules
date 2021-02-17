@@ -10,3 +10,6 @@
 [submodule "oh-my-zsh/custom/themes/zsh-multiline"]
 	path = oh-my-zsh/custom/themes/zsh-multiline
 	url = https://github.com/cedi/zsh-multiline.git
+[submodule "/Users/cedi/.config/dotfiles/oh-my-zsh/custom/plugins/zsh-kubectl-prompt"]
+	path = /Users/cedi/.config/dotfiles/oh-my-zsh/custom/plugins/zsh-kubectl-prompt
+	url = git@github.com:superbrothers/zsh-kubectl-prompt.git

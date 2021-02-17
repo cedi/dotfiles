@@ -30,3 +30,14 @@ function pingt() {
 		sleep 1;
 	done
 }
+
+compdef _os-cloud os-cloud
+function os-cloud {
+    export OS_CLOUD=$1
+}
+
+function _os-cloud {
+  local all_clouds="$(yq r ~/.config/openstack/clouds.yaml --printMode p '*.*' --stripComments | cut -d '.' -f 2)"
+  _arguments \
+    "(- *): :(${all_clouds})"
+}

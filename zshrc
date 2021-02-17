@@ -23,6 +23,15 @@ export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 export EDITOR=nvim
 export GO111MODULE=on
 
+export KUBECONFIG="$(find ~/.kube/configs \( -type f -o -type l \) -exec printf '%s:' '{}' +)"
+
+# # # # #
+# make cursor movement convenient in macOS
+bindkey "[D" backward-word
+bindkey "[C" forward-word
+bindkey "^[a" beginning-of-line
+bindkey "^[e" end-of-line
+
 # # # # #
 # Themes
 #ZSH_THEME="cedi"
@@ -37,9 +46,9 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # # # # #
 # Plugins
 if [[ "$OSTYPE" == "darwin"* ]]; then
-	plugins=(git ssh-agent sudo colored-man-pages zsh-autosuggestions debian zsh-syntax-highlighting meaningful-error-codes helm kubectl iterm2 osx)
+	plugins=(git ssh-agent sudo colored-man-pages zsh-autosuggestions debian zsh-syntax-highlighting meaningful-error-codes helm kubectl zsh-kubectl-prompt iterm2 osx)
 else
-	plugins=(git ssh-agent sudo colored-man-pages zsh-autosuggestions debian zsh-syntax-highlighting meaningful-error-codes helm kubectl)
+	plugins=(git ssh-agent sudo colored-man-pages zsh-autosuggestions debian zsh-syntax-highlighting meaningful-error-codes helm kubectl zsh-kubectl-prompt)
 fi
 
 # # # # #
