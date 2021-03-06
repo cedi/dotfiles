@@ -19,6 +19,7 @@ export PATH=$PATH:/usr/local/share/python/
 export PATH=$PATH:$HOME/.krew/bin
 
 export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
+export KUBECONFIG="$(find ~/.kube/configs/ -type f -exec printf '%s:' '{}' +)"
 
 export EDITOR=nvim
 export GO111MODULE=on
