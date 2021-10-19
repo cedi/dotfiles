@@ -13,3 +13,6 @@
 [submodule "/Users/cedi/.config/dotfiles/oh-my-zsh/custom/plugins/zsh-kubectl-prompt"]
 	path = /Users/cedi/.config/dotfiles/oh-my-zsh/custom/plugins/zsh-kubectl-prompt
 	url = git@github.com:superbrothers/zsh-kubectl-prompt.git
+[submodule "oh-my-zsh/custom/themes/powerlevel10k"]
+	path = oh-my-zsh/custom/themes/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git

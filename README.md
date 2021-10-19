@@ -26,8 +26,16 @@ $ cargo install exa
 $ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
 
-5. python3 installed
-5.1 pip3 installed
+5. [powerlevel9k](https://github.com/Powerlevel9k/powerlevel9k) installed
+
+```bash
+# macOS
+$ brew tap sambadevi/powerlevel9k
+$ brew install powerlevel9k
+```
+
+6. python3 installed
+6.1 pip3 installed
 
 ## Installation
 

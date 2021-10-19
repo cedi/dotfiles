@@ -4,6 +4,7 @@ localDir=$(pwd)
 
 # install zshrc
 ln -s "$localDir/zshrc" "$HOME/.zshrc"
+ln -s "$localDir/p10k.zsh" "$HOME/.p10k.zsh"
 
 # install tmux.conf
 ln -s "$localDir/tmux.conf" "$HOME/.tmux.conf"

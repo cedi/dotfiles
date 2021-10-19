@@ -37,7 +37,11 @@ function os-cloud {
 }
 
 function _os-cloud {
-  local all_clouds="$(yq r ~/.config/openstack/clouds.yaml --printMode p '*.*' --stripComments | cut -d '.' -f 2)"
+  local all_clouds="$(yq e '.clouds | keys' ~/.config/openstack/clouds.yaml)"
   _arguments \
     "(- *): :(${all_clouds})"
+}
+
+function mkcd() {
+	mkdir -p "$@" && cd "$@";
 }

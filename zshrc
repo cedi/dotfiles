@@ -1,7 +1,15 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
-
 ZSH_CUSTOM=$HOME/.config/dotfiles/oh-my-zsh/custom
+
+autoload -U compinit; compinit
 
 # # # # #
 # Environment Variables
@@ -17,6 +25,7 @@ export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:$HOME/.gem/ruby/2.5.0/bin
 export PATH=$PATH:/usr/local/share/python/
 export PATH=$PATH:$HOME/.krew/bin
+export PATH=:$PATH:/usr/local/opt/ruby/bin
 
 export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 
@@ -37,8 +46,10 @@ fi
 
 # # # # #
 # Themes
-#ZSH_THEME="cedi"
-ZSH_THEME="zsh-multiline/multiline"
+ZSH_THEME="powerlevel10k/powerlevel10k"
+#
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # # # # #
 # Git integration config
@@ -48,10 +59,9 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # # # # #
 # Plugins
+plugins=(git sudo colored-man-pages zsh-autosuggestions debian zsh-syntax-highlighting meaningful-error-codes helm kubectl kkpctl zsh-kubectl-prompt)
 if [[ "$OSTYPE" == "darwin"* ]]; then
-	plugins=(git ssh-agent sudo colored-man-pages zsh-autosuggestions debian zsh-syntax-highlighting meaningful-error-codes helm kubectl zsh-kubectl-prompt iterm2 osx)
-else
-	plugins=(git ssh-agent sudo colored-man-pages zsh-autosuggestions debian zsh-syntax-highlighting meaningful-error-codes helm kubectl zsh-kubectl-prompt)
+	plugins+=(iterm2 osx)
 fi
 
 # # # # #
