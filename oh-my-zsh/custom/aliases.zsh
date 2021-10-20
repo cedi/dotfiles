@@ -1,6 +1,19 @@
 ############################
 # Aliases
 
+if [[ "$OSTYPE" == "darwin"* ]]; then
+	[[ -f $(which ggrep) ]] && alias indent=ggrep
+	[[ -f $(which gindent) ]] && alias indent=gindent
+	[[ -f $(which gtar) ]] && alias tar=gtar
+	[[ -f $(which gsed) ]] && alias sed=gsed
+	[[ -f $(which gsed) ]] && alias sed=gsed
+	[[ -f $(which gawk) ]] && alias awk=gawk
+	[[ -f $(which gmake) ]] && alias make=gmake
+	[[ -f $(which gfind) ]] && alias find=gfind
+	[[ -f $(which gwhich) ]] && alias which=gwhich
+fi
+
+
 alias ls='exa --git'
 
 # ls
@@ -46,5 +59,3 @@ alias newpasswd="openssl rand -base64 32"
 eval $(thefuck --alias wtf)
 alias wtff='wtf --yeah'
 alias fuck=sudo
-
-

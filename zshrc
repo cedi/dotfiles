@@ -32,8 +32,6 @@ export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 export EDITOR=nvim
 export GO111MODULE=on
 
-export KUBECONFIG="$(find ~/.kube/configs \( -type f -o -type l \) -exec printf '%s:' '{}' +)"
-
 # # # # #
 # make cursor movement convenient in macOS
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -43,11 +41,10 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 	bindkey "^[e" end-of-line
 fi
 
-
 # # # # #
 # Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
-#
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -99,4 +96,3 @@ if [ -d ~/.fzf ]; then
 	# ------------
 	source "$HOME/.fzf/shell/key-bindings.zsh"
 fi
-
