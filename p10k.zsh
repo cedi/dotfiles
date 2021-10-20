@@ -1651,6 +1651,7 @@
   # commands will contain the start times of their commands as opposed to the default
   # behavior where they contain the end times of their preceding commands.
   typeset -g POWERLEVEL9K_TIME_UPDATE_ON_COMMAND=false
+  typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
   # Custom icon.
   # typeset -g POWERLEVEL9K_TIME_VISUAL_IDENTIFIER_EXPANSION='⭐'
   # Custom prefix.
