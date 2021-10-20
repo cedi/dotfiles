@@ -56,7 +56,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # # # # #
 # Plugins
-plugins=(git sudo colored-man-pages zsh-autosuggestions debian zsh-syntax-highlighting meaningful-error-codes helm kubectl kkpctl zsh-kubectl-prompt)
+plugins=(git sudo colored-man-pages zsh-autosuggestions debian zsh-syntax-highlighting meaningful-error-codes helm kubectl kkpctl)
 if [[ "$OSTYPE" == "darwin"* ]]; then
 	plugins+=(iterm2 osx)
 fi
