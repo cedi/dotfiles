@@ -55,3 +55,11 @@ install zsh-syntax-highlighting
 ## VIM Installation
 
 For installing and configuring vim, please have a look at my dedicated vim repository here on [github](https://github.com/cedi/-vim).
+
+## macOS Specialityies
+
+Install gnu-utils
+
+```
+brew install coreutils findutils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt grep
+```
