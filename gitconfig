@@ -1,9 +1,8 @@
 [core]
 	editor = nvim
 [user]
-	email = cedric.kienzler@innovo-cloud.de
+	email = github@cedric-kienzler.de
 	name = Cedric Kienzler
-	signingkey = 63E5A5E896C1F8F48ECB3937AA9D3D9680F29477
 [alias]
 	lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
 	ls = status --short
