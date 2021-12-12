@@ -26,6 +26,7 @@ export PATH=$PATH:$HOME/.gem/ruby/2.5.0/bin
 export PATH=$PATH:/usr/local/share/python/
 export PATH=$PATH:$HOME/.krew/bin
 export PATH=:$PATH:/usr/local/opt/ruby/bin
+export XDG_CONFIG_HOME=$HOME/.config
 
 export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 
@@ -56,9 +57,9 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # # # # #
 # Plugins
-plugins=(git sudo colored-man-pages zsh-autosuggestions debian zsh-syntax-highlighting meaningful-error-codes helm kubectl kkpctl)
+plugins=(git sudo colored-man-pages zsh-autosuggestions zsh-syntax-highlighting meaningful-error-codes helm kubectl kkpctl)
 if [[ "$OSTYPE" == "darwin"* ]]; then
-	plugins+=(iterm2 osx)
+	plugins+=(iterm2 macos)
 fi
 
 # # # # #
