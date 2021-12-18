@@ -84,7 +84,7 @@ if [[ $(uname -s) == "Darwin" ]]; then
     echo "[Installing macOS related stuff]"
     echo "* brew install exa python3 neovim neovim-remote tfswitch kubectl helm"
     brew install exa python3 neovim neovim-remote tfswitch kubectl helm
-elif [ -f /etc/debian_version ]
+elif [ -f /etc/debian_version ]; then
     echo "* install tfswitch"
     curl -L https://raw.githubusercontent.com/warrensbox/terraform-switcher/release/install.sh | bash
 
