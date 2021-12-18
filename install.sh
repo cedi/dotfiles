@@ -82,17 +82,17 @@ git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.config/fzf && $HO
 
 if [[ $(uname -s) == "Darwin" ]]; then
     echo "[Installing macOS related stuff]"
-    echo "* brew install exa python3 neovim neovim-remote tfswitch kubectl helm"
-    brew install exa python3 neovim neovim-remote tfswitch kubectl helm
-    
+    echo "* brew install exa python3 neovim neovim-remote tfswitch kubectl helm ripgrep iproute2mac"
+    brew install exa python3 neovim neovim-remote tfswitch kubectl helm ripgrep iproute2mac
+
     echo "* install gnutils"
     brew install coreutils findutils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt grep
 elif [ -f /etc/debian_version ]; then
     echo "* install tfswitch"
     curl -L https://raw.githubusercontent.com/warrensbox/terraform-switcher/release/install.sh | bash
 
-    echo "* apt install exa python3 python3-pip neovim kubectl"
-    sudo apt install -y exa python3 python3-pip neovim kubectl
+    echo "* apt install exa python3 python3-pip neovim kubectl ripgrep"
+    sudo apt install -y exa python3 python3-pip neovim kubectl ripgrep
 
     echo "* install neovim-remote"
     pip3 install neovim-remote

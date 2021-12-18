@@ -13,49 +13,57 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 	[[ -f $(which gwhich) ]] && alias which=gwhich
 fi
 
-
-alias ls='exa --git'
-
-# ls
-# o = omit group id
-# h = unit suffixes
-# -F show suffixes in file/folder names
-# # / for folder
-# # * for executable
-# # @ symlink
-alias ll='ls --long --time-style=long-iso --time=modified'
-alias lla='ll --all' # same as ll but show hidden
+if [ $(command -v exa) ]; then
+	alias ls='exa --git'
+	# ls
+	# o = omit group id
+	# h = unit suffixes
+	# -F show suffixes in file/folder names
+	# # / for folder
+	# # * for executable
+	# # @ symlink
+	alias ll='ls --long --time-style=long-iso --time=modified'
+	alias lla='ll --all' # same as ll but show hidden
+else
+	alias ll='ls -ltr'
+	alias lla='ll -a'
+fi
 
 # colorize grep
-alias grep='grep --color=always'
-alias egrep='egrep --color=always'
-alias fgrep='fgrep --color=always'
-
-# configure ripgrep
-alias crg='rg --pretty --ignore-case'
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
 
 # easier grep
+# -r = recursive
+# -s = suppress error messages about nonexistent or unreadable files
+# -n = prefix each line of output with the 1-based line number
+# -i = ignore case
+# -I = don't process binary files
 alias cgrep='grep -rsniI'
 
-# easier move up in folder
-alias ..='cd ..'
+# configure ripgrep
+if [ $(command -v rg) ]; then
+	alias crg='rg --pretty --ignore-case'
+fi
 
-alias vi='/usr/local/bin/vim'
+
+# easier navigation
+alias ..='cd ..'
+alias :q='exit'
+alias fuck=sudo
+
+alias newpasswd="openssl rand -base64 32"
+
+if [ $(command -v thefuck) ]; then
+	eval $(thefuck --alias wtf)
+	alias wtff='wtf --yeah'
+fi
 
 if [[ "$OSTYPE" != "darwin"* ]]; then
 	alias ip='ip -color '
 	alias ipb='ip -brief'
 	alias ipals='ip -oneline addr ls'
+else
+	alias ipals='ip addr ls'
 fi
-
-alias :q='exit'
-
-alias de='setxkbmap de'
-alias us='setxkbmap us'
-
-alias newpasswd="openssl rand -base64 32"
-
-# "not so nice lanugage" but great features
-eval $(thefuck --alias wtf)
-alias wtff='wtf --yeah'
-alias fuck=sudo
