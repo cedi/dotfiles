@@ -84,6 +84,9 @@ if [[ $(uname -s) == "Darwin" ]]; then
     echo "[Installing macOS related stuff]"
     echo "* brew install exa python3 neovim neovim-remote tfswitch kubectl helm"
     brew install exa python3 neovim neovim-remote tfswitch kubectl helm
+    
+    echo "* install gnutils"
+    brew install coreutils findutils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt grep
 elif [ -f /etc/debian_version ]; then
     echo "* install tfswitch"
     curl -L https://raw.githubusercontent.com/warrensbox/terraform-switcher/release/install.sh | bash
@@ -96,4 +99,4 @@ elif [ -f /etc/debian_version ]; then
 fi
 
 echo "* Install GoLang"
-sudo RELEASE=1.18beta1 ./update-golang.sh
+sudo RELEASE=1.18beta1 ./update-golang/update-golang.sh

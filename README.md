@@ -24,25 +24,7 @@ brew install git
 
 I'd highly recommended to fork the repository prior to cloning, especially if you intend to ajdust the files.
 
-```
-$ git clone git@github.com:cedi/dotfiles.git ${HOME}/.config/dotfiles
-# remove the .zshrc (is autocreated from oh-my-zsh installation)
-$ .zshrc
-$ cd ${HOME}/.config/dotfiles
-$ sh install.sh
+```bash
+git clone git@github.com:cedi/dotfiles.git $HOME/.config/dotfiles && ./.config/dotfiles/insta.sh
 ```
 
-## Post-Installation
-install zsh-syntax-highlighting
-
-## VIM Installation
-
-For installing and configuring vim, please have a look at my dedicated vim repository here on [github](https://github.com/cedi/-vim).
-
-## macOS Specialityies
-
-Install gnu-utils
-
-```
-brew install coreutils findutils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt grep
-```
