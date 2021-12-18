@@ -44,7 +44,7 @@ fi
 if [[ $(uname -s) == "Darwin" ]]; then
     ln -s "$localDir/p10k.macos.zsh" "$HOME/.p10k.zsh"
 else
-    ln -s "$localDir/.p10k.noicon.zsh" "$HOME/.p10k.zsh"
+    ln -s "$localDir/p10k.noicon.zsh" "$HOME/.p10k.zsh"
 fi
 
 echo "* install tmux.conf"
