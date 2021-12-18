@@ -80,13 +80,20 @@ fi
 # Install fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.config/fzf && $HOME/.config/fzf/install --bin
 
-echo "[Installing macOS related stuff]"
 if [[ $(uname -s) == "Darwin" ]]; then
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    echo "[Installing macOS related stuff]"
+    echo "* brew install exa python3 neovim neovim-remote tfswitch kubectl helm"
+    brew install exa python3 neovim neovim-remote tfswitch kubectl helm
+elif [ -f /etc/debian_version ]
+    echo "* install tfswitch"
+    curl -L https://raw.githubusercontent.com/warrensbox/terraform-switcher/release/install.sh | bash
 
-    echo "* brew install exa python3 neovim neovim-remote tfswitch kubectl"
-    brew install exa python3 neovim neovim-remote tfswitch kubectl
+    echo "* apt install exa python3 python3-pip neovim kubectl"
+    sudo apt install exa python3 python3-pip neovim kubectl
+
+    echo "* install neovim-remote"
+    pip3 install neovim-remote
 fi
 
 echo "* Install GoLang"
-sudo ./update-golang/update-golang.sh
+sudo RELEASE=1.18beta1 ./update-golang.sh
