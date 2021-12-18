@@ -89,7 +89,7 @@ elif [ -f /etc/debian_version ]; then
     curl -L https://raw.githubusercontent.com/warrensbox/terraform-switcher/release/install.sh | bash
 
     echo "* apt install exa python3 python3-pip neovim kubectl"
-    sudo apt install exa python3 python3-pip neovim kubectl
+    sudo apt install -y exa python3 python3-pip neovim kubectl
 
     echo "* install neovim-remote"
     pip3 install neovim-remote
