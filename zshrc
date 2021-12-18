@@ -1,8 +1,10 @@
+export XDG_CONFIG_HOME=$HOME/.config
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+	source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 # Path to your oh-my-zsh installation.
@@ -13,25 +15,59 @@ autoload -U compinit; compinit
 
 # # # # #
 # Environment Variables
-export GOPATH=$HOME/src/go
-
-export PATH=$PATH:$HOME/bin
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$HOME/.local/bin
-export PATH=$PATH:/usr/local/bin
-export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:$HOME/perl5/bin
-export PATH=$PATH:$HOME/.cargo/bin
-export PATH=$PATH:$HOME/.gem/ruby/2.5.0/bin
-export PATH=$PATH:/usr/local/share/python/
-export PATH=$PATH:$HOME/.krew/bin
-export PATH=:$PATH:/usr/local/opt/ruby/bin
-export XDG_CONFIG_HOME=$HOME/.config
-
 export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 
 export EDITOR=nvim
 export GO111MODULE=on
+
+# # # # #
+# PATH Variable
+export MY_PATH=""
+export GOPATH=$HOME/src/go
+
+if [ -d $GOPATH ]; then
+	export MY_PATH=$MY_PATH:$GOPATH/bin
+fi
+
+if [ -d $HOME/.krew/bin ]; then
+	export MY_PATH=$MY_PATH:$HOME/.krew/bin
+fi
+
+if [ -d $HOME/bin ]; then
+	export MY_PATH=$MY_PATH:$HOME/bin
+fi
+
+if [ -d $HOME/.local/bin ]; then
+	export MY_PATH=$MY_PATH:$HOME/.local/bin
+fi
+
+if [ -d $HOME/.cargo/bin ]; then
+	export MY_PATH=$MY_PATH:$HOME/.cargo/bin
+fi
+
+if [ -d $HOME/.gem/ruby/2.5.0/bin ]; then
+	export MY_PATH=$MY_PATH:$HOME/.gem/ruby/2.5.0/bin
+fi
+
+if [ -d $HOME/.config/fzf/bin ]; then
+	export MY_PATH=$MY_PATH:$HOME/.config/fzf/bin
+fi
+
+if [ -d /usr/local/bin ]; then
+	export MY_PATH=$MY_PATH:/usr/local/bin
+fi
+
+if [ -d /usr/local/go/bin ]; then
+	export MY_PATH=$MY_PATH:/usr/local/go/bin
+fi
+
+if [ -d /usr/local/share/python/ ]; then
+	export MY_PATH=$MY_PATH:/usr/local/share/python/
+fi
+
+# construct PATH variable
+export PATH=$(echo "$MY_PATH:$PATH" | sed 's/:/\n/g' | awk '!x[$0]++' | sed -r '/^\s*$/d' | tr '\n' ':')
+
 
 # # # # #
 # make cursor movement convenient in macOS
@@ -44,22 +80,11 @@ fi
 
 # # # # #
 # Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
+export ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# # # # #
-# Git integration config
-HYPHEN_INSENSITIVE="true"
-COMPLETION_WAITING_DOTS="true"
-DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# # # # #
-# Plugins
-plugins=(git sudo colored-man-pages zsh-autosuggestions zsh-syntax-highlighting meaningful-error-codes helm kubectl kkpctl)
-if [[ "$OSTYPE" == "darwin"* ]]; then
-	plugins+=(iterm2 macos)
+if [ -f ~/.p10k.zsh ]; then
+	source ~/.p10k.zsh
 fi
 
 # # # # #
@@ -69,31 +94,42 @@ source $ZSH_CUSTOM/aliases.zsh
 source $ZSH_CUSTOM/cfunctions.zsh
 
 # # # # #
+# Plugins
+plugins=(sudo colored-man-pages)
+if [[ "$OSTYPE" == "darwin"* ]]; then
+	plugins+=(iterm2 macos)
+fi
+
+if [ -f $ZSH_CUSTOM/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh ]; then
+	plugins+=(zsh-autosuggestions)
+fi
+
+if [ -f $ZSH_CUSTOM/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh ]; then
+	plugins+=(zsh-syntax-highlighting)
+fi
+
+if [[ $(command -v kubectl) ]]; then
+	plugins+=(kubectl)
+fi
+
+if [[ $(command -v helm) ]]; then
+	plugins+=(helm)
+fi
+
+# # # # #
 # tmux config
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
     source /etc/profile.d/vte.sh
 fi
 
-precmd() {
-  if [[ -n "$TMUX" ]]; then
-    tmux setenv "$(tmux display -p 'TMUX_PWD_#D')" "$PWD"
-  fi
-}
-
 # # # # #
 # Load fzf
-if [ -d ~/.fzf ]; then
-	# Setup fzf
-	# ---------
-	if [[ ! "$PATH" == */.fzf/bin* ]]; then
-		export PATH="$PATH:$HOME/.fzf/bin"
-	fi
-
+if [ -d $HOME/.config/fzf ]; then
 	# Auto-completion
 	# ---------------
-	[[ $- == *i* ]] && source "$HOME/.fzf/shell/completion.zsh" 2> /dev/null
+	[[ $- == *i* ]] && source "$HOME/.config/fzf/shell/completion.zsh" 2> /dev/null
 
 	# Key bindings
 	# ------------
-	source "$HOME/.fzf/shell/key-bindings.zsh"
+	source "$HOME/.config/fzf/shell/key-bindings.zsh"
 fi

@@ -7,31 +7,14 @@
 
 
 ## Dependencies
-1. Rust installed
 
-```
-$ curl https://sh.rustup.rs -sSf | sh
-```
+### macOS
 
-2. exa installed
-
-```
-$ cargo install exa
-```
-
-3. zsh installed
-4. [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) installed
-
-```
-$ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-```
-
-5. [powerlevel9k](https://github.com/Powerlevel9k/powerlevel9k) installed
+have homebrew and git installed:
 
 ```bash
-# macOS
-$ brew tap sambadevi/powerlevel9k
-$ brew install powerlevel9k
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew install git
 ```
 
 6. python3 installed
