@@ -7,10 +7,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 	source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
-ZSH_CUSTOM=$HOME/.config/dotfiles/oh-my-zsh/custom
-
 autoload -U compinit; compinit
 
 # # # # #
@@ -88,10 +84,9 @@ if [ -f ~/.p10k.zsh ]; then
 fi
 
 # # # # #
-# Load custom modules
-source $ZSH/oh-my-zsh.sh
-source $ZSH_CUSTOM/aliases.zsh
-source $ZSH_CUSTOM/cfunctions.zsh
+# Path to your oh-my-zsh installation.
+export ZSH=$HOME/.oh-my-zsh
+export ZSH_CUSTOM=$HOME/.config/dotfiles/oh-my-zsh/custom
 
 # # # # #
 # Plugins
@@ -115,6 +110,11 @@ fi
 if [[ $(command -v helm) ]]; then
 	plugins+=(helm)
 fi
+
+# Load custom modules
+source $ZSH/oh-my-zsh.sh
+source $ZSH_CUSTOM/aliases.zsh
+source $ZSH_CUSTOM/cfunctions.zsh
 
 # # # # #
 # tmux config
