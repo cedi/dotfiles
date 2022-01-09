@@ -10,6 +10,8 @@
 	fpush = push --force
 	change-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --env-filter \"if [[ \\\"$`echo $VAR`\\\" = '$OLD' ]]; then export $VAR='$NEW'; fi\" $@; }; f"
 	squash = "!f(){ git reset --soft HEAD~${1} && git commit --edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\"; };f"
+	update-gitignore = !"f(){ git stash save && git rm -r --cached . && git add . && git commit -m\"refresh gitignore\" && git stash pop; }; f"
+	ignores = !sh -c \"wget --no-check-certificate https://www.gitignore.io/api/$1 -O .gitignore\"
 [gpg]
 	program = gpg2
 [init]
