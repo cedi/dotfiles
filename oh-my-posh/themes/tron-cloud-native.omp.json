@@ -38,8 +38,7 @@
                     "powerline_symbol": "\ue0b0",
                     "properties": {
                         "prefix": " \uf07b  ",
-                        "style": "full",
-                        "enable_hyperlink": true
+                        "style": "full"
                     }
                 },
                 {
