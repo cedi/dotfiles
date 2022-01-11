@@ -173,7 +173,7 @@
                 {
                     "type": "text",
                     "style": "plain",
-                    "foreground": "#75d629",
+                    "foreground": "#26C6DA",
                     "properties": {
                         "text": "❯"
                     }
@@ -187,7 +187,7 @@
     "final_space": false,
     "transient_prompt": {
         "background": "transparent",
-        "foreground": "#75d629",
+        "foreground": "#26C6DA",
         "template": "{{ .Path }} ❯ "
     }
 }
