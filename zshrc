@@ -78,7 +78,6 @@ fi
 # # # # #
 # Themes
 eval "$(oh-my-posh --init --shell zsh --config $OMP_CUSTOM/themes/tron-cloud-native.omp.json)"
-enable_poshtransientprompt
 
 # # # # #
 # Path to your oh-my-zsh installation.
@@ -130,3 +129,7 @@ if [ -d $HOME/.config/fzf ]; then
 	# ------------
 	source "$HOME/.config/fzf/shell/key-bindings.zsh"
 fi
+
+# # # # #
+# enable transient prompt
+enable_poshtransientprompt

@@ -24,7 +24,7 @@
                     "foreground": "#26C6DA",
                     "powerline_symbol": "\ue0b0",
                     "foreground_templates": [
-                        "{{ if .Root }}#b62d66{{ end }}"
+                        "{{ if .Root }}#e44934{{ end }}"
                     ],
                     "properties": {
                         "template": "{{ if .SSHSession }}\uf817 {{ end }}{{ .UserName }}@{{ .ComputerName }}"
@@ -33,8 +33,8 @@
                 {
                     "type": "path",
                     "style": "powerline",
-                    "background": "#0077c2",
-                    "foreground": "#ffffff",
+                    "background": "#26C6DA",
+                    "foreground": "#303030",
                     "powerline_symbol": "\ue0b0",
                     "properties": {
                         "prefix": " \uf07b  ",
@@ -45,12 +45,12 @@
                 {
                     "type": "git",
                     "style": "powerline",
-                    "background": "#deb45b",
+                    "background": "#fad53d",
                     "foreground": "#193549",
                     "powerline_symbol": "\ue0b0",
                     "background_templates": [
                         "{{ if or (.Working.Changed) (.Staging.Changed) }}#FF9248{{ end }}",
-                        "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#ff4500{{ end }}",
+                        "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#d95838{{ end }}",
                         "{{ if gt .Ahead 0 }}#B388FF{{ end }}",
                         "{{ if gt .Behind 0 }}#B388FF{{ end }}"
                     ],
@@ -73,8 +73,8 @@
                 {
                     "type": "shell",
                     "style": "powerline",
-                    "background": "#0077c2",
-                    "foreground": "#ffffff",
+                    "background": "#fad53d",
+                    "foreground": "#193549",
                     "invert_powerline": true,
                     "powerline_symbol": "\ue0b2",
                     "properties": {
@@ -84,8 +84,8 @@
                 {
                     "type": "executiontime",
                     "style": "powerline",
-                    "foreground": "#ffffff",
-                    "background": "#b62d66",
+                    "foreground": "#193549",
+                    "background": "#FF9248",
                     "invert_powerline": true,
                     "powerline_symbol": "\ue0b2",
                     "properties": {
@@ -97,8 +97,8 @@
                 {
                     "type": "go",
                     "style": "powerline",
-                    "foreground": "#5a7387",
-                    "background": "#bbf0ef",
+                    "foreground": "#303030",
+                    "background": "#26C6DA",
                     "invert_powerline": true,
                     "powerline_symbol": "\ue0b2",
                     "properties": {
@@ -108,8 +108,8 @@
                 {
                     "type": "dotnet",
                     "style": "powerline",
-                    "foreground": "#ffffff",
-                    "background": "#00ffff",
+                    "foreground": "#303030",
+                    "background": "#26C6DA",
                     "invert_powerline": true,
                     "powerline_symbol": "\ue0b2",
                     "properties": {
@@ -121,28 +121,17 @@
                     "style": "powerline",
                     "invert_powerline": true,
                     "powerline_symbol": "\ue0b2",
-                    "foreground": "#5a7387",
-                    "background": "#bbf0ef",
+                    "foreground": "#303030",
+                    "background": "#26C6DA",
                     "properties": {
                         "prefix": " \uE235 "
                     }
                 },
                 {
-                    "type": "rust",
-                    "style": "powerline",
-                    "invert_powerline": true,
-                    "powerline_symbol": "\ue0b2",
-                    "foreground": "#5a7387",
-                    "background": "#bbf0ef",
-                    "properties": {
-                        "prefix": " \uE7a8 "
-                    }
-                },
-                {
                     "type": "kubectl",
                     "style": "powerline",
-                    "background": "#bfd4ff",
-                    "foreground": "#000000",
+                    "background": "#303030",
+                    "foreground": "#26C6DA",
                     "invert_powerline": true,
                     "powerline_symbol": "\ue0b2",
                     "properties": {
@@ -153,12 +142,12 @@
                 {
                     "type": "az",
                     "style": "powerline",
-                    "background": "#bfd4ff",
-                    "foreground": "#000000",
+                    "background": "#303030",
+                    "foreground": "#26C6DA",
                     "invert_powerline": true,
                     "powerline_symbol": "\ue0b2",
                     "properties": {
-                        "prefix": " \ufd03 ",
+                        "prefix": "\uE0B3 \ufd03 ",
                         "template": "Subscription {{ .Name }} ({{ if .EnvironmentName | contains \"AzureCloud\" }}{{ \"Global\" }}{{ else }}{{ .EnvironmentName }}{{ end }})"
                     }
                 }
@@ -175,8 +164,11 @@
                     "type": "exit",
                     "style": "plain",
                     "foreground_templates": [
-                        "{{ if gt .Code 0 }}#f1184c{{ end }}"
-                    ]
+                        "{{ if gt .Code 0 }}#d95838{{ end }}"
+                    ],
+                    "properties": {
+                        "template": "\uf7d3 {{ .Text }}"
+                    }
                 },
                 {
                     "type": "text",
