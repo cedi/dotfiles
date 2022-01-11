@@ -65,7 +65,7 @@
         },
         {
             "alignment": "right",
-            "type": "prompt",
+            "type": "rprompt",
             "vertical_offset": 0,
             "horizontal_offset": 0,
             "segments": [
