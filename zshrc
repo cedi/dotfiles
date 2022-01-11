@@ -84,7 +84,7 @@ fi
 #	source ~/.p10k.zsh
 #fi
 
-eval "$(oh-my-posh --init --shell zsh --config $OMP_CUSTOM/themes/cloud-native-azure.omp.json)"
+eval "$(oh-my-posh --init --shell zsh --config $OMP_CUSTOM/themes/tron-cloud-native.omp.json)"
 enable_poshtransientprompt
 enable_poshtooltips
 

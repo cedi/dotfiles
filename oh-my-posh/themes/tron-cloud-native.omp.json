@@ -11,14 +11,14 @@
                 {
                     "type": "session",
                     "style": "powerline",
-                    "background": "#c386f1",
+                    "background": "#303030",
                     "foreground": "#ffffff",
                     "powerline_symbol": "\ue0b0"
                 },
                 {
                     "type": "path",
                     "style": "powerline",
-                    "background": "#ff479c",
+                    "background": "#0077c2",
                     "foreground": "#ffffff",
                     "powerline_symbol": "\ue0b0",
                     "properties": {
@@ -30,7 +30,7 @@
                 {
                     "type": "git",
                     "style": "powerline",
-                    "background": "#fffb38",
+                    "background": "#deb45b",
                     "foreground": "#193549",
                     "powerline_symbol": "\ue0b0",
                     "background_templates": [
@@ -70,7 +70,7 @@
                     "type": "executiontime",
                     "style": "powerline",
                     "foreground": "#ffffff",
-                    "background": "#8800dd",
+                    "background": "#b62d66",
                     "invert_powerline": true,
                     "powerline_symbol": "\ue0b2",
                     "properties": {
@@ -82,8 +82,8 @@
                 {
                     "type": "go",
                     "style": "powerline",
-                    "foreground": "#ffffff",
-                    "background": "#7FD5EA",
+                    "foreground": "#5a7387",
+                    "background": "#bbf0ef",
                     "invert_powerline": true,
                     "powerline_symbol": "\ue0b2",
                     "properties": {
@@ -106,8 +106,8 @@
                     "style": "powerline",
                     "invert_powerline": true,
                     "powerline_symbol": "\ue0b2",
-                    "foreground": "#ffffff",
-                    "background": "#7FD5EA",
+                    "foreground": "#5a7387",
+                    "background": "#bbf0ef",
                     "properties": {
                         "prefix": " \uE235 "
                     }
@@ -117,16 +117,28 @@
                     "style": "powerline",
                     "invert_powerline": true,
                     "powerline_symbol": "\ue0b2",
-                    "foreground": "#ffffff",
-                    "background": "#7FD5EA",
+                    "foreground": "#5a7387",
+                    "background": "#bbf0ef",
                     "properties": {
                         "prefix": " \uE7a8 "
                     }
                 },
                 {
+                    "type": "kubectl",
+                    "style": "powerline",
+                    "background": "#bfd4ff",
+                    "foreground": "#000000",
+                    "invert_powerline": true,
+                    "powerline_symbol": "\ue0b2",
+                    "properties": {
+                        "prefix": " ⎈ ",
+                        "template": "{{.Context}} {{if .Namespace}}: {{.Namespace}}{{end}}"
+                    }
+                },
+                {
                     "type": "az",
                     "style": "powerline",
-                    "background": "#9ec3f0",
+                    "background": "#bfd4ff",
                     "foreground": "#000000",
                     "invert_powerline": true,
                     "powerline_symbol": "\ue0b2",
@@ -167,26 +179,6 @@
                     }
                 }
             ]
-        }
-    ],
-    "tooltips": [
-        {
-            "type": "kubectl",
-            "tips": [
-                "kustomize",
-                "kubectl",
-                "k",
-                "helm"
-            ],
-            "style": "powerline",
-            "background": "#9ec3f0",
-            "foreground": "#000000",
-            "invert_powerline": true,
-            "powerline_symbol": "\ue0b2",
-            "properties": {
-                "prefix": " ⎈ ",
-                "template": "{{.Context}} {{if .Namespace}}: {{.Namespace}}{{end}}"
-            }
         }
     ],
     "console_title": true,
