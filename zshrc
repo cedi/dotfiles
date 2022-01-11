@@ -84,9 +84,9 @@ fi
 #	source ~/.p10k.zsh
 #fi
 
+eval "$(oh-my-posh --init --shell zsh --config $OMP_CUSTOM/themes/cloud-native-azure.omp.json)"
 enable_poshtransientprompt
 enable_poshtooltips
-eval "$(oh-my-posh --init --shell zsh --config $OMP_CUSTOM/themes/cloud-native-azure.omp.json)"
 
 # # # # #
 # Path to your oh-my-zsh installation.
