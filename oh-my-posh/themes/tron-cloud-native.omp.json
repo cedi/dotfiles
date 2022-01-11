@@ -25,7 +25,10 @@
                     "powerline_symbol": "\ue0b0",
                     "foreground_templates": [
                         "{{ if .Root }}#b62d66{{ end }}"
-                    ]
+                    ],
+                    "properties": {
+                        "template": "{{ if .SSHSession }}\uf817 {{ end }}{{ .UserName }}@{{ .ComputerName }}"
+                    }
                 },
                 {
                     "type": "path",
