@@ -64,6 +64,7 @@ fi
 # construct PATH variable
 export PATH=$(echo "$MY_PATH:$PATH" | sed 's/:/\n/g' | awk '!x[$0]++' | sed -r '/^\s*$/d' | tr '\n' ':')
 
+export OMP_CUSTOM=$HOME/.config/dotfiles/oh-my-posh/
 
 # # # # #
 # make cursor movement convenient in macOS
@@ -76,12 +77,16 @@ fi
 
 # # # # #
 # Themes
-export ZSH_THEME="powerlevel10k/powerlevel10k"
+#export ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-if [ -f ~/.p10k.zsh ]; then
-	source ~/.p10k.zsh
-fi
+#if [ -f ~/.p10k.zsh ]; then
+#	source ~/.p10k.zsh
+#fi
+
+enable_poshtransientprompt
+enable_poshtooltips
+eval "$(oh-my-posh --init --shell zsh --config $OMP_CUSTOM/themes/cloud-native-azure.omp.json)"
 
 # # # # #
 # Path to your oh-my-zsh installation.

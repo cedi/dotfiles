@@ -52,6 +52,8 @@ elif [ -f /etc/debian_version ]; then
 
     echo "* install neovim-remote"
     pip3 install neovim-remote
+else
+    echo "Unsupported OS type"
 fi
 
 echo "* Install GoLang"
@@ -64,6 +66,16 @@ if [ $(command -v zsh) ]; then
     fi
 fi
 
+echo "* Install oh-my-posh"
+if [[ $(uname -s) == "Darwin" ]]; then
+    brew tap jandedobbeleer/oh-my-posh
+    brew install oh-my-posh
+elif [ -f /etc/debian_version ]; then
+    sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
+    sudo chmod +x /usr/local/bin/oh-my-posh
+else
+    echo "Unsupported OS type"
+fi
 
 echo "#########################################################"
 echo "# linking dotfiles                                      #"

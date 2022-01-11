@@ -1,0 +1,201 @@
+{
+    "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+    "blocks": [
+        {
+            "type": "prompt",
+            "alignment": "left",
+            "newline": true,
+            "horizontal_offset": 0,
+            "vertical_offset": 0,
+            "segments": [
+                {
+                    "type": "session",
+                    "style": "powerline",
+                    "background": "#c386f1",
+                    "foreground": "#ffffff",
+                    "powerline_symbol": "\ue0b0"
+                },
+                {
+                    "type": "path",
+                    "style": "powerline",
+                    "background": "#ff479c",
+                    "foreground": "#ffffff",
+                    "powerline_symbol": "\ue0b0",
+                    "properties": {
+                        "prefix": " \uf07b  ",
+                        "style": "full",
+                        "enable_hyperlink": true
+                    }
+                },
+                {
+                    "type": "git",
+                    "style": "powerline",
+                    "background": "#fffb38",
+                    "foreground": "#193549",
+                    "powerline_symbol": "\ue0b0",
+                    "background_templates": [
+                        "{{ if or (.Working.Changed) (.Staging.Changed) }}#FF9248{{ end }}",
+                        "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#ff4500{{ end }}",
+                        "{{ if gt .Ahead 0 }}#B388FF{{ end }}",
+                        "{{ if gt .Behind 0 }}#B388FF{{ end }}"
+                    ],
+                    "properties": {
+                        "fetch_status": true,
+                        "fetch_stash_count": true,
+                        "fetch_upstream_icon": true,
+                        "branch_max_length": 25,
+                        "template": "{{ .UpstreamIcon }}{{ .HEAD }}{{ .BranchStatus }}{{ if .Working.Changed }} \uF044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uF046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \uF692 {{ .StashCount }}{{ end }}"
+                    }
+                }
+            ]
+        },
+        {
+            "alignment": "right",
+            "type": "prompt",
+            "vertical_offset": 0,
+            "horizontal_offset": 0,
+            "segments": [
+                {
+                    "type": "shell",
+                    "style": "powerline",
+                    "background": "#0077c2",
+                    "foreground": "#ffffff",
+                    "invert_powerline": true,
+                    "powerline_symbol": "\ue0b2",
+                    "properties": {
+                        "prefix": " \uf489 "
+                    }
+                },
+                {
+                    "type": "executiontime",
+                    "style": "powerline",
+                    "foreground": "#ffffff",
+                    "background": "#8800dd",
+                    "invert_powerline": true,
+                    "powerline_symbol": "\ue0b2",
+                    "properties": {
+                        "threshold": 500,
+                        "style": "austin",
+                        "prefix": " \ufbab "
+                    }
+                },
+                {
+                    "type": "go",
+                    "style": "powerline",
+                    "foreground": "#ffffff",
+                    "background": "#7FD5EA",
+                    "invert_powerline": true,
+                    "powerline_symbol": "\ue0b2",
+                    "properties": {
+                        "prefix": " \uFCD1 "
+                    }
+                },
+                {
+                    "type": "dotnet",
+                    "style": "powerline",
+                    "foreground": "#ffffff",
+                    "background": "#00ffff",
+                    "invert_powerline": true,
+                    "powerline_symbol": "\ue0b2",
+                    "properties": {
+                        "prefix": " \uE77F "
+                    }
+                },
+                {
+                    "type": "python",
+                    "style": "powerline",
+                    "invert_powerline": true,
+                    "powerline_symbol": "\ue0b2",
+                    "foreground": "#ffffff",
+                    "background": "#7FD5EA",
+                    "properties": {
+                        "prefix": " \uE235 "
+                    }
+                },
+                {
+                    "type": "rust",
+                    "style": "powerline",
+                    "invert_powerline": true,
+                    "powerline_symbol": "\ue0b2",
+                    "foreground": "#ffffff",
+                    "background": "#7FD5EA",
+                    "properties": {
+                        "prefix": " \uE7a8 "
+                    }
+                },
+                {
+                    "type": "az",
+                    "style": "powerline",
+                    "background": "#9ec3f0",
+                    "foreground": "#000000",
+                    "invert_powerline": true,
+                    "powerline_symbol": "\ue0b2",
+                    "properties": {
+                        "prefix": " \ufd03 ",
+                        "template": "Subscription {{ .Name }} ({{ if .EnvironmentName | contains \"AzureCloud\" }}{{ \"Global\" }}{{ else }}{{ .EnvironmentName }}{{ end }})"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "rprompt",
+            "alignment": "left",
+            "horizontal_offset": 0,
+            "vertical_offset": 0,
+            "segments": []
+        },
+        {
+            "type": "prompt",
+            "alignment": "left",
+            "horizontal_offset": 0,
+            "vertical_offset": 0,
+            "newline": true,
+            "segments": [
+                {
+                    "type": "exit",
+                    "style": "plain",
+                    "foreground_templates": [
+                        "{{ if gt .Code 0 }}#f1184c{{ end }}"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "style": "plain",
+                    "foreground": "#75d629",
+                    "properties": {
+                        "text": "❯"
+                    }
+                }
+            ]
+        }
+    ],
+    "tooltips": [
+        {
+            "type": "kubectl",
+            "tips": [
+                "kustomize",
+                "kubectl",
+                "k",
+                "helm"
+            ],
+            "style": "powerline",
+            "background": "#9ec3f0",
+            "foreground": "#000000",
+            "invert_powerline": true,
+            "powerline_symbol": "\ue0b2",
+            "properties": {
+                "prefix": " ⎈ ",
+                "template": "{{.Context}} {{if .Namespace}}: {{.Namespace}}{{end}}"
+            }
+        }
+    ],
+    "console_title": true,
+    "console_title_style": "template",
+    "console_title_template": " {{ .User }}@{{ .Host }} in {{ .Folder }} - {{ .Shell }}",
+    "final_space": false,
+    "transient_prompt": {
+        "background": "transparent",
+        "foreground": "#75d629",
+        "template": "{{ .Path }} ❯ "
+    }
+}
