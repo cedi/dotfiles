@@ -68,12 +68,16 @@ echo "* Install oh-my-posh"
 if [[ $(uname -s) == "Darwin" ]]; then
     brew tap jandedobbeleer/oh-my-posh
     brew install oh-my-posh
-elif [ -f /etc/debian_version ]; then
-    sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
-    sudo chmod +x /usr/local/bin/oh-my-posh
 else
-    echo "Unsupported OS type"
+    aarch="amd64"
+    case $(uname -m) in
+        "x86_64") aarch="amd64" ;;
+        "aarch64") aarch="arm64" ;;
+    esac
 
+    sudo wget "https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-$aarch" -O /usr/local/bin/oh-my-posh
+    sudo chmod +x /usr/local/bin/oh-my-posh
+fi
 
 echo "#########################################################"
 echo "# linking dotfiles                                      #"
