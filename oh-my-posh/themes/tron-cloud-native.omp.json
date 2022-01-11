@@ -9,11 +9,26 @@
             "vertical_offset": 0,
             "segments": [
                 {
+                    "type": "os",
+                    "style": "plain",
+                    "foreground": "#26C6DA",
+                    "background": "#303030",
+                    "properties": {
+                        "postfix": " \uE0B1"
+                    }
+                },
+                {
                     "type": "session",
                     "style": "powerline",
                     "background": "#303030",
-                    "foreground": "#ffffff",
-                    "powerline_symbol": "\ue0b0"
+                    "foreground": "#26C6DA",
+                    "powerline_symbol": "\ue0b0",
+                    "foreground_templates": [
+                        "{{ if .Root }}#b62d66{{ end }}"
+                    ],
+                    "properties": {
+                        "template": "{{ if .SSHSession }}\ue734{{ end }}{{ .UserName }}@{{ .ComputerName }}"
+                    }
                 },
                 {
                     "type": "path",
@@ -148,13 +163,6 @@
                     }
                 }
             ]
-        },
-        {
-            "type": "rprompt",
-            "alignment": "left",
-            "horizontal_offset": 0,
-            "vertical_offset": 0,
-            "segments": []
         },
         {
             "type": "prompt",
