@@ -52,8 +52,6 @@ elif [ -f /etc/debian_version ]; then
 
     echo "* install neovim-remote"
     pip3 install neovim-remote
-else
-    echo "Unsupported OS type"
 fi
 
 echo "* Install GoLang"
@@ -75,7 +73,7 @@ elif [ -f /etc/debian_version ]; then
     sudo chmod +x /usr/local/bin/oh-my-posh
 else
     echo "Unsupported OS type"
-fi
+
 
 echo "#########################################################"
 echo "# linking dotfiles                                      #"
@@ -88,18 +86,6 @@ if [ $(command -v zsh) ]; then
         rm $HOME/.zshrc
     fi
     ln -s "$localDir/zshrc" "$HOME/.zshrc"
-
-    echo "* install p10k theme"
-
-    if [ -f "$HOME/.p10k.zsh" ]; then
-        rm $HOME/.p10k.zsh
-    fi
-fi
-
-if [[ $(uname -s) == "Darwin" ]]; then
-    ln -s "$localDir/p10k.macos.zsh" "$HOME/.p10k.zsh"
-else
-    ln -s "$localDir/p10k.noicon.zsh" "$HOME/.p10k.zsh"
 fi
 
 echo "* install tmux.conf"

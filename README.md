@@ -27,4 +27,3 @@ I'd highly recommended to fork the repository prior to cloning, especially if yo
 ```bash
 git clone git@github.com:cedi/dotfiles.git $HOME/.config/dotfiles && ./.config/dotfiles/insta.sh
 ```
-

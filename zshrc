@@ -77,16 +77,8 @@ fi
 
 # # # # #
 # Themes
-#export ZSH_THEME="powerlevel10k/powerlevel10k"
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-#if [ -f ~/.p10k.zsh ]; then
-#	source ~/.p10k.zsh
-#fi
-
 eval "$(oh-my-posh --init --shell zsh --config $OMP_CUSTOM/themes/tron-cloud-native.omp.json)"
 enable_poshtransientprompt
-enable_poshtooltips
 
 # # # # #
 # Path to your oh-my-zsh installation.
