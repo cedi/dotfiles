@@ -67,3 +67,7 @@ if [[ "$OSTYPE" != "darwin"* ]]; then
 else
 	alias ipals='ip addr ls'
 fi
+
+if [ $(command -v bat) ]; then
+	alias ybat='bat -lyaml'
+fi
