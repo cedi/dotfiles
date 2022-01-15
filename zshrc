@@ -128,6 +128,8 @@ if [ -d $HOME/.config/fzf ]; then
 	# Key bindings
 	# ------------
 	source "$HOME/.config/fzf/shell/key-bindings.zsh"
+
+	export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 fi
 
 # # # # #
