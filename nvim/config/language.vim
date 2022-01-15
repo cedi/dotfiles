@@ -32,3 +32,9 @@ autocmd BufRead,BufNewFile *.py set colorcolumn=81
 " yaml
 au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" json
+" Disable quote concealing in JSON files
+let g:vim_json_conceal=0
+let g:indentLine_setConceal=0
