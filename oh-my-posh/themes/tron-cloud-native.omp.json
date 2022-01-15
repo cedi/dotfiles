@@ -5,8 +5,6 @@
             "type": "prompt",
             "alignment": "left",
             "newline": true,
-            "horizontal_offset": 0,
-            "vertical_offset": 0,
             "segments": [
                 {
                     "type": "os",
@@ -65,9 +63,7 @@
         },
         {
             "alignment": "right",
-            "type": "rprompt",
-            "vertical_offset": 0,
-            "horizontal_offset": 0,
+            "type": "prompt",
             "segments": [
                 {
                     "type": "shell",
@@ -125,38 +121,12 @@
                     "properties": {
                         "prefix": " \uE235 "
                     }
-                },
-                {
-                    "type": "kubectl",
-                    "style": "powerline",
-                    "background": "#303030",
-                    "foreground": "#26C6DA",
-                    "invert_powerline": true,
-                    "powerline_symbol": "\ue0b2",
-                    "properties": {
-                        "prefix": " ⎈ ",
-                        "template": "{{.Context}} {{if .Namespace}}: {{.Namespace}}{{end}}"
-                    }
-                },
-                {
-                    "type": "az",
-                    "style": "powerline",
-                    "background": "#303030",
-                    "foreground": "#26C6DA",
-                    "invert_powerline": true,
-                    "powerline_symbol": "\ue0b2",
-                    "properties": {
-                        "prefix": "\uE0B3 \ufd03 ",
-                        "template": "Subscription {{ .Name }} ({{ if .EnvironmentName | contains \"AzureCloud\" }}{{ \"Global\" }}{{ else }}{{ .EnvironmentName }}{{ end }})"
-                    }
                 }
             ]
         },
         {
             "type": "prompt",
             "alignment": "left",
-            "horizontal_offset": 0,
-            "vertical_offset": 0,
             "newline": true,
             "segments": [
                 {
@@ -180,6 +150,35 @@
             ]
         }
     ],
+	"tooltips": [
+		{
+        	"type": "kubectl",
+			"tips": ["kubectl", "kustomize", "helm", "k"],
+        	"style": "powerline",
+        	"background": "#303030",
+        	"foreground": "#26C6DA",
+        	"invert_powerline": true,
+        	"powerline_symbol": "\ue0b2",
+        	"properties": {
+        		"prefix": " ⎈ ",
+        	    "template": "{{.Context}} {{if .Namespace}}: {{.Namespace}}{{end}}"
+        	}
+        },
+        {
+            "type": "az",
+			"tips": ["az"],
+            "style": "powerline",
+            "background": "#303030",
+            "foreground": "#26C6DA",
+            "invert_powerline": true,
+            "powerline_symbol": "\ue0b2",
+            "properties": {
+                "prefix": "\uE0B3 \ufd03 ",
+                "template": "Subscription {{ .Name }} ({{ if .EnvironmentName | contains \"AzureCloud\" }}{{ \"Global\" }}{{ else }}{{ .EnvironmentName }}{{ end }})"
+            }
+        }
+
+	],
     "console_title": true,
     "console_title_style": "template",
     "console_title_template": " {{ .User }}@{{ .Host }} in {{ .Folder }} - {{ .Shell }}",

@@ -133,3 +133,5 @@ fi
 # # # # #
 # enable transient prompt
 enable_poshtransientprompt
+# enable posh-tooltips
+enable_poshtooltips
