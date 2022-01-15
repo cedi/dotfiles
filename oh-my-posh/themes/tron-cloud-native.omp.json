@@ -20,7 +20,6 @@
                     "style": "powerline",
                     "background": "#303030",
                     "foreground": "#26C6DA",
-                    "powerline_symbol": "\ue0b0",
                     "foreground_templates": [
                         "{{ if .Root }}#e44934{{ end }}"
                     ],
