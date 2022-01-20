@@ -72,10 +72,10 @@ export OMP_CUSTOM=$HOME/.config/dotfiles/oh-my-posh/
 # # # # #
 # make cursor movement convenient in macOS
 if [[ "$OSTYPE" == "darwin"* ]]; then
-	bindkey "[D" backward-word
-	bindkey "[C" forward-word
-	bindkey "^[a" beginning-of-line
-	bindkey "^[e" end-of-line
+	bindkey "^[^[[D" backward-word
+	bindkey "^[^[[C" forward-word
+	bindkey "^[[H" beginning-of-line
+	bindkey "^[[F" end-of-line
 fi
 
 # # # # #
