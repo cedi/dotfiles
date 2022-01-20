@@ -103,7 +103,6 @@ if [ -f $ZSH_CUSTOM/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plug
 fi
 
 if [[ $(command -v kubectl) ]]; then
-	echo "loadking kubectl plugin"
 	plugins+=(kubectl)
 fi
 
