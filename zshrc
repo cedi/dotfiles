@@ -7,6 +7,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 	source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+export LANG=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
+
 autoload -U compinit; compinit
 
 # # # # #
@@ -100,6 +103,7 @@ if [ -f $ZSH_CUSTOM/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plug
 fi
 
 if [[ $(command -v kubectl) ]]; then
+	echo "loadking kubectl plugin"
 	plugins+=(kubectl)
 fi
 
