@@ -24,7 +24,7 @@
                         "{{ if .Root }}#e44934{{ end }}"
                     ],
                     "properties": {
-                        "template": "{{ if .SSHSession }}\uf817 {{ end }}{{ .UserName }}@{{ .ComputerName }}"
+                        "template": "{{ if .SSHSession }}\uf817 {{ end }}{{ .UserName }}@{{ .HostName }}"
                     }
                 },
                 {
@@ -180,11 +180,11 @@
 	],
     "console_title": true,
     "console_title_style": "template",
-    "console_title_template": " {{ .User }}@{{ .Host }} in {{ .Folder }} - {{ .Shell }}",
+    "console_title_template": " {{ .UserName }}@{{ .HostName }} in {{ .Folder }} - {{ .Shell }}",
     "final_space": false,
     "transient_prompt": {
         "background": "transparent",
         "foreground": "#26C6DA",
-        "template": "{{ .Path }} ❯ "
+        "template": "{{ .PWD }} ❯ "
     }
 }
