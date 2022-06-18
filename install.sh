@@ -59,7 +59,7 @@ fi
 if [[ ! $(command -v zsh) ]]; then
     echo "* Install GoLang"
     sudo ./update-golang/update-golang.sh
-elif [[ $(go version | awk '{print $3}') != "go1.18.3" ]]; then
+elif [[ ! ($(go version | awk '{print $3}') =~ go1.18.*) ]]; then
     echo "* updating GoLang"
     sudo ./update-golang/update-golang.sh
 fi
