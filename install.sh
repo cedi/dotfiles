@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e -x
+
 localDir=$(pwd)
 
 echo "#########################################################"
@@ -54,8 +56,13 @@ elif [ -f /etc/debian_version ]; then
     pip3 install neovim-remote
 fi
 
-echo "* Install GoLang"
-sudo RELEASE=1.18beta1 ./update-golang/update-golang.sh
+if [[ ! $(command -v zsh) ]]; then
+    echo "* Install GoLang"
+    sudo ./update-golang/update-golang.sh
+elif [[ $(go version | awk '{print $3}') != "go1.18.3" ]]; then
+    echo "* updating GoLang"
+    sudo ./update-golang/update-golang.sh
+fi
 
 if [ $(command -v zsh) ]; then
     if [ ! -d $HOME/.oh-my-zsh ]; then
