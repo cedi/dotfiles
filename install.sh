@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e -x
+set -e
 
 localDir=$(pwd)
 
@@ -62,6 +62,8 @@ if [[ ! $(command -v zsh) ]]; then
 elif [[ ! ($(go version | awk '{print $3}') =~ go1.18.*) ]]; then
     echo "* updating GoLang"
     sudo ./update-golang/update-golang.sh
+else
+    echo "* GoLang installed & up to date"
 fi
 
 if [ $(command -v zsh) ]; then
