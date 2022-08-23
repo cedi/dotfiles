@@ -1,5 +1,6 @@
 [core]
 	editor = nvim
+	#pager = diff-so-fancy | less --tabs=4 -RFX
 [user]
 	email = github@cedric-kienzler.de
 	name = Cedric Kienzler
@@ -20,3 +21,5 @@
 	detachedHead = false
 [pull]
 	rebase = true
+[interactive]
+	#diffFilter = diff-so-fancy --patch

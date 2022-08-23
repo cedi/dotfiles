@@ -64,6 +64,16 @@ if [ -d /usr/local/share/python/ ]; then
 	export MY_PATH=$MY_PATH:/usr/local/share/python/
 fi
 
+if [ -d $HOME/Library/Python/3.8/bin/ ]; then
+	export MY_PATH=$MY_PATH:$HOME/Library/Python/3.8/bin/
+fi
+
+if [ -d "$HOME/.age/sops" ]; then
+	if [ -f "$HOME/.age/sops/keys_mae.txt" ]; then
+		export SOPS_AGE_KEY_FILE=$HOME/.age/sops/keys_mae.txt
+	fi
+fi
+
 # construct PATH variable
 export PATH=$(echo "$MY_PATH:$PATH" | sed 's/:/\n/g' | awk '!x[$0]++' | sed -r '/^\s*$/d' | tr '\n' ':')
 
@@ -134,6 +144,17 @@ if [ -d $HOME/.config/fzf ]; then
 
 	export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 fi
+
+# # # # #
+# Load hcloud completion
+if [ -d $HOME/.config/hcloud/completion/zsh ]; then
+	fpath+=($HOME/.config/hcloud/completion/zsh)
+fi
+
+# # # # #
+# enable navi as shell widget
+
+eval "$(navi widget zsh)"
 
 # # # # #
 # enable transient prompt

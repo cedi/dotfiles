@@ -32,7 +32,7 @@ echo "#########################################################"
 echo "* Install fzf"
 if [ -d "$HOME/.config/fzf/" ]; then
     pushd $HOME/.config/fzf
-    git pull 
+    git pull
     popd
 else
     git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.config/fzf && $HOME/.config/fzf/install --bin
@@ -40,11 +40,33 @@ fi
 
 if [[ $(uname -s) == "Darwin" ]]; then
     echo "[Installing macOS related stuff]"
-    echo "* brew install exa python3 neovim neovim-remote tfswitch kubectl helm ripgrep iproute2mac zsh"
-    brew install exa python3 neovim neovim-remote tfswitch kubectl helm ripgrep iproute2mac zsh
+
+	if [[ ! $(command -v brew) ]]; then
+		echo "* Install homebrew"
+		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	fi
+
+    echo "* brew install exa python3 neovim neovim-remote tfswitch ripgrep iproute2mac zsh thefuck sops watch wget ansible navi"
+    brew install exa python3 neovim neovim-remote tfswitch ripgrep iproute2mac zsh thefuck sops watch wget ansible navi
 
     echo "* install gnutils"
     brew install coreutils findutils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt grep
+
+	echo "* install kubernetes tools"
+	brew install kubectl helm k9s stern hcloud
+
+	echo "brew install kubectl helm k9s stern"
+	(
+	  set -x; cd "$(mktemp -d)" &&
+	  OS="$(uname | tr '[:upper:]' '[:lower:]')" &&
+	  ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')" &&
+	  KREW="krew-${OS}_${ARCH}" &&
+	  curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/${KREW}.tar.gz" &&
+	  tar zxvf "${KREW}.tar.gz" &&
+	  ./"${KREW}" install krew
+	)
+
+
 elif [ -f /etc/debian_version ]; then
     echo "* install tfswitch"
     curl -L https://raw.githubusercontent.com/warrensbox/terraform-switcher/release/install.sh | bash
@@ -86,6 +108,14 @@ else
 
     sudo wget "https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-$aarch" -O /usr/local/bin/oh-my-posh
     sudo chmod +x /usr/local/bin/oh-my-posh
+fi
+
+echo "* Install hcloud completion"
+if [[ $(command -v hcloud) ]]; then
+    mkdir -p ~/.config/hcloud/completion/zsh
+    hcloud completion zsh > ~/.config/hcloud/completion/zsh/_hcloud
+
+
 fi
 
 echo "#########################################################"
