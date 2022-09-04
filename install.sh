@@ -78,10 +78,10 @@ elif [ -f /etc/debian_version ]; then
     pip3 install neovim-remote
 fi
 
-if [[ ! $(command -v zsh) ]]; then
+if [[ ! $(command -v go) ]]; then
     echo "* Install GoLang"
     sudo ./update-golang/update-golang.sh
-elif [[ ! ($(go version | awk '{print $3}') =~ go1.18.*) ]]; then
+elif [[ ! ($(go version | awk '{print $3}') =~ go1.19.*) ]]; then
     echo "* updating GoLang"
     sudo ./update-golang/update-golang.sh
 else
