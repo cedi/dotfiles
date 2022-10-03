@@ -71,8 +71,8 @@ elif [ -f /etc/debian_version ]; then
     echo "* install tfswitch"
     curl -L https://raw.githubusercontent.com/warrensbox/terraform-switcher/release/install.sh | bash
 
-    echo "* apt install exa python3 python3-pip neovim kubectl ripgrep zsh"
-    sudo apt install -y exa python3 python3-pip neovim kubectl ripgrep zsh
+    echo "* apt install exa python3 python3-pip neovim ripgrep zsh"
+    sudo apt install -y exa python3 python3-pip neovim ripgrep zsh
 
     echo "* install neovim-remote"
     pip3 install neovim-remote
@@ -86,6 +86,23 @@ elif [[ ! ($(go version | awk '{print $3}') =~ go1.19.*) ]]; then
     sudo ./update-golang/update-golang.sh
 else
     echo "* GoLang installed & up to date"
+fi
+
+if [ -f /etc/debian_version ]; then
+	if [[ ! $(command -v kubectl) ]]; then
+	    echo "* Install kubectl"
+	    
+	    echo "** download kubectl"
+	    curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+	    
+	    echo "** mark executable"
+	    chmod +x ./kubectl
+	    
+	    echo "** move to /usr/local/bin"
+	    sudo mv ./kubectl /usr/local/bin/kubectl
+	else
+	    echo "* kubectl already installed"
+	fi
 fi
 
 if [ $(command -v zsh) ]; then
