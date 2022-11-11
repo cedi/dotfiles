@@ -145,9 +145,13 @@ if [ -d $HOME/.config/fzf ]; then
 	export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 fi
 
+if [ -f ~/.fzf.zsh ]; then
+	source ~/.fzf.zsh
+fi
+
 # # # # #
 # Load hcloud completion
-if [ -d $HOME/.config/hcloud/completion/zsh ]; then
+if [[ $(command -v helm) && -d $HOME/.config/hcloud/completion/zsh ]]; then
 	fpath+=($HOME/.config/hcloud/completion/zsh)
 fi
 
@@ -161,3 +165,6 @@ eval "$(navi widget zsh)"
 enable_poshtransientprompt
 # enable posh-tooltips
 enable_poshtooltips
+
+autoload -U compinit; compinit
+
