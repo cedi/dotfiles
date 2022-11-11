@@ -146,6 +146,7 @@ if [ $(command -v zsh) ]; then
         rm $HOME/.zshrc
     fi
     ln -s "$localDir/zshrc" "$HOME/.zshrc"
+    ln -s "$localDir/zshenv" "$HOME/.zshenv"
 fi
 
 echo "* install tmux.conf"

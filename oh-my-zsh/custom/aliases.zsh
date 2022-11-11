@@ -14,7 +14,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 if [ $(command -v exa) ]; then
-	alias ls='exa --git'
+	alias ls='exa --git --icons --group-directories-first'
+
 	alias la='ls --all'
 	# ls
 	# o = omit group id
