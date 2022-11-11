@@ -122,8 +122,8 @@ fi
 
 # Load custom modules
 source $ZSH/oh-my-zsh.sh
-source $ZSH_CUSTOM/aliases.zsh
-source $ZSH_CUSTOM/cfunctions.zsh
+#source $ZSH_CUSTOM/aliases.zsh
+#source $ZSH_CUSTOM/cfunctions.zsh
 
 # # # # #
 # tmux config
