@@ -133,7 +133,7 @@
   "transient_prompt": {
     "background": "transparent",
     "foreground": "#26C6DA",
-    "template": "{{ .PWD }} \u276f "
+    "template": " "
   },
   "version": 2
 }

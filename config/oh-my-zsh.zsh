@@ -1,4 +1,5 @@
 plugins=(sudo colored-man-pages)
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
 	plugins+=(iterm2 macos)
 fi
@@ -7,7 +8,7 @@ if [ -f $ZSH_CUSTOM/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh ]
 	plugins+=(zsh-autosuggestions)
 fi
 
-if [ -f $ZSH_CUSTOM/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh ]; then
+if [[ "$TERM_PROGRAM" != "WarpTerminal" && -f $ZSH_CUSTOM/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh ]]; then
 	plugins+=(zsh-syntax-highlighting)
 fi
 

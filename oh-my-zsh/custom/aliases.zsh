@@ -74,10 +74,6 @@ if [ $(command -v bat) ]; then
 	alias ybat='bat -lyaml'
 fi
 
-if [[ $(command -v hcloud) ]]; then
-	alias hcloud='hcloud -s name'
-fi
-
 if [ $(command -v kubeval) ]; then
 	alias kubeval='kubeval --ignore-missing-schemas --strict --schema-location https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/'
 fi
