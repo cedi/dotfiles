@@ -81,7 +81,7 @@ fi
 if [[ ! $(command -v go) ]]; then
     echo "* Install GoLang"
     sudo ./update-golang/update-golang.sh
-elif [[ ! ($(go version | awk '{print $3}') =~ go1.19.*) ]]; then
+elif [[ ! ($(go version | awk '{print $3}') =~ go1.20.*) ]]; then
     echo "* updating GoLang"
     sudo ./update-golang/update-golang.sh
 else
@@ -91,13 +91,13 @@ fi
 if [ -f /etc/debian_version ]; then
 	if [[ ! $(command -v kubectl) ]]; then
 	    echo "* Install kubectl"
-	    
+
 	    echo "** download kubectl"
 	    curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-	    
+
 	    echo "** mark executable"
 	    chmod +x ./kubectl
-	    
+
 	    echo "** move to /usr/local/bin"
 	    sudo mv ./kubectl /usr/local/bin/kubectl
 	else
