@@ -46,8 +46,8 @@ if [[ $(uname -s) == "Darwin" ]]; then
 		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	fi
 
-    echo "* brew install exa python3 neovim neovim-remote tfswitch ripgrep iproute2mac zsh thefuck sops watch wget ansible navi"
-    brew install exa python3 neovim neovim-remote tfswitch ripgrep iproute2mac zsh thefuck sops watch wget ansible navi
+    echo "* brew install exa python3 neovim neovim-remote tfswitch ripgrep iproute2mac zsh thefuck sops watch wget ansible navi zoxide"
+    brew install exa python3 neovim neovim-remote tfswitch ripgrep iproute2mac zsh thefuck sops watch wget ansible navi zoxide
 
     echo "* install gnutils"
     brew install coreutils findutils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt grep
@@ -66,7 +66,6 @@ if [[ $(uname -s) == "Darwin" ]]; then
 	  ./"${KREW}" install krew
 	)
 
-
 elif [ -f /etc/debian_version ]; then
     echo "* install tfswitch"
     curl -L https://raw.githubusercontent.com/warrensbox/terraform-switcher/release/install.sh | bash
@@ -76,12 +75,15 @@ elif [ -f /etc/debian_version ]; then
 
     echo "* install neovim-remote"
     pip3 install neovim-remote
+
+    echo "* install zoxide"
+    curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
 fi
 
 if [[ ! $(command -v go) ]]; then
     echo "* Install GoLang"
     sudo ./update-golang/update-golang.sh
-elif [[ ! ($(go version | awk '{print $3}') =~ go1.20.*) ]]; then
+elif [[ ! ($(go version | awk '{print $3}') =~ go1.22.*) ]]; then
     echo "* updating GoLang"
     sudo ./update-golang/update-golang.sh
 else
@@ -139,15 +141,18 @@ echo "#########################################################"
 echo "# linking dotfiles                                      #"
 echo "#########################################################"
 
-if [ $(command -v zsh) ]; then
-    echo "* install zshrc"
+echo "* install zshrc"
 
-    if [ -f "$HOME/.zshrc" ]; then
-        rm $HOME/.zshrc
-    fi
-    ln -s "$localDir/zshrc" "$HOME/.zshrc"
-    ln -s "$localDir/zshenv" "$HOME/.zshenv"
+if [ -f "$HOME/.zshrc" ]; then
+    rm $HOME/.zshrc
 fi
+
+if [ -f "$HOME/.zshenv" ]; then
+    rm $HOME/.zshenv
+fi
+
+ln -s "$localDir/zshrc" "$HOME/.zshrc"
+ln -s "$localDir/zshenv" "$HOME/.zshenv"
 
 echo "* install tmux.conf"
 

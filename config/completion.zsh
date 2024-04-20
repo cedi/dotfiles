@@ -6,7 +6,16 @@ fi
 
 # # # # #
 # enable navi as shell widget
-eval "$(navi widget zsh)"
+if [[ $(command -v navi) ]]; then
+	eval "$(navi widget zsh)"
+fi
+
+# # # # #
+# enable zoxide as cd alternative
+if [[ $(command -v zoxide) ]]; then
+	eval "$(zoxide init --cmd cd zsh)"
+fi
+
 
 # # # # #
 # enable transient prompt

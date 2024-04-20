@@ -38,7 +38,9 @@ export MY_PATH=""
 [ -d /usr/local/go/bin ] && export MY_PATH="$MY_PATH:/usr/local/go/bin"
 [ -d /usr/local/share/python/ ] && export MY_PATH="$MY_PATH:/usr/local/share/python/"
 [ -d $HOME/Library/Python/3.8/bin/ ] && export MY_PATH="$MY_PATH:$HOME/Library/Python/3.8/bin/"
+[ -d $HOME/.kube/kubediff ] && export MY_PATH="$MY_PATH:$HOME/.kube/kubediff"
 
 # construct PATH variable
 export PATH="$(echo "$MY_PATH:$PATH" | sed "s/:/\n/g" | awk '!x[$0]++' | sed -r '/^\s*$/d' | tr '\n' ':')"
 
+[ -f $HOME/.cargo/env ] && . "$HOME/.cargo/env"
