@@ -11,13 +11,6 @@ if [[ $(command -v navi) ]]; then
 fi
 
 # # # # #
-# enable zoxide as cd alternative
-if [[ $(command -v zoxide) ]]; then
-	eval "$(zoxide init --cmd cd zsh)"
-fi
-
-
-# # # # #
 # enable transient prompt
 #enable_poshtransientprompt
 # enable posh-tooltips
