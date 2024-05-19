@@ -43,4 +43,11 @@ export MY_PATH=""
 # construct PATH variable
 export PATH="$(echo "$MY_PATH:$PATH" | sed "s/:/\n/g" | awk '!x[$0]++' | sed -r '/^\s*$/d' | tr '\n' ':')"
 
+# If we have a cargo env -> load it
 [ -f $HOME/.cargo/env ] && . "$HOME/.cargo/env"
+
+# Set the directory we want to store zinit and plugins
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+
+export FZF_DEFAULT_OPTS='--height 40% --border="rounded" --border-label="" --preview-window="border-rounded" --prompt=" ❯ " --marker="*" --pointer="→" --separator="─" --scrollbar="│" --layout="reverse" --info="right" --cycle --keep-right --info=inline --bind=btab:up,tab:down --tabstop=1'
+export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS --exact --no-sort --bind=ctrl-z:ignore --exit-0 --select-1"

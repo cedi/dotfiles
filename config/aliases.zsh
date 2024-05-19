@@ -1,6 +1,4 @@
-############################
 # Aliases
-
 if [[ "$OSTYPE" == "darwin"* ]]; then
 	[[ -f $(which ggrep) ]] && alias indent=ggrep
 	[[ -f $(which gindent) ]] && alias indent=gindent
@@ -78,4 +76,21 @@ if [ $(command -v kubeval) ]; then
 	alias kubeval='kubeval --ignore-missing-schemas --strict --schema-location https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/'
 fi
 
+# Function for always using one (and only one) vim server
+# If you really want a new vim session, simply do not pass any
+# argument to this function.
+function vim {
+  nvim="nvim"
+  nvr="nvr"
+  if [ -z $nvr ]; then
+    echo "$SHELL: vim: command not found"
+	$nvim "$@"
+    return 127;
+  fi
 
+  $nvr -s --servername 127.0.0.1:6789 "$@"
+}
+
+function mkcd() {
+	mkdir -p "$@" && cd "$@";
+}

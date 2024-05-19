@@ -5,3 +5,9 @@ elif [[ "$TERM_PROGRAM" == "WarpTerminal" ]]; then
 else
 	eval "$(oh-my-posh init zsh --config $OMP_CUSTOM/themes/tron-cedi.omp.json)"
 fi
+
+# # # # #
+# enable transient prompt
+#enable_poshtransientprompt
+# enable posh-tooltips
+#enable_poshtooltips

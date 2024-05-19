@@ -55,7 +55,7 @@ if [[ $(uname -s) == "Darwin" ]]; then
 	echo "* install kubernetes tools"
 	brew install kubectl helm k9s stern hcloud
 
-	echo "brew install kubectl helm k9s stern"
+	echo "install krew"
 	(
 	  set -x; cd "$(mktemp -d)" &&
 	  OS="$(uname | tr '[:upper:]' '[:lower:]')" &&
@@ -107,7 +107,7 @@ if [ -f /etc/debian_version ]; then
 	fi
 fi
 
-if [ $(command -v zsh) ]; then
+if [[ $(command -v zsh) ]]; then
     if [ ! -d $HOME/.oh-my-zsh ]; then
         echo "* install oh-my-zsh"
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
