@@ -1,10 +1,10 @@
 # Dotfiles
 
-.files, e.g. zshrc, tmux.conf, aliases, ...
+This repository contains my dotfiles, ready to be used with [gnu-stow]
+[gnu-stow]: https://www.gnu.org/software/stow/manual/stow.html
 
 ## Screenshot
 ![Screenshot](screenshot.png?raw=true)
-
 
 ## Dependencies
 
@@ -17,13 +17,16 @@ have homebrew and git installed:
 brew install git
 ```
 
-6. python3 installed
-6.1 pip3 installed
-
 ## Installation
 
 I'd highly recommended to fork the repository prior to cloning, especially if you intend to ajdust the files.
 
 ```bash
-git clone git@github.com:cedi/dotfiles.git $HOME/.config/dotfiles && ./.config/dotfiles/insta.sh
+git clone git@github.com:cedi/dotfiles.git $HOME/.dotfiles
+cd .dotfiles/install.sh
+stow .
 ```
+
+### install.sh script
+
+The install script installs some basic dependencies that I want on my machine.
