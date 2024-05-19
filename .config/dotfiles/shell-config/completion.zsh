@@ -1,6 +1,6 @@
 # # # # #
 # Load hcloud completion
-if [[ $(command -v helm) && -d $HOME/.config/hcloud/completion/zsh ]]; then
+if [[ $(command -v hcloud) && -d $HOME/.config/hcloud/completion/zsh ]]; then
 	fpath+=($HOME/.config/hcloud/completion/zsh)
 fi
 

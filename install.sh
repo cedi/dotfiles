@@ -167,11 +167,3 @@ if [ -f "$HOME/.gitconfig" ]; then
     rm $HOME/.gitconfig
 fi
 ln -s "$localDir/gitconfig" "$HOME/.gitconfig"
-
-echo "* install nvim config"
-
-if [ -d "$HOME/.config/nvim" ]; then
-    rm -rf $HOME/.config/nvim
-fi
-
-ln -s "$localDir/nvim" "$HOME/.config/nvim"

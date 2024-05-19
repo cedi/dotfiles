@@ -1,7 +1,6 @@
 [core]
 	editor = nvim
 	pager = delta
-	#pager = diff-so-fancy | less --tabs=4 -RFX
 [user]
 	email = github@cedric-kienzler.de
 	name = Cedric Kienzler
@@ -23,6 +22,12 @@
 [pull]
 	rebase = true
 [interactive]
-	#diffFilter = diff-so-fancy --patch
+	diffFilter = delta --color-only
 [push]
 	autoSetupRemote = true
+[delta]
+    navigate = true    # use n and N to move between diff sections
+[merge]
+    conflictstyle = diff3
+[diff]
+    colorMoved = default

@@ -10,11 +10,6 @@ export DOTFILE_HOME=$HOME/.config/dotfiles
 [ -d $HOME/.config ] && export XDG_CONFIG_HOME="$HOME/.config"
 
 # # # # #
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-export ZSH_CUSTOM="$DOTFILE_HOME/oh-my-zsh/custom"
-
-# # # # #
 # Oh-My-Posh config
 [ -d $DOTFILE_HOME/oh-my-posh/ ] && export OMP_CUSTOM="$DOTFILE_HOME/oh-my-posh/"
 

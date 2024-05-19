@@ -1,12 +1,8 @@
 # Shell integrations
-if [ -f ~/.fzf.zsh ]; then
-    eval "$(fzf --zsh)"
-fi
+[ -f ~/.fzf.zsh ] && eval "$(fzf --zsh)"
 
 # enable zoxide as cd alternative
-if [[ $(command -v zoxide) ]]; then
-	eval "$(zoxide init --cmd cd zsh)"
-fi
+if [[ $(command -v zoxide) ]] && eval "$(zoxide init --cmd cd zsh)"
 
 # make cursor movement convenient in macOS
 if [[ "$OSTYPE" == "darwin"* ]]; then
