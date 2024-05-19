@@ -46,8 +46,8 @@ if [[ $(uname -s) == "Darwin" ]]; then
 		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	fi
 
-    echo "* brew install exa python3 neovim neovim-remote tfswitch ripgrep iproute2mac zsh thefuck sops watch wget ansible navi zoxide"
-    brew install exa python3 neovim neovim-remote tfswitch ripgrep iproute2mac zsh thefuck sops watch wget ansible navi zoxide
+    echo "* brew install eza python3 neovim neovim-remote tfswitch ripgrep iproute2mac zsh thefuck sops watch wget ansible navi zoxide tmux"
+    brew install eza python3 neovim neovim-remote tfswitch ripgrep iproute2mac zsh thefuck sops watch wget ansible navi zoxide tmux
 
     echo "* install gnutils"
     brew install coreutils findutils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt grep
@@ -70,8 +70,8 @@ elif [ -f /etc/debian_version ]; then
     echo "* install tfswitch"
     curl -L https://raw.githubusercontent.com/warrensbox/terraform-switcher/release/install.sh | bash
 
-    echo "* apt install exa python3 python3-pip neovim ripgrep zsh"
-    sudo apt install -y exa python3 python3-pip neovim ripgrep zsh
+    echo "* apt install eza python3 python3-pip neovim ripgrep zsh tmux"
+    sudo apt install -y eza python3 python3-pip neovim ripgrep zsh tmux
 
     echo "* install neovim-remote"
     pip3 install neovim-remote
@@ -136,34 +136,3 @@ if [[ $(command -v hcloud) ]]; then
 
 
 fi
-
-echo "#########################################################"
-echo "# linking dotfiles                                      #"
-echo "#########################################################"
-
-echo "* install zshrc"
-
-if [ -f "$HOME/.zshrc" ]; then
-    rm $HOME/.zshrc
-fi
-
-if [ -f "$HOME/.zshenv" ]; then
-    rm $HOME/.zshenv
-fi
-
-ln -s "$localDir/zshrc" "$HOME/.zshrc"
-ln -s "$localDir/zshenv" "$HOME/.zshenv"
-
-echo "* install tmux.conf"
-
-if [ -f "$HOME/.tmux.conf" ]; then
-    rm $HOME/.tmux.conf
-fi
-ln -s "$localDir/tmux.conf" "$HOME/.tmux.conf"
-
-echo "* install gitconfig"
-
-if [ -f "$HOME/.gitconfig" ]; then
-    rm $HOME/.gitconfig
-fi
-ln -s "$localDir/gitconfig" "$HOME/.gitconfig"

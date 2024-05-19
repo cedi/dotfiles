@@ -11,8 +11,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 	[[ -f $(which gwhich) ]] && alias which=gwhich
 fi
 
-if [ $(command -v exa) ]; then
-	alias ls='exa --git --icons --group-directories-first'
+if [ $(command -v eza) ]; then
+	alias ls='eza --git --icons --group-directories-first'
 
 	alias la='ls --all'
 	# ls
