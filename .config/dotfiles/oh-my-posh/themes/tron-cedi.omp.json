@@ -117,11 +117,15 @@
       "segments": [
         {
           "foreground_templates": [
-            "{{ if gt .Code 0 }}#d95838{{ end }}"
+            "{{ if .Error }}#d95838{{ else }}#26C6DA{{ end }}"
           ],
-          "style": "plain",
-          "template": " \uf7d3 {{ .Meaning }} ",
-          "type": "exit"
+          "background_templates": [
+            "{{ if .Error }}#303030{{ end }}"
+          ],
+          "powerline_symbol": "\ue0b0",
+          "style": "{{ if .Error }}powerline{{ else }}plain{{ end }}",
+          "template": " \uf7d3 {{ reason .Code }} ({{ .Code }}) ",
+          "type": "status"
         },
         {
           "foreground": "#26C6DA",
