@@ -15,7 +15,7 @@ export DOTFILE_HOME=$HOME/.config/dotfiles
 
 # # # # #
 # Setup SOPS AGE Keys
-[[ -d "$HOME/.age/sops" && -f "$HOME/.age/sops/keys_mae.txt" ]] && export SOPS_AGE_KEY_FILE="$HOME/.age/sops/keys_mae.txt"
+[[ -d "$HOME/.age/sops" && -f "$HOME/.age/sops/keys_$(hostname).txt" ]] && export SOPS_AGE_KEY_FILE="$HOME/.age/sops/keys_$(hostname).txt"
 
 # # # # #
 # PATH Variable
@@ -28,7 +28,7 @@ export MY_PATH=""
 [ -d $HOME/.local/bin ] && export MY_PATH="$MY_PATH:$HOME/.local/bin"
 [ -d $HOME/.cargo/bin ] && export MY_PATH="$MY_PATH:$HOME/.cargo/bin"
 [ -d $HOME/.gem/ruby/2.5.0/bin ] && export MY_PATH="$MY_PATH:$HOME/.gem/ruby/2.5. "
-[ -d $HOME/.cog/fzf/bin ] && export MY_PATH="$MY_PATH:$HOME/.cog/fzf/bin"
+[ -d $HOME/.config/fzf/bin ] && export MY_PATH="$MY_PATH:$HOME/.config/fzf/bin"
 [ -d /usr/local/bin ] && export MY_PATH="$MY_PATH:/usr/local/bin"
 [ -d /usr/local/go/bin ] && export MY_PATH="$MY_PATH:/usr/local/go/bin"
 [ -d /usr/local/share/python/ ] && export MY_PATH="$MY_PATH:/usr/local/share/python/"
