@@ -12,7 +12,12 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 if [ $(command -v eza) ]; then
-	alias ls='eza --git --icons --group-directories-first'
+	eza --git &> /dev/null
+	if [ $? -eq 0 ]; then
+		alias ls='eza --git --icons --group-directories-first'
+	else
+		alias ls='eza --icons --group-directories-first'
+	fi
 
 	alias la='ls --all'
 	# ls
