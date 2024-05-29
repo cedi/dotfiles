@@ -1,6 +1,10 @@
 [core]
 	editor = nvim
 	pager = delta
+	autocrlf = true
+	fscache = true
+	symlinks = true
+	longpaths = true
 [user]
 	email = github@cedric-kienzler.de
 	name = Cedric Kienzler
@@ -31,3 +35,9 @@
     conflictstyle = diff3
 [diff]
     colorMoved = default
+[diff "astextplain"]
+	textconv = astextplain
+[credential]
+	helper = manager
+[credential "https://dev.azure.com"]
+	useHttpPath = true
