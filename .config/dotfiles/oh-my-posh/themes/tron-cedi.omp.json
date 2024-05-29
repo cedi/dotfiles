@@ -65,7 +65,7 @@
           "invert_powerline": true,
           "powerline_symbol": "\ue0b2",
           "style": "powerline",
-          "template": " \uf489 {{ .Name }} ",
+          "template": " \uf489 {{ .Name }} {{ if matchP \"pwsh\" .Name }}({{ replaceP \"([0-9]+).([0-9]+).([0-9]+)(.*)\" .Version \"$1.$2.$3\"}}){{ end }}",
           "type": "shell"
         },
         {
