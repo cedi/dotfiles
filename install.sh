@@ -32,7 +32,7 @@ echo "#########################################################"
 echo "* Install fzf"
 if [ -d "$HOME/.config/fzf/" ]; then
     pushd $HOME/.config/fzf
-    git pull
+    git pull && $HOME/.config/fzf/install --bin
     popd
 else
     git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.config/fzf && $HOME/.config/fzf/install --bin
