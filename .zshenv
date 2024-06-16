@@ -32,7 +32,7 @@ export MY_PATH=""
 [ -d /usr/local/bin ] && export MY_PATH="$MY_PATH:/usr/local/bin"
 [ -d /usr/local/go/bin ] && export MY_PATH="$MY_PATH:/usr/local/go/bin"
 [ -d /usr/local/share/python/ ] && export MY_PATH="$MY_PATH:/usr/local/share/python/"
-[ -d $HOME/Library/Python/3.8/bin/ ] && export MY_PATH="$MY_PATH:$HOME/Library/Python/3.8/bin/"
+[ -d $HOME/Library/Python/ ] && export MY_PATH="$MY_PATH:$HOME/Library/Python/*/bin/"
 [ -d $HOME/.kube/kubediff ] && export MY_PATH="$MY_PATH:$HOME/.kube/kubediff"
 
 # construct PATH variable
