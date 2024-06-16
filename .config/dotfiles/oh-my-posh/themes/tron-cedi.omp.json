@@ -6,6 +6,7 @@
     "tertinary": "#fdf500",
     "important": "#C50F1F",
     "warning": "#c5610f",
+    "good": "#0fc56a",
     "background": "#272932",
     "foreground": "p:primary",
     "admin-username": "p:important",
@@ -53,7 +54,11 @@
           "foreground": "p:foreground-path",
           "powerline_symbol": "\ue0b0",
           "properties": {
-            "style": "full"
+            "style": "mixed",
+            "home_icon": "\uf46d",
+            "mapped_locations": {
+              "C:\\temp": "\ue799 C:\\temp"
+            }
           },
           "style": "powerline",
           "template": " \uf07b  {{ .Path }} ",
@@ -95,7 +100,7 @@
           "invert_powerline": true,
           "powerline_symbol": "\ue0b2",
           "style": "powerline",
-          "template": " \uf489 {{ .Name }} {{ if matchP \"pwsh\" .Name }}({{ replaceP \"([0-9]+).([0-9]+).([0-9]+)(.*)\" .Version \"$1.$2.$3\"}}){{ end }}",
+          "template": " \uf489 {{ .Name }} {{ if matchP \"pwsh\" .Name }}({{ replaceP \"([0-9]+).([0-9]+).([0-9]+)(.*)\" .Version \"$1.$2.$3\"}}) {{ end }}",
           "type": "shell"
         },
         {
@@ -117,6 +122,15 @@
           "invert_powerline": true,
           "powerline_symbol": "\ue0b2",
           "style": "powerline",
+          "template": " {{ if .Error }}{{ .Error }}{{ else }}{{ if eq .Type \"dotnet\" }}\ue77f{{ end }}{{ if eq .Type \"python\" }}\ue235{{ end }} {{ .Type }}{{ end }}",
+          "type": "project"
+        },
+        {
+          "background": "p:background-code",
+          "foreground": "p:foreground-code",
+          "invert_powerline": true,
+          "powerline_symbol": "\ue0b2",
+          "style": "powerline",
           "template": " \ufcd1 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} ",
           "type": "go"
         },
@@ -126,7 +140,7 @@
           "invert_powerline": true,
           "powerline_symbol": "\ue0b2",
           "style": "powerline",
-          "template": " \ue77f {{ if .Unsupported }}\uf071{{ else }}{{ .Full }}{{ end }} ",
+          "template": " {{ if .Unsupported }}\uf071{{ else }}{{ .Full }}{{ end }} ",
           "type": "dotnet"
         },
         {
@@ -135,7 +149,7 @@
           "invert_powerline": true,
           "powerline_symbol": "\ue0b2",
           "style": "powerline",
-          "template": " \ue235 {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }} ",
+          "template": " {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }} ",
           "type": "python"
         }
       ],
@@ -148,16 +162,21 @@
         {
           "background": "p:background",
           "foreground_templates": [
-            "{{ if .Error }}p:warning{{ end }}"
+            "{{ if .Error }}p:warning{{ else }}p:good{{ end }}"
           ],
           "powerline_symbol": "\ue0b0",
-          "style": "{{ if .Error }}powerline{{ else }}plain{{ end }}",
-          "template": " \uf7d3 {{ reason .Code }} ({{ .Code }}) ",
-          "type": "status"
+          "style": "powerline",
+          "template": "{{ if eq .Code 0 }}\uf00c{{ else }}\uf7d3 {{ reason .Code }} ({{ .Code }}){{ end }}",
+          "type": "status",
+          "properties": {
+            "always_enabled": true
+          }
         },
         {
           "foreground": "p:foreground",
-          "style": "plain",
+          "background": "p:background",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
           "template": " \u276f ",
           "type": "text"
         }
@@ -199,6 +218,11 @@
     "background": "transparent",
     "foreground": "p:foreground",
     "template": "{{ .PWD }} \u276f "
+  },
+  "secondary_prompt": {
+    "foreground": "p:foreground",
+    "background": "p:background",
+    "template": " \u276f\u276f "
   },
   "version": 2
 }
