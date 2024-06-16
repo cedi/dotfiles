@@ -1,5 +1,11 @@
 {
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "version": 2,
+  "console_title_template": " {{ .UserName }}@{{ .HostName }} in {{ .Folder }} - {{ .Shell }}",
+  "iterm_features":[
+    "current_dir",
+    "remote_host"
+  ],
   "palette": {
     "primary": "#37EBF3",
     "secondary": "#9381FF",
@@ -55,7 +61,7 @@
           "powerline_symbol": "\ue0b0",
           "properties": {
             "style": "mixed",
-            "home_icon": "\uf46d",
+            "home_icon": "\uf46d ",
             "mapped_locations": {
               "C:\\temp": "\ue799 C:\\temp"
             }
@@ -166,7 +172,7 @@
           ],
           "powerline_symbol": "\ue0b0",
           "style": "powerline",
-          "template": "{{ if eq .Code 0 }}\uf00c{{ else }}\uf7d3 {{ reason .Code }} ({{ .Code }}){{ end }}",
+          "template": "{{ if eq .Code 0 }}\uf00c {{ else }}\uf7d3 {{ reason .Code }} ({{ .Code }}){{ end }}",
           "type": "status",
           "properties": {
             "always_enabled": true
@@ -184,7 +190,6 @@
       "type": "prompt"
     }
   ],
-  "console_title_template": " {{ .UserName }}@{{ .HostName }} in {{ .Folder }} - {{ .Shell }}",
   "tooltips": [
     {
       "background": "p:background-code",
@@ -223,6 +228,5 @@
     "foreground": "p:foreground",
     "background": "p:background",
     "template": " \u276f\u276f "
-  },
-  "version": 2
+  }
 }

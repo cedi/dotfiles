@@ -1,7 +1,7 @@
 [core]
 	editor = nvim
 	pager = delta
-	autocrlf = true
+	autocrlf = input
 	fscache = true
 	symlinks = true
 	longpaths = true
