@@ -70,6 +70,9 @@ elif [ -f /etc/debian_version ]; then
     echo "* install tfswitch"
     curl -L https://raw.githubusercontent.com/warrensbox/terraform-switcher/release/install.sh | bash
 
+    echo "* update apt"
+    sudo apt update && sudo apt upgrade -y
+
     echo "* apt install eza python3 python3-pip neovim ripgrep zsh tmux"
     sudo apt install -y eza python3 python3-pip neovim ripgrep zsh tmux
 
