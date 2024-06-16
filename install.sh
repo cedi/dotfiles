@@ -73,8 +73,22 @@ elif [ -f /etc/debian_version ]; then
     echo "* update apt"
     sudo apt update && sudo apt upgrade -y
 
-    echo "* apt install eza python3 python3-pip neovim ripgrep zsh tmux"
-    sudo apt install -y eza python3 python3-pip neovim ripgrep zsh tmux
+    echo "* install requirements for further stuff"
+    sudo apt install -y gpg
+
+    echo "* install eza"
+    sudo apt install -y eza
+    if [ $? -ne 0 ]; then
+        sudo mkdir -p /etc/apt/keyrings
+        wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
+        echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
+        sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
+        sudo apt update
+        sudo apt install -y eza
+    fi
+
+    echo "* apt install python3 python3-pip neovim ripgrep zsh tmux"
+    sudo apt install -y python3 python3-pip neovim ripgrep zsh tmux
 
     echo "* install neovim-remote"
     pip3 install neovim-remote
