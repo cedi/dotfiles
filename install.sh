@@ -84,8 +84,8 @@ elif [ -f /etc/debian_version ]; then
     sudo apt update
     sudo apt install -y eza
 
-    echo "* apt install python3 python3-pip neovim ripgrep zsh tmux"
-    sudo apt install -y python3 python3-pip neovim ripgrep zsh tmux
+    echo "* apt install python3 python3-pip neovim ripgrep zsh tmux stow"
+    sudo apt install -y python3 python3-pip neovim ripgrep zsh tmux stow
 
     echo "* install zoxide"
     curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
@@ -116,13 +116,6 @@ if [ -f /etc/debian_version ]; then
 	else
 	    echo "* kubectl already installed"
 	fi
-fi
-
-if [[ $(command -v zsh) ]]; then
-    if [ ! -d $HOME/.oh-my-zsh ]; then
-        echo "* install oh-my-zsh"
-        sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    fi
 fi
 
 echo "* Install oh-my-posh"
