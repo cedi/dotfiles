@@ -136,6 +136,4 @@ echo "* Install hcloud completion"
 if [[ $(command -v hcloud) ]]; then
     mkdir -p ~/.config/hcloud/completion/zsh
     hcloud completion zsh > ~/.config/hcloud/completion/zsh/_hcloud
-
-
 fi

@@ -57,13 +57,36 @@
           "powerline_symbol": "\ue0b0",
           "properties": {
             "style": "mixed",
-            "home_icon": "\uf46d ",
+            "mapped_locations_enabled": true,
             "mapped_locations": {
-              "C:\\temp": "\ue799 C:\\temp"
+              "/tmp": "\ue799 /tmp",
+              "/etc": "\ue799 /etc",
+              "/": "\ueb46 ",
+              "/dev": "\ueabe /dev",
+              "/var": "\uea88 /var",
+              "/bin": "\uf471 /bin",
+              "/sbin": "\ueae8 /sbin",
+              "/usr/sbin": "\uf471 /usr/sbin",
+              "/usr/bin": "\ueae8 /usr/bin",
+              "/usr/local/bin": "\ueae8 /usr/local/bin",
+              "/usr/local/go/bin": "\ueae8 /usr/local/go/bin",
+              "/usr/local/share/dotnet": "\ueae8 /usr/local/share/dotnet",
+              "/Applications": "\ueae8 /Applications",
+              "/opt/homebrew/sbin": "\uf471 /opt/homebrew/sbin",
+              "/opt/homebrew/bin": "\ueae8 /opt/homebrew/bin",
+              "/System/Cryptexes/App/usr/bin": "\ueae8 /System/Cryptexes/App/usr/bin",
+              "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin": "\ueae8 /var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin",
+              "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin": "\ueae8 /var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin",
+              "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin": "\ueae8 /var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin",
+              "/Library/Apple/usr/bin": "\ueae8 /Library/Apple/usr/bin",
+              "/Library/Frameworks/Mono.framework/Versions/Current/Commands": "\ueae8 /Library/Frameworks/Mono.framework/Versions/Current/Commands",
+              "~": "\uf46d ",
+              "/Volumes": "\uf0c7",
+              "/mnt": "\uf0c7"
             }
           },
           "style": "powerline",
-          "template": " \uf07b  {{ .Path }} ",
+          "template": " {{ .Path }} ",
           "type": "path"
         },
         {
