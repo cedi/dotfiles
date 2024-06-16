@@ -46,8 +46,8 @@ if [[ $(uname -s) == "Darwin" ]]; then
 		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	fi
 
-    echo "* brew install eza python3 neovim neovim-remote tfswitch ripgrep iproute2mac zsh thefuck sops watch wget ansible navi zoxide tmux git-delta"
-    brew install eza python3 neovim neovim-remote tfswitch ripgrep iproute2mac zsh thefuck sops watch wget ansible navi zoxide tmux git-delta
+    echo "* brew install eza python3 neovim tfswitch ripgrep iproute2mac zsh thefuck sops watch wget ansible navi zoxide tmux git-delta"
+    brew install eza python3 neovim tfswitch ripgrep iproute2mac zsh thefuck sops watch wget ansible navi zoxide tmux git-delta
 
     echo "* install gnutils"
     brew install coreutils findutils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt grep
@@ -86,9 +86,6 @@ elif [ -f /etc/debian_version ]; then
 
     echo "* apt install python3 python3-pip neovim ripgrep zsh tmux"
     sudo apt install -y python3 python3-pip neovim ripgrep zsh tmux
-
-    echo "* install neovim-remote"
-    pip3 install neovim-remote
 
     echo "* install zoxide"
     curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
