@@ -2,10 +2,6 @@
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
   "version": 2,
   "console_title_template": " {{ .UserName }}@{{ .HostName }} in {{ .Folder }} - {{ .Shell }}",
-  "iterm_features":[
-    "current_dir",
-    "remote_host"
-  ],
   "palette": {
     "primary": "#37EBF3",
     "secondary": "#9381FF",
@@ -226,7 +222,7 @@
   },
   "secondary_prompt": {
     "foreground": "p:foreground",
-    "background": "p:background",
+    "background": "transparent",
     "template": " \u276f\u276f "
   }
 }
