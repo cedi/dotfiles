@@ -47,7 +47,7 @@ if [[ $(uname -s) == "Darwin" ]]; then
 	fi
 
     echo "* brew install eza python3 neovim tfswitch ripgrep iproute2mac zsh thefuck sops watch wget ansible navi zoxide tmux git-delta"
-    brew install eza python3 neovim tfswitch ripgrep iproute2mac zsh thefuck sops watch wget ansible navi zoxide tmux git-delta
+    brew install eza python3 neovim tfswitch ripgrep iproute2mac zsh thefuck sops watch wget ansible navi zoxide tmux git-delta bat
 
     echo "* install gnutils"
     brew install coreutils findutils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt grep
@@ -84,8 +84,8 @@ elif [ -f /etc/debian_version ]; then
     sudo apt update
     sudo apt install -y eza
 
-    echo "* apt install python3 python3-pip neovim ripgrep zsh tmux stow"
-    sudo apt install -y python3 python3-pip neovim ripgrep zsh tmux stow
+    echo "* apt install python3 python3-pip neovim ripgrep zsh tmux stow bat"
+    sudo apt install -y python3 python3-pip neovim ripgrep zsh tmux stow bat
 
     echo "* install zoxide"
     curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
