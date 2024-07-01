@@ -73,7 +73,10 @@ else
 	alias ipals='ip addr ls'
 fi
 
-if [ $(command -v bat) ]; then
+if [[ $(command -v batcat) ]]; then
+	alias bat='batcat'
+	alias ybat='batcat -lyaml'
+elif [[ $(command -v bat) ]]; then
 	alias ybat='bat -lyaml'
 fi
 
@@ -84,17 +87,20 @@ fi
 # Function for always using one (and only one) vim server
 # If you really want a new vim session, simply do not pass any
 # argument to this function.
-function vim {
-  nvim="nvim"
-  nvr="nvr"
-  if [ -z $nvr ]; then
-    echo "$SHELL: vim: command not found"
-	$nvim "$@"
-    return 127;
-  fi
 
-  $nvr -s --servername 127.0.0.1:6789 "$@"
-}
+if [ $(command -v nvr) ]; then
+	function vim {
+	  nvim="nvim"
+	  nvr="nvr"
+	  if [ -z $nvr ]; then
+	    echo "$SHELL: vim: command not found"
+		$nvim "$@"
+	    return 127;
+	  fi
+
+	  $nvr -s --servername 127.0.0.1:6789 "$@"
+	}
+fi
 
 function mkcd() {
 	mkdir -p "$@" && cd "$@";
