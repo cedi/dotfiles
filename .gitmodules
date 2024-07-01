@@ -1,9 +1,6 @@
 [submodule "update-golang"]
 	path = update-golang
 	url = https://github.com/udhos/update-golang
-[submodule ".config/dotfiles/.tmux/plugins/tpm"]
-	path = .config/dotfiles/.tmux/plugins/tpm
-	url = https://github.com/tmux-plugins/tpm
 [submodule ".tmux/plugins/tpm"]
 	path = .tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
