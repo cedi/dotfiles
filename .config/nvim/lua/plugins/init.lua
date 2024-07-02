@@ -10,8 +10,8 @@ return {
       "folke/todo-comments.nvim",
   },
   {
-    "HiPhish/rainbow-delimiters.nvim",
-  }
+    'nvim-tree/nvim-web-devicons',
+  },
 
   -- These are some examples, uncomment them if you want to see them work!
   --

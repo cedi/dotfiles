@@ -3,6 +3,7 @@
 This repository contains my dotfiles, ready to be used with [gnu-stow](https://www.gnu.org/software/stow/manual/stow.html)
 
 ## Screenshot
+
 ![Screenshot](screenshot.png?raw=true)
 
 ## Dependencies
@@ -29,3 +30,4 @@ stow .
 ### install.sh script
 
 The install script installs some basic dependencies that I want on my machine.
+
