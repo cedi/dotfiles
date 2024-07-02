@@ -17,6 +17,17 @@ M.ui = {
     theme = "default",
     separator_style = "arrow",
   },
+
+  telescope = { style = "bordered" }, -- borderless / bordered
+
+  nvdash = {
+    load_on_startup = true,
+  },
+
+  cheatsheet = {
+    theme = "grid", -- simple/grid
+    excluded_groups = { }, -- can add group name or with mode
+  },
 }
 
 return M
