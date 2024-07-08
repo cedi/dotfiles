@@ -4,14 +4,14 @@ export LC_CTYPE=en_US.UTF-8
 export EDITOR=nvim
 export GO111MODULE=on
 export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
+[ -d $HOME/.config ] && export XDG_CONFIG_HOME="$HOME/.config"
 
 # Dotfile and config home
-export DOTFILE_HOME=$HOME/.config/dotfiles
-[ -d $HOME/.config ] && export XDG_CONFIG_HOME="$HOME/.config"
+export DOTFILE_HOME=$XDG_CONFIG_HOME/dotfiles
 
 # # # # #
 # Oh-My-Posh config
-[ -d $DOTFILE_HOME/oh-my-posh/ ] && export OMP_CUSTOM="$DOTFILE_HOME/oh-my-posh/"
+[ -d $XDG_CONFIG_HOME/oh-my-posh/ ] && export OMP_CUSTOM="$XDG_CONFIG_HOME/oh-my-posh/"
 
 # # # # #
 # Setup SOPS AGE Keys
@@ -28,7 +28,7 @@ export MY_PATH=""
 [ -d $HOME/.local/bin ] && export MY_PATH="$MY_PATH:$HOME/.local/bin"
 [ -d $HOME/.cargo/bin ] && export MY_PATH="$MY_PATH:$HOME/.cargo/bin"
 [ -d $HOME/.gem/ruby/2.5.0/bin ] && export MY_PATH="$MY_PATH:$HOME/.gem/ruby/2.5. "
-[ -d $HOME/.config/fzf/bin ] && export MY_PATH="$MY_PATH:$HOME/.config/fzf/bin"
+[ -d $XDG_CONFIG_HOME/fzf/bin ] && export MY_PATH="$MY_PATH:$XDG_CONFIG_HOME/fzf/bin"
 [ -d /usr/local/bin ] && export MY_PATH="$MY_PATH:/usr/local/bin"
 [ -d /usr/local/go/bin ] && export MY_PATH="$MY_PATH:/usr/local/go/bin"
 [ -d /usr/local/share/python/ ] && export MY_PATH="$MY_PATH:/usr/local/share/python/"

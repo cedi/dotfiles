@@ -26,6 +26,7 @@ return {
               "--line-number",
               "--column",
               "--smart-case",
+              "--hidden",
             },
             previewer = true,
             file_previewer = require 'telescope.previewers'.vim_buffer_cat.new,

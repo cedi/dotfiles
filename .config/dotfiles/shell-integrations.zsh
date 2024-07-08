@@ -2,7 +2,7 @@
 [ -f ~/.fzf.zsh ] && eval "$(fzf --zsh)"
 
 if [[ "$TERM_PROGRAM" == "iTerm.app"  ]]; then
-    [ -f "$DOTFILE_HOME/shell-config/iterm2_shell_integration.zsh" ] && source "$DOTFILE_HOME/shell-config/iterm2_shell_integration.zsh"
+    [ -f "$DOTFILE_HOME/iterm2.zsh" ] && source "$DOTFILE_HOME/iterm2.zsh"
 fi
 
 # enable zoxide as cd alternative

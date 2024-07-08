@@ -52,7 +52,6 @@ if [ $(command -v rg) ]; then
 	alias crg='rg --pretty --ignore-case'
 fi
 
-
 # easier navigation
 alias ..='cd ..'
 alias :q='exit'
