@@ -5,7 +5,7 @@
 local M = {}
 
 M.ui = {
-	theme = "vscode_dark",
+	theme = "github_dark",
   transparency = false,
 
 	-- hl_override = {
