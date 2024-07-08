@@ -48,7 +48,8 @@
             "{{ if .Root }}p:admin-username{{ end }}"
           ],
           "style": "powerline",
-          "template": " {{ if .SSHSession }}\uf817 {{ end }}{{ .UserName }}@{{ .HostName }} ",
+          "powerline_symbol": "\ue0b0",
+          "template": "{{ if .SSHSession }}\uf817 {{ end }}{{ .UserName }}@{{ .HostName }} ",
           "type": "session"
         },
         {
