@@ -104,6 +104,11 @@ else
     echo "* GoLang installed & up to date"
 fi
 
+if [[ ! $(command -v cargo) ]]; then
+  echo "* Install Rust/Cargo"
+  curl https://sh.rustup.rs -sSf | sh
+fi
+
 if [ -f /etc/debian_version ]; then
 	if [[ ! $(command -v kubectl) ]]; then
 	    echo "* Install kubectl"
