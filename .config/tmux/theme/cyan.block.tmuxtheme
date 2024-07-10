@@ -9,13 +9,13 @@
 #
 
 # Themepack format options
-set -goq @themepack-status-left-area-left-format "#S"
-set -goq @themepack-status-left-area-middle-format "#(whoami)"
-set -goq @themepack-status-left-area-right-format "#I:#P"
-set -goq @themepack-status-right-area-left-format "%H:%M:%S"
-set -goq @themepack-status-right-area-middle-format "%d-%b-%y"
-set -goq @themepack-status-right-area-right-format "#H"
-set -goq @themepack-window-status-current-format "#I:#W#F"
+#set -goq @themepack-status-left-area-left-format "#S" # session
+set -goq @themepack-status-left-area-middle-format "#(whoami)@#H" #whoami
+set -goq @themepack-status-left-area-right-format "#I:#P" # window_index : pane_index
+set -goq @themepack-status-right-area-left-format "%H:%M:%S" # Time in HH:MM:SS
+set -goq @themepack-status-right-area-middle-format "%d-%b-%y" # Date in DD-Month-YY
+set -goq @themepack-status-right-area-right-format "#H" # Hostname
+set -goq @themepack-window-status-current-format "#I:#W#F" # window_index : window_name _window : window_flags
 set -goq @themepack-window-status-format "#I:#W#F"
 
 # Customizable prefixes and suffixes for @themepack-* format options
