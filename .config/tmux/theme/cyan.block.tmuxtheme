@@ -9,7 +9,7 @@
 #
 
 # Themepack format options
-#set -goq @themepack-status-left-area-left-format "#S" # session
+set -goq @themepack-status-left-area-left-format "#S" # session
 set -goq @themepack-status-left-area-middle-format "#(whoami)@#H" #whoami
 set -goq @themepack-status-left-area-right-format "#I:#P" # window_index : pane_index
 set -goq @themepack-status-right-area-left-format "%H:%M:%S" # Time in HH:MM:SS
