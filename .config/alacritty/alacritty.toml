@@ -61,7 +61,7 @@ decorations = "full"
 dynamic_title = true
 option_as_alt = "Both"
 #startup_mode = ""
-opacity = 0.8
+opacity = 0.9
 blur = true
 
 [window.dimensions]
