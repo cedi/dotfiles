@@ -17,6 +17,7 @@
 	squash = "!f(){ git reset --soft HEAD~${1} && git commit --edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\"; };f"
 	update-gitignore = !"f(){ git stash save && git rm -r --cached . && git add . && git commit -m\"refresh gitignore\" && git stash pop; }; f"
 	ignores = !sh -c \"wget --no-check-certificate https://www.gitignore.io/api/$1 -O .gitignore\"
+  ignore = "!f() { echo $1 >> \"${GIT_PREFIX}.gitignore\"; }; f"
 [gpg]
 	program = gpg2
 [init]
