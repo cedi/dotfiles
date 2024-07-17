@@ -24,4 +24,4 @@ _darcs
 
 screenshot.png
 install.sh
-update-golang/
+update-golang/*
