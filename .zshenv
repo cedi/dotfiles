@@ -21,6 +21,7 @@ export DOTFILE_HOME=$XDG_CONFIG_HOME/dotfiles
 # PATH Variable
 export MY_PATH=""
 [ -d $HOME/src/go ] && export GOPATH="$HOME/src/go"
+[ -d $HOME/src/go ] && export GOBIN="$GOPATH/bin"
 
 [ -d $GOPATH ] && export MY_PATH="$MY_PATH:$GOPATH/bin"
 [ -d $HOME/.krew/bin ] && export MY_PATH="$MY_PATH:$HOME/.krew/bin"
