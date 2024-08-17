@@ -146,3 +146,10 @@ if [[ $(command -v hcloud) ]]; then
     mkdir -p ~/.config/hcloud/completion/zsh
     hcloud completion zsh > ~/.config/hcloud/completion/zsh/_hcloud
 fi
+
+if [[ $(uname -s) != "Darwin" ]]; then
+    echo "* Install and setup tailscale"
+    curl -fsSL https://tailscale.com/install.sh | sh
+
+    tailscale up --ssh 
+fi
