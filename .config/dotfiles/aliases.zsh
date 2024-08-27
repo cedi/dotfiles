@@ -83,6 +83,10 @@ if [ $(command -v kubeval) ]; then
 	alias kubeval='kubeval --ignore-missing-schemas --strict --schema-location https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/'
 fi
 
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+fi
+
 # Function for always using one (and only one) vim server
 # If you really want a new vim session, simply do not pass any
 # argument to this function.
