@@ -19,9 +19,13 @@ _darcs
 \#.*\#       # emacs autosave files
 
 ^/README.*
+^/INSTALL.*
 ^/LICENSE.*
 ^/COPYING
 
 screenshot.png
 install.sh
 update-golang/*
+fonts/*
+install.ps1
+Microsoft.PowerShell_profile.ps1
