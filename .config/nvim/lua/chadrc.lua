@@ -8,11 +8,6 @@ M.ui = {
 	theme = "github_dark",
   transparency = false,
 
-	-- hl_override = {
-	-- 	Comment = { italic = true },
-	-- 	["@comment"] = { italic = true },
-	-- },
-  --
   statusline = {
     theme = "default",
     separator_style = "arrow",

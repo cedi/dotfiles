@@ -49,6 +49,7 @@ winget install ajeetdsouza.zoxide # zoxide is a better cd
 winget install JanDeDobbeleer.OhMyPosh -s winget # nice prompt
 winget install -e --id Microsoft.VisualStudioCode # VSCode
 winget install Neovim.Neovim
+winget install -e --id zig.zig
 
 # Install NerdFont patched fonts
 installFonts(".\\fonts")
