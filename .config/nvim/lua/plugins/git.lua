@@ -1,5 +1,25 @@
 return {
     {
+        "sindrets/diffview.nvim",
+        cmd = {
+            "DiffviewFileHistory",
+            "DiffviewOpen",
+            "DiffviewClose",
+            "DiffviewRefresh",
+        },
+        init = function()
+            local wk = require('which-key')
+            wk.add({
+            mode = {"n", "v"},
+            { "<leader>gv", group = "git view" },
+            { "<leader>gvo", ":DiffviewOpen<CR>", desc = "Open Git diff view" },
+            { "<leader>gvc", ":DiffviewClose<CR>", desc = "Close Git diff view" },
+            { "<leader>gvr", ":DiffviewRefresh<CR>", desc = "Refresh diff view" },
+            { "<leader>gvh", ":DiffviewFileHistory<CR>", desc = "View File history" },
+            })
+        end,
+    },
+    {
         "lewis6991/gitsigns.nvim",
         opts = function()
             return require("plugins.configs.gitconfig")

@@ -1,11 +1,11 @@
--- This file needs to have same structure as nvconfig.lua 
+-- This file needs to have same structure as nvconfig.lua
 -- https://github.com/NvChad/ui/blob/v2.5/lua/nvconfig.lua
 
 ---@type ChadrcConfig
 local M = {}
 
 M.ui = {
-	theme = "github_dark",
+  theme = "github_dark",
   transparency = false,
 
   statusline = {
@@ -21,7 +21,7 @@ M.ui = {
 
   cheatsheet = {
     theme = "grid", -- simple/grid
-    excluded_groups = { }, -- can add group name or with mode
+    excluded_groups = {}, -- can add group name or with mode
   },
 }
 

@@ -1,3 +1,12 @@
+function openFileInCode()
+  local fileName = vim.api.nvim_buf_get_name(0)
+  vim.cmd(":silent !code " .. fileName)
+end
+
+function openFolderInCode()
+  vim.cmd(":silent !code .")
+end
+
 return {
     config = {
       preset = "modern",
@@ -18,5 +27,8 @@ return {
       {"<leader>x", group = "diagnostics/quickfix" },
       {"<leader>m", group = "marks" },
       {"<leader>d", group = "diagnostics" },
+      {"<leader>v", group = "VSCode" },
+      {"<leader>vc", openFolderInCode, desc = "Open the current folder in vsc" },
+      {"<leader>vf", openFileInCode, desc = "Open the current file in vsc" },
     },
 }
