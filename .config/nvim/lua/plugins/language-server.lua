@@ -7,7 +7,6 @@ return {
         cmd = { "Mason", "MasonInstall", "MasonUpdate" },
         dependencies = {
           "mfussenegger/nvim-lint",
-          "mhartington/formatter.nvim",
         },
       },
       {
@@ -22,7 +21,7 @@ return {
           "MasonToolsUpdateSync",
           "MasonToolsClean",
         },
-      },
+      }
     },
     config = function()
       require("nvchad.configs.lspconfig").defaults()
@@ -46,23 +45,14 @@ return {
           end
 
           require("lspconfig")[server_name].setup {
-            on_attach = require("nvchad.configs.lspconfig").on_attach,
-            on_init = require("nvchad.configs.lspconfig").on_init,
-            capabilities = require("nvchad.configs.lspconfig").capabilities,
-          }
+              on_attach = require("nvchad.configs.lspconfig").on_attach,
+              on_init = require("nvchad.configs.lspconfig").on_init,
+              capabilities = require("nvchad.configs.lspconfig").capabilities,
+            }
         end,
       }
 
       require("mason-tool-installer").setup(mason_config)
-
-      local formater_config = require "plugins.configs.formatter"
-      require("formatter").setup(formater_config)
-
-      local wk = require "which-key"
-      wk.add {
-        mode = { "n", "v" },
-        { "<leader>cf", ":FormatWrite<CR>", desc = "Format file" },
-      }
     end,
   },
 }
