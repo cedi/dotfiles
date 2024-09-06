@@ -11,10 +11,10 @@ M.ui = {
   statusline = {
     theme = "default",
     separator_style = "arrow",
-    order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "yamlschema","cwd", "cursor" },
+    order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "yamlschema", "cwd", "cursor" },
     modules = {
       yamlschema = function()
-        local yaml_companion = require("yaml-companion")
+        local yaml_companion = require "yaml-companion"
 
         if yaml_companion.ctx.schema == nil then
           return ""
@@ -28,7 +28,7 @@ M.ui = {
 
         return " ( " .. schema.result[1].name .. ") "
       end,
-    }
+    },
   },
 
   telescope = { style = "bordered" }, -- borderless / bordered

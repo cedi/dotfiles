@@ -10,14 +10,13 @@ return {
       "goimports",
       "golines",
     },
-    yaml = {"yamlfmt"},
+    yaml = { "yamlfmt" },
     markdown = {
       "markdown-toc",
       "markdownlint",
     },
-    cs = {"csharpier"},
+    cs = { "csharpier" },
     sql = { "sqlfmt" },
-
   },
 
   format_on_save = {

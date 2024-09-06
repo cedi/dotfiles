@@ -26,15 +26,15 @@ return {
         "someone-stole-my-name/yaml-companion.nvim",
         config = function()
           -- :Telescope yaml_schema
-          require("telescope").load_extension("yaml_schema")
+          require("telescope").load_extension "yaml_schema"
 
-          local wk = require("which-key")
+          local wk = require "which-key"
           wk.add {
             mode = { "n", "v" },
             { "<leader>ty", ":Telescope yaml_schema<CR>", desc = "YAML Schema Browser" },
           }
         end,
-      }
+      },
     },
     config = function()
       require("nvchad.configs.lspconfig").defaults()
@@ -64,7 +64,7 @@ return {
 
           local function merge(t1, t2)
             for k, v in pairs(t2) do
-                t1[k] = v
+              t1[k] = v
             end
             return t1
           end
