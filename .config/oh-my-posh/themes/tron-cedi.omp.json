@@ -103,14 +103,13 @@
             "fetch_stash_count": true,
             "fetch_status": true,
             "fetch_upstream_icon": true,
-            "upstream_icons": {
-              "dev.azure.com": "",
-              "github.com": "\uF408 ",
-              "gitlab.com": "\uF296 "
-            }
+            "branch_ahead_icon": "↑",
+            "branch_behind_icon": "↓",
+            "branch_identical_icon": "󰇼",
+            "branch_gone_icon": "󰦎"
           },
           "style": "powerline",
-          "template": " {{ .UpstreamIcon }}{{ .HEAD }}{{ .BranchStatus }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \uf019 {{ .StashCount }}{{ end }} ",
+          "template": " {{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \uf019 {{ .StashCount }}{{ end }} ",
           "type": "git"
         }
       ],
@@ -139,7 +138,7 @@
             "threshold": 1000
           },
           "style": "powerline",
-          "template": " \ufbab {{ .FormattedMs }} ",
+          "template": " 󱦟 {{ .FormattedMs }} ",
           "type": "executiontime"
         },
         {
