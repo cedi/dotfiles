@@ -3,7 +3,6 @@ return {
   run_on_start = true,
   ensure_installed = {
     "autopep8",
-    "azure_pipelines_ls",
     "bash-debug-adapter",
     "ansiblels",
     "bashls",

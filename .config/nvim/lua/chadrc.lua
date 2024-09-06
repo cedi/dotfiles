@@ -11,6 +11,17 @@ M.ui = {
   statusline = {
     theme = "default",
     separator_style = "arrow",
+    order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "yamlschema","cwd", "cursor" },
+    modules = {
+      yamlschema = function()
+        local schema = require("yaml-companion").get_buf_schema(0)
+        if schema.result[1].name == "none" then
+          return ""
+        end
+
+        return " ( " .. schema.result[1].name .. ") "
+      end,
+    }
   },
 
   telescope = { style = "bordered" }, -- borderless / bordered
