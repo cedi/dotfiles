@@ -14,7 +14,14 @@ M.ui = {
     order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "yamlschema","cwd", "cursor" },
     modules = {
       yamlschema = function()
-        local schema = require("yaml-companion").get_buf_schema(0)
+        local yaml_companion = require("yaml-companion")
+
+        if yaml_companion.ctx.schema == nil then
+          return ""
+        end
+
+        local schema = yaml_companion.get_buf_schema(0)
+
         if schema.result[1].name == "none" then
           return ""
         end
