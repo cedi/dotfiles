@@ -7,24 +7,26 @@ return {
     },
     {
       name = "Kubernetes",
-      uri = "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master-standalone/all.json",
+      uri = "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/all.json"
     },
     { name = "GitHub Workflow", uri = "https://json.schemastore.org/github-workflow" },
-    { name = "GitHub Action", uri = "https://json.schemastore.org/github-action" },
+    { name = "GitHub Action",   uri = "https://json.schemastore.org/github-action" },
     {
       name = "Azure Pipeline",
       uri = "https://raw.githubusercontent.com/microsoft/azure-pipelines-vscode/master/service-schema.json",
     },
     {
       name = "Ansible Task",
-      uri = "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks",
+      uri =
+      "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks",
     },
     {
       name = "Ansible Playbook",
-      uri = "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/playbook",
+      uri =
+      "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/playbook",
     },
     { name = "PrettierRC", uri = "https://json.schemastore.org/prettierrc" },
-    { name = "Kustomize", uri = "https://json.schemastore.org/kustomization" },
+    { name = "Kustomize",  uri = "https://json.schemastore.org/kustomization" },
     { name = "Helm Chart", uri = "https://json.schemastore.org/chart" },
     { name = "Dependabot", uri = "https://json.schemastore.org/dependabot-v2" },
     {
@@ -63,19 +65,24 @@ return {
             "azure-pipelines*.{yml,yaml}",
             ".pipelines/*.{yml,yaml}",
           },
-          ["https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks"] = "roles/tasks/*.{yml,yaml}",
-          ["https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/playbook"] = "*play*.{yml,yaml}",
+          ["https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks"] =
+          "roles/tasks/*.{yml,yaml}",
+          ["https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/playbook"] =
+          "*play*.{yml,yaml}",
           ["https://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
           ["https://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
           ["https://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
           ["https://json.schemastore.org/dependabot-v2"] = ".github/dependabot.{yml,yaml}",
-          ["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] = "*gitlab-ci*.{yml,yaml}",
-          ["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json"] = "*api*.{yml,yaml}",
-          ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "*docker-compose*.{yml,yaml}",
-          ["https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"] = "*flow*.{yml,yaml}",
+          ["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] =
+          "*gitlab-ci*.{yml,yaml}",
+          ["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json"] =
+          "*api*.{yml,yaml}",
+          ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] =
+          "*docker-compose*.{yml,yaml}",
+          ["https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"] =
+          "*flow*.{yml,yaml}",
         },
       },
     },
   },
 }
-
