@@ -32,9 +32,7 @@ return {
     end,
 
     dependencies = {
-      {
-        "HiPhish/rainbow-delimiters.nvim",
-      }
+      "HiPhish/rainbow-delimiters.nvim",
     },
   },
 }

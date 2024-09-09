@@ -4,10 +4,9 @@ if [[ $(command -v hcloud) && -d $HOME/.config/hcloud/completion/zsh ]]; then
 	fpath+=($HOME/.config/hcloud/completion/zsh)
 fi
 
-# # # # #
-# enable navi as shell widget
-if [[ $(command -v navi) ]]; then
-	eval "$(navi widget zsh)"
+# Load azure cli completion
+if [[ $(command -v az) && -f $HOME/.azure/az.completion ]]; then
+	source $HOME/.azure/az.completion
 fi
 
 # Completion styling

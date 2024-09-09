@@ -8,6 +8,11 @@ fi
 # enable zoxide as cd alternative
 [[ $(command -v zoxide) ]] && eval "$(zoxide init --cmd cd zsh)"
 
+# enable navi as shell widget
+if [[ $(command -v navi) ]]; then
+	eval "$(navi widget zsh)"
+fi
+
 # make cursor movement convenient in macOS
 bindkey "^[^[[D" backward-word
 bindkey "^[^[[C" forward-word
