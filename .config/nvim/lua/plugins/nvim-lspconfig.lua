@@ -28,20 +28,18 @@ return {
         "someone-stole-my-name/yaml-companion.nvim",
         config = function()
           -- :Telescope yaml_schema
-          require("telescope").load_extension "yaml_schema"
+          require("telescope").load_extension("yaml_schema")
 
-          local wk = require "which-key"
-          wk.add {
+          local wk = require("which-key")
+          wk.add({
             mode = { "n", "v" },
             { "<leader>cy", ":Telescope yaml_schema<CR>", desc = "YAML Schema Browser" },
-          }
+          })
         end,
       },
     },
     opts = {
       servers = {
-        bashls = {},
-        bicep = {},
         codeqlls = {},
         -- csharp_ls = {},
         cssls = {},
@@ -66,13 +64,16 @@ return {
         end,
 
         yamlls = function(_, opts)
-            local cfg = require("yaml-companion").setup()
-            require("lspconfig")["yamlls"].setup(cfg)
-            return true
+          local cfg = require("yaml-companion").setup()
+          require("lspconfig")["yamlls"].setup(cfg)
+          return true
         end,
         -- Specify * to use this function as a fallback for any server
         -- ["*"] = function(server, opts) end,
       },
     },
   },
+
+  require("plugins.configs.lsp.bash"),
+  require("plugins.configs.lsp.bicep"),
 }

@@ -1,3 +1,0 @@
-return {
-  preset = "modern",
-}
