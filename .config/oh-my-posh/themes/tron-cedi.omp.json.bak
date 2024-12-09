@@ -1,0 +1,251 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "version": 2,
+  "console_title_template": " {{ .UserName }}@{{ .HostName }} in {{ .Folder }} - {{ .Shell }}",
+  "palette": {
+    "primary": "#37EBF3",
+    "secondary": "#9381FF",
+    "tertinary": "#fdf500",
+    "important": "#C50F1F",
+    "warning": "#c5610f",
+    "good": "#0fc56a",
+    "background": "#272932",
+    "foreground": "p:primary",
+    "admin-username": "p:important",
+    "background-shell": "p:secondary",
+    "foreground-shell": "p:background",
+    "background-execution-time": "p:warning",
+    "foreground-execution-time": "p:background",
+    "background-code": "p:background",
+    "foreground-code": "p:foreground",
+    "background-os": "p:background",
+    "foreground-os": "p:foreground",
+    "background-session": "p:background",
+    "foreground-session": "p:foreground",
+    "background-path": "p:primary",
+    "foreground-path": "p:background",
+    "foreground-git": "p:background",
+    "background-git": "p:secondary",
+    "background-git-dirty": "p:warning",
+    "background-git-unsynced": "p:tertinary"
+  },
+  "blocks": [
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "background": "p:background-os",
+          "foreground": "p:foreground-os",
+          "style": "plain",
+          "template": " {{ if .WSL }}WSL at {{ end }}{{.Icon}} \ue0b1",
+          "type": "os"
+        },
+        {
+          "background": "p:background-session",
+          "foreground": "p:foreground-session",
+          "foreground_templates": [
+            "{{ if .Root }}p:admin-username{{ end }}"
+          ],
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "template": "{{ if .SSHSession }}\uf817 {{ end }}{{ .UserName }}@{{ .HostName }} ",
+          "type": "session"
+        },
+        {
+          "background": "p:background-path",
+          "foreground": "p:foreground-path",
+          "powerline_symbol": "\ue0b0",
+          "properties": {
+            "style": "mixed",
+            "mapped_locations_enabled": true,
+            "mapped_locations": {
+              "/tmp": "\ue799 /tmp",
+              "/etc": "\ue799 /etc",
+              "/": "\ueb46 ",
+              "/dev": "\ueabe /dev",
+              "/var": "\uea88 /var",
+              "/bin": "\uf471 /bin",
+              "/sbin": "\ueae8 /sbin",
+              "/usr/sbin": "\uf471 /usr/sbin",
+              "/usr/bin": "\ueae8 /usr/bin",
+              "/usr/local/bin": "\ueae8 /usr/local/bin",
+              "/usr/local/go/bin": "\ueae8 /usr/local/go/bin",
+              "/usr/local/share/dotnet": "\ueae8 /usr/local/share/dotnet",
+              "/Applications": "\ueae8 /Applications",
+              "/opt/homebrew/sbin": "\uf471 /opt/homebrew/sbin",
+              "/opt/homebrew/bin": "\ueae8 /opt/homebrew/bin",
+              "/System/Cryptexes/App/usr/bin": "\ueae8 /System/Cryptexes/App/usr/bin",
+              "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin": "\ueae8 /var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin",
+              "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin": "\ueae8 /var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin",
+              "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin": "\ueae8 /var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin",
+              "/Library/Apple/usr/bin": "\ueae8 /Library/Apple/usr/bin",
+              "/Library/Frameworks/Mono.framework/Versions/Current/Commands": "\ueae8 /Library/Frameworks/Mono.framework/Versions/Current/Commands",
+              "~": "\uf46d ",
+              "/Volumes": "\uf0c7",
+              "/mnt": "\uf0c7"
+            }
+          },
+          "style": "powerline",
+          "template": " {{ .Path }} ",
+          "type": "path"
+        },
+        {
+          "background": "p:background-git",
+          "background_templates": [
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}p:background-git-dirty{{ end }}",
+            "{{ if or (gt .Ahead 0) (gt .Behind 0) }}p:background-git-unsynced{{ end }}"
+          ],
+          "foreground": "p:foreground-git",
+          "powerline_symbol": "\ue0b0",
+          "properties": {
+            "branch_max_length": 25,
+            "fetch_stash_count": true,
+            "fetch_status": true,
+            "fetch_upstream_icon": true,
+            "branch_ahead_icon": "↑",
+            "branch_behind_icon": "↓",
+            "branch_identical_icon": "󰇼",
+            "branch_gone_icon": "󰦎"
+          },
+          "style": "powerline",
+          "template": " {{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \uf019 {{ .StashCount }}{{ end }} ",
+          "type": "git"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "right",
+      "overflow": "hide",
+      "segments": [
+        {
+          "background": "p:background-shell",
+          "foreground": "p:foreground-shell",
+          "invert_powerline": true,
+          "powerline_symbol": "\ue0b2",
+          "style": "powerline",
+          "template": " \uf489 {{ .Name }} {{ if matchP \"pwsh\" .Name }}({{ replaceP \"([0-9]+).([0-9]+).([0-9]+)(.*)\" .Version \"$1.$2.$3\"}}) {{ end }}",
+          "type": "shell"
+        },
+        {
+          "background": "p:background-execution-time",
+          "foreground": "p:foreground-execution-time",
+          "invert_powerline": true,
+          "powerline_symbol": "\ue0b2",
+          "properties": {
+            "style": "austin",
+            "threshold": 1000
+          },
+          "style": "powerline",
+          "template": " 󱦟 {{ .FormattedMs }} ",
+          "type": "executiontime"
+        },
+        {
+          "background": "p:background-code",
+          "foreground": "p:foreground-code",
+          "invert_powerline": true,
+          "powerline_symbol": "\ue0b2",
+          "style": "powerline",
+          "template": " {{ if .Error }}{{ .Error }}{{ else }}{{ if eq .Type \"dotnet\" }}\ue77f{{ end }}{{ if eq .Type \"python\" }}\ue235{{ end }} {{ .Type }}{{ end }}",
+          "type": "project"
+        },
+        {
+          "background": "p:background-code",
+          "foreground": "p:foreground-code",
+          "invert_powerline": true,
+          "powerline_symbol": "\ue0b2",
+          "style": "powerline",
+          "template": " \ufcd1 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} ",
+          "type": "go"
+        },
+        {
+          "background": "p:background-code",
+          "foreground": "p:foreground-code",
+          "invert_powerline": true,
+          "powerline_symbol": "\ue0b2",
+          "style": "powerline",
+          "template": " {{ if .Unsupported }}\uf071{{ else }}{{ .Full }}{{ end }} ",
+          "type": "dotnet"
+        },
+        {
+          "background": "p:background-code",
+          "foreground": "p:foreground-code",
+          "invert_powerline": true,
+          "powerline_symbol": "\ue0b2",
+          "style": "powerline",
+          "template": " {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }} ",
+          "type": "python"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "background": "p:background",
+          "foreground_templates": [
+            "{{ if .Error }}p:warning{{ else }}p:good{{ end }}"
+          ],
+          "powerline_symbol": "\ue0b0",
+          "style": "powerline",
+          "template": "{{ if eq .Code 0 }}\uf00c {{ else }}\uf7d3 {{ reason .Code }} ({{ .Code }}){{ end }}",
+          "type": "status",
+          "properties": {
+            "always_enabled": true
+          }
+        },
+        {
+          "foreground": "p:foreground",
+          "background": "p:background",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "template": " \u276f ",
+          "type": "text"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "tooltips": [
+    {
+      "background": "p:background-code",
+      "foreground": "p:foreground-code",
+      "invert_powerline": true,
+      "powerline_symbol": "\ue0b2",
+      "style": "powerline",
+      "template": " \u2388 {{.Context}} {{if .Namespace}}: {{.Namespace}}{{end}} ",
+      "tips": [
+        "kubectl",
+        "kustomize",
+        "helm",
+        "k"
+      ],
+      "type": "kubectl"
+    },
+    {
+      "background": "p:background-code",
+      "foreground": "p:foreground-code",
+      "invert_powerline": true,
+      "powerline_symbol": "\ue0b2",
+      "style": "powerline",
+      "template": "\ue0b3 \ufd03 Subscription {{ .Name }} ({{ if .EnvironmentName | contains \"AzureCloud\" }}{{ \"Global\" }}{{ else }}{{ .EnvironmentName }}{{ end }}) ",
+      "tips": [
+        "az"
+      ],
+      "type": "az"
+    }
+  ],
+  "transient_prompt": {
+    "background": "transparent",
+    "foreground": "p:foreground",
+    "template": "{{ .PWD }} \u276f "
+  },
+  "secondary_prompt": {
+    "foreground": "p:foreground",
+    "background": "transparent",
+    "template": " \u276f\u276f "
+  }
+}
