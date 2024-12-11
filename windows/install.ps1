@@ -74,11 +74,11 @@ Set-ItemProperty "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliver
 # }
 
 # Install tools
-
+Write-Host "Installing tools using winget configuration" -ForegroundColor "Yellow"
 winget configure -f $PSScriptRoot\configuration.dsc.yaml --accept-configuration-agreements
 
 # Install dotfiles
-
+Write-Host "Installing dotfiles" -ForegroundColor "Yellow"
 $profileDir = Split-Path -parent $profile
 $configDir = Join-Path $profileDir ".config"
 
@@ -91,19 +91,17 @@ if (Test-Path $profile -PathType Leaf) {
 }
 New-Item -Path $profile -ItemType SymbolicLink -Value $PSScriptRoot\\Microsoft.PowerShell_profile.ps1
 
+# Symlink powershell config
 if (Test-Path "$profileDir\powershell.config.json" -PathType Leaf) {
     Remove-Item "$profileDir\powershell.config.json"
 }
 New-Item -Path "$profileDir\powershell.config.json" -ItemType SymbolicLink -Value $PSScriptRoot\\powershell.config.json
 
 # Symlink PowerShell specific config
-Get-Item .config\*.ps1 | ForEach-Object -process {
-    if (Test-Path "$configDir\$($_.Name)" -PathType Leaf) {
-        Remove-Item "$configDir\$($_.Name)"
-    }
-
-    New-Item -Path "$configDir\$($_.Name)" -ItemType SymbolicLink -Value "$($_.FullName)"
+if (Test-Path $configDir -PathType Container) {
+    Remove-Item $configDir
 }
+New-Item -Path $configDir -ItemType SymbolicLink -Value $PSScriptRoot\\.config
 
 # Symlink global configs
 if (Test-Path "$home\.gitconfig" -PathType Leaf) {
