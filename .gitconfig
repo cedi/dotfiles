@@ -1,44 +1,61 @@
 [core]
-	editor = nvim
-	pager = delta
-	autocrlf = input
-	fscache = true
-	symlinks = true
-	longpaths = true
+    editor = nvim
+    pager = delta
+    autocrlf = input
+    fscache = true
+    symlinks = true
+    longpaths = true
+    # Speed up commands involving untracked files such as `git status`.
+    # https://git-scm.com/docs/git-update-index#_untracked_cache
+    untrackedCache = true
+
 [user]
-	email = github@cedric-kienzler.de
-	name = Cedric Kienzler
+    email = github@cedric-kienzler.de
+    name = Cedric Kienzler
+
 [alias]
-	lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
-	ls = status --short
-	fixup = "!f(){ git reset --soft HEAD~${1-1} && git commit --amend -C HEAD; };f"
-	fpush = push --force
-	change-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --env-filter \"if [[ \\\"$`echo $VAR`\\\" = '$OLD' ]]; then export $VAR='$NEW'; fi\" $@; }; f"
-	squash = "!f(){ git reset --soft HEAD~${1} && git commit --edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\"; };f"
-	refresh-ignore = !"f(){ git stash save && git rm -r --cached . && git add . && git commit -m\"refresh gitignore\" && git stash pop; }; f"
-	ignores = !sh -c \"wget --no-check-certificate https://www.gitignore.io/api/$1 -O .gitignore\"
-  ignore = "!f() { echo $1 >> \"${GIT_PREFIX}.gitignore\"; }; f"
+    ls = status --short
+    lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' -n 20
+    fixup = "!f(){ git reset --soft HEAD~${1-1} && git commit --amend -C HEAD; };f"
+    fpush = push --force
+    change-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --env-filter \"if [[ \\\"$`echo $VAR`\\\" = '$OLD' ]]; then export $VAR='$NEW'; fi\" $@; }; f"
+    squash = "!f(){ git reset --soft HEAD~${1} && git commit --edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\"; };f"
+    refresh-ignore = !"f(){ git stash save && git rm -r --cached . && git add . && git commit -m\"refresh gitignore\" && git stash pop; }; f"
+    ignores = !sh -c \"wget --no-check-certificate https://www.gitignore.io/api/$1 -O .gitignore\"
+    ignore = "!f() { echo $1 >> \"${GIT_PREFIX}.gitignore\"; }; f"
+    uncommit = reset --soft HEAD^
+    remotes = remote -v
+
 [gpg]
-	program = gpg2
+    program = gpg2
+
 [init]
-	defaultBranch = main
+    defaultBranch = main
+
 [advice]
-	detachedHead = false
+    detachedHead = false
+
 [pull]
-	rebase = true
+    rebase = true
+
 [interactive]
-	diffFilter = delta --color-only
+    diffFilter = delta --color-only
+
 [push]
-	autoSetupRemote = true
+    autoSetupRemote = true
+
 [delta]
     navigate = true    # use n and N to move between diff sections
+
 [merge]
     conflictstyle = diff3
+
 [diff]
     colorMoved = default
+
 [diff "astextplain"]
-	textconv = astextplain
-[credential]
-	helper = manager
+    textconv = astextplain
+
 [credential "https://dev.azure.com"]
-	useHttpPath = true
+    helper = manager
+    useHttpPath = true
