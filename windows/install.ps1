@@ -92,7 +92,7 @@ if (Test-Path $profile -PathType Leaf)
 {
   Remove-Item $profile
 }
-New-Item -Path $profile -ItemType SymbolicLink -Value $PSScriptRoot\\Microsoft.PowerShell_profile.ps1
+New-Item -Path $profile -ItemType SymbolicLink -Value $PSScriptRoot\Microsoft.PowerShell_profile.ps1
 
 # Symlink powershell config
 if (Test-Path "$profileDir\powershell.config.json" -PathType Leaf)
@@ -106,21 +106,21 @@ if (Test-Path $configDir -PathType Container)
 {
   Remove-Item -Recurse $configDir
 }
-New-Item -Path $configDir -ItemType SymbolicLink -Value $PSScriptRoot\\.config
+New-Item -Path $configDir -ItemType SymbolicLink -Value $PSScriptRoot\.config
 
 # Symlink global configs
 if (Test-Path "$home\.gitconfig" -PathType Leaf)
 {
   Remove-Item "$home\.gitconfig"
 }
-New-Item -Path "$home\.gitconfig" -ItemType SymbolicLink -Value $PSScriptRoot\\..\.gitconfig
+New-Item -Path "$home\.gitconfig" -ItemType SymbolicLink -Value $PSScriptRoot\..\.gitconfig
 
 # Symlink nvim config
-if (Test-Path "$ENV:USERPROFILE\\AppData\\Local\\nvim" -PathType Container)
+if (Test-Path "$ENV:USERPROFILE\AppData\Local\nvim" -PathType Container)
 {
-  Remove-Item -Recurse "$ENV:USERPROFILE\\AppData\\Local\\nvim"
+  Remove-Item -Recurse "$ENV:USERPROFILE\AppData\Local\nvim"
 }
-New-Item -Path $ENV:USERPROFILE\\AppData\\Local\\nvim -ItemType SymbolicLink -Value $PSScriptRoot\\..\.config\nvim
+New-Item -Path $ENV:USERPROFILE\AppData\Local\nvim -ItemType SymbolicLink -Value $PSScriptRoot\\..\.config\nvim
 
 Remove-Variable configDir
 Remove-Variable profileDir

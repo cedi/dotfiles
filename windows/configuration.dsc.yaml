@@ -51,7 +51,7 @@ properties:
 
     - resource: Microsoft.Windows.Developer/EnableDarkMode
       directives:
-        description: Disable dark mode
+        description: Enable dark mode
         allowPrerelease: true
       settings:
         Ensure: Present
