@@ -4,8 +4,8 @@ Write-Host "Install PowerShell Modules..." -ForegroundColor "Yellow"
 
 Install-Module Microsoft.WinGet.Client -AcceptLicense
 Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
-Install-Module Terminal-Icons -AcceptLicense
-Install-Module PSFzf -AcceptLicense
+Install-Module Terminal-Icons -AcceptLicense -Force
+Install-Module PSFzf -AcceptLicense -Force
 
 Write-Host "Install Fonts..." -ForegroundColor "Yellow"
 
@@ -99,7 +99,7 @@ New-Item -Path "$profileDir\powershell.config.json" -ItemType SymbolicLink -Valu
 
 # Symlink PowerShell specific config
 if (Test-Path $configDir -PathType Container) {
-    Remove-Item $configDir
+    Remove-Item -Recurse $configDir
 }
 New-Item -Path $configDir -ItemType SymbolicLink -Value $PSScriptRoot\\.config
 
