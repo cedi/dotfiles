@@ -10,12 +10,14 @@ Install-Module PSFzf -AcceptLicense -Force
 Write-Host "Install Fonts..." -ForegroundColor "Yellow"
 
 # Install NerdFont patched fonts
-# Install-Font $PSScriptRoot\..\fonts
+Install-Font $PSScriptRoot\..\fonts
 
 Write-Host "Configuring Privacy..." -ForegroundColor "Yellow"
 
 # General: Don't let apps use advertising ID for experiences across apps: Allow: 1, Disallow: 0
-if (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo")) {New-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo" -Type Folder | Out-Null}
+if (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo"))
+{New-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo" -Type Folder | Out-Null
+}
 Set-ItemProperty "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo" "Enabled" 0
 Remove-ItemProperty "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo" "Id" -ErrorAction SilentlyContinue
 
@@ -86,32 +88,37 @@ New-Item $profileDir -ItemType Directory -Force -ErrorAction SilentlyContinue
 New-Item $configDir -ItemType Directory -Force -ErrorAction SilentlyContinue
 
 # Symlink PowerShell_profile
-if (Test-Path $profile -PathType Leaf) {
-    Remove-Item $profile
+if (Test-Path $profile -PathType Leaf)
+{
+  Remove-Item $profile
 }
 New-Item -Path $profile -ItemType SymbolicLink -Value $PSScriptRoot\\Microsoft.PowerShell_profile.ps1
 
 # Symlink powershell config
-if (Test-Path "$profileDir\powershell.config.json" -PathType Leaf) {
-    Remove-Item "$profileDir\powershell.config.json"
+if (Test-Path "$profileDir\powershell.config.json" -PathType Leaf)
+{
+  Remove-Item "$profileDir\powershell.config.json"
 }
 New-Item -Path "$profileDir\powershell.config.json" -ItemType SymbolicLink -Value $PSScriptRoot\\powershell.config.json
 
 # Symlink PowerShell specific config
-if (Test-Path $configDir -PathType Container) {
-    Remove-Item -Recurse $configDir
+if (Test-Path $configDir -PathType Container)
+{
+  Remove-Item -Recurse $configDir
 }
 New-Item -Path $configDir -ItemType SymbolicLink -Value $PSScriptRoot\\.config
 
 # Symlink global configs
-if (Test-Path "$home\.gitconfig" -PathType Leaf) {
-    Remove-Item "$home\.gitconfig"
+if (Test-Path "$home\.gitconfig" -PathType Leaf)
+{
+  Remove-Item "$home\.gitconfig"
 }
 New-Item -Path "$home\.gitconfig" -ItemType SymbolicLink -Value $PSScriptRoot\\..\.gitconfig
 
 # Symlink nvim config
-if (Test-Path "$ENV:USERPROFILE\\AppData\\Local\\nvim" -PathType Container) {
-    Remove-Item -Recurse "$ENV:USERPROFILE\\AppData\\Local\\nvim"
+if (Test-Path "$ENV:USERPROFILE\\AppData\\Local\\nvim" -PathType Container)
+{
+  Remove-Item -Recurse "$ENV:USERPROFILE\\AppData\\Local\\nvim"
 }
 New-Item -Path $ENV:USERPROFILE\\AppData\\Local\\nvim -ItemType SymbolicLink -Value $PSScriptRoot\\..\.config\nvim
 
