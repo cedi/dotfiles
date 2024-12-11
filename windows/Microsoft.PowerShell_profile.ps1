@@ -19,6 +19,8 @@ foreach ($module in $configurationModules) {
         if ($debugModuleLoading) {
             Write-Host "loading $module" -ForegroundColor "Yellow"
         }
+
+        # Load the file
         Invoke-Expression ". $modulePath"
     } else {
         Write-Host "Failed to load $module, could not find: $modulePath" -ForegroundColor "Red"

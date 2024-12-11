@@ -73,6 +73,10 @@ Set-ItemProperty "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliver
 #     code --install-extension ms-vscode-remote.vscode-remote-extensionpack
 # }
 
+# Install tools
+
+winget configure -f $PSScriptRoot\configuration.dsc.yaml --accept-configuration-agreements
+
 # Install dotfiles
 
 $profileDir = Split-Path -parent $profile
