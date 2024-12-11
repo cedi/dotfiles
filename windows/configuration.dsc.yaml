@@ -1,0 +1,241 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+properties:
+  configurationVersion: "0.2.0"
+  assertions:
+    - resource: Microsoft.Windows.Developer/OsVersion
+      directives:
+        description: Verify min OS version requirement
+        allowPrerelease: true
+      settings:
+        MinVersion: "10.0.22000"
+
+  resources:
+    # Core Config
+    - resource: Microsoft.Windows.Developer/DeveloperMode
+      directives:
+        description: Enable Developer Mode
+        allowPrerelease: false
+      settings:
+        Ensure: Present
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: Install PowerShell (7)
+        allowPrerelease: false
+      settings:
+        id: Microsoft.PowerShell
+        source: winget
+
+    # Windows Config
+    - resource: Microsoft.Windows.Developer/Taskbar
+      directives:
+        description: Modify taskbar settings
+        allowPrerelease: true
+      settings:
+        Alignment: Middle
+        HideLabelsMode: Always
+        SearchBoxMode: ShowIconAndLabel
+        TaskViewButton: Show
+        WidgetsButton: Show
+        RestartExplorer: True
+
+    - resource: Microsoft.Windows.Developer/WindowsExplorer
+      directives:
+        description: Modify Windows Explorer settings
+        allowPrerelease: true
+      settings:
+        FileExtensions: Show
+        HiddenFiles: Show
+        ItemCheckBoxes: Hide
+        RestartExplorer: True
+
+    - resource: Microsoft.Windows.Developer/EnableDarkMode
+      directives:
+        description: Disable dark mode
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        RestartExplorer: true
+
+    # DevTools
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: Install Nushell
+        allowPrerelease: false
+        dependencies:
+          - Microsoft.WinGet.DSC/Environment
+      settings:
+        id: Nushell.Nushell
+        source: winget
+      id: Nushell.Nushell
+
+    # - resource: PSDscResources/Environment
+    #   directives:
+    #     description: Add NU Default Config
+    #     allowPrerelease: false
+    #   settings:
+    #     Name: "XDG_CONFIG_HOME"
+    #     Path: false
+    #     Value: "C:\\Users\\ricardma\\.config"
+    #     Ensure: Present
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: Install Git
+        allowPrerelease: true
+      settings:
+        id: Git.Git
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: Install Zoxide
+        allowPrerelease: false
+      settings:
+        id: ajeetdsouza.zoxide
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: fzf
+      directives:
+        description: Install fzf
+        allowPrerelease: false
+      settings:
+        id: junegunn.fzf
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: Install bat (better pager)
+        allowPrerelease: false
+      settings:
+        id: sharkdp.bat
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: Install eza (better ls)
+        allowPrerelease: false
+      settings:
+        id: eza-community.eza
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: Install OhMyPosh
+        allowPrerelease: false
+      settings:
+        id: JanDeDobbeleer.OhMyPosh
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: Install VSCode
+        allowPrerelease: false
+      settings:
+        id: Microsoft.VisualStudioCode
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: Install NeoVim
+        allowPrerelease: false
+      settings:
+        id: Neovim.Neovim
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: Install Azure CLI
+        allowPrerelease: false
+      settings:
+        id: Microsoft.AzureCLI
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: Install NodeJS
+        allowPrerelease: false
+      settings:
+        id: OpenJS.NodeJS
+        source: winget
+
+    # Other Tools
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: installPowerToys
+      directives:
+        description: Install PowerToys
+        allowPrerelease: true
+      settings:
+        id: Microsoft.PowerToys
+        source: winget
+
+    - resource: Microsoft.PowerToys.Configure/PowerToysConfigure
+      dependsOn:
+        - installPowerToys
+      directives:
+        description: Configure PowerToys
+      settings:
+        AdvancedPaste:
+          Enabled: true
+        AlwaysOnTop:
+          Enabled: true
+        Awake:
+          Enabled: true
+        ColorPicker:
+          Enabled: true
+        CropAndLock:
+          Enabled: true
+        EnvironmentVariables:
+          Enabled: true
+        FancyZones:
+          Enabled: true
+        FileLocksmith:
+          Enabled: true
+        ImageResizer:
+          Enabled: true
+        KeyboardManager:
+          Enabled: true
+        FindMyMouse:
+          Enabled: true
+        MouseHighlighter:
+          Enabled: true
+        MouseJump:
+          Enabled: false
+        MousePointerCrosshairs:
+          Enabled: false
+        MouseWithoutBorders:
+          Enabled: false
+        Peek:
+          Enabled: true
+        PowerRename:
+          Enabled: true
+        PowerLauncher:
+          Enabled: true
+        PowerAccent:
+          Enabled: false
+        PowerPreview:
+          EnableSvgPreview: true
+          EnableSvgThumbnail: true
+          EnableMdPreview: true
+          EnableMonacoPreview: true
+          EnablePdfPreview: true
+          EnablePdfThumbnail: true
+          EnableGcodePreview: true
+          EnableGcodeThumbnail: true
+          EnableStlThumbnail: true
+          EnableQoiPreview: true
+          EnableQoiThumbnail: true
+        PowerOcr:
+          Enabled: true
+        ShortcutGuide:
+          Enabled: true
+          OverlayOpacity: 50
+        VideoConference:
+          Enabled: true
+        MeasureTool:
+          Enabled: true
+        Hosts:
+          Enabled: true
+        RegistryPreview:
+          Enabled: true

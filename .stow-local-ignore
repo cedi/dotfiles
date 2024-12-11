@@ -27,5 +27,6 @@ screenshot.png
 install.sh
 update-golang/*
 fonts/*
+windows/
 install.ps1
 Microsoft.PowerShell_profile.ps1
