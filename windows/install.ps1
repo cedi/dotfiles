@@ -75,6 +75,13 @@ if (Test-Path "$home\.gitconfig" -PathType Leaf)
 }
 New-Item -Path "$home\.gitconfig" -ItemType SymbolicLink -Value $PSScriptRoot\..\.gitconfig
 
+# Symlink global configs
+if (Test-Path "$profileDir\tron-cedi.omp.json" -PathType Leaf)
+{
+  Remove-Item "$profileDir\tron-cedi.omp.json"
+}
+New-Item -Path "$profileDir\tron-cedi.omp.json" -ItemType SymbolicLink -Value $PSScriptRoot\..\.config\oh-my-posh\themes\tron-cedi.omp.json
+
 # Symlink nvim config
 if (Test-Path "$ENV:USERPROFILE\AppData\Local\nvim" -PathType Container)
 {

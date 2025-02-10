@@ -3,7 +3,8 @@ if (-Not (Test-CommandExists oh-my-posh)) {
     return;
 }
 
-oh-my-posh --init --shell pwsh --config C:\Users\ckienzler\src\gh\cedi\dotfiles\.config\oh-my-posh\themes\tron-cedi.omp.json | Invoke-Expression
+$profileDir = Split-Path -parent $profile
+oh-my-posh --init --shell pwsh --config $profileDir\tron-cedi.omp.json | Invoke-Expression
 
 Enable-PoshTransientPrompt
 Enable-PoshTooltips
