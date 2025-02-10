@@ -10,7 +10,7 @@ Install-Module PSFzf -Force
 Write-Host "Install Fonts..." -ForegroundColor "Yellow"
 
 # Install NerdFont patched fonts
-#Install-Font $PSScriptRoot\..\fonts
+Install-Font $PSScriptRoot\..\fonts
 
 Write-Host "Configuring Privacy..." -ForegroundColor "Yellow"
 
