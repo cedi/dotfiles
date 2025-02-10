@@ -82,45 +82,5 @@ if (Test-Path "$ENV:USERPROFILE\AppData\Local\nvim" -PathType Container)
 }
 New-Item -Path $ENV:USERPROFILE\AppData\Local\nvim -ItemType SymbolicLink -Value $PSScriptRoot\\..\.config\nvim
 
-# Install VSCode extensions
-if (Test-CommandExists code) {
-    Write-Host "Install VSCode Plugins..." -ForegroundColor "Yellow"
-    code --install-extension aaron-bond.better-comments
-    code --install-extension eamodio.gitlens
-    code --install-extension devprod.vulnerability-extension
-    code --install-extension ms-vsliveshare.vsliveshare
-    code --install-extension oderwat.indent-rainbow
-    code --install-extension shardulm94.trailing-spaces
-    code --install-extension davidanson.vscode-markdownlint
-    code --install-extension yzhang.markdown-all-in-one
-    code --install-extension bierner.markdown-mermaid
-    code --install-extension ms-azuretools.azure-dev
-    code --install-extension ms-vscode.azure-account
-    code --install-extension ms-azuretools.vscode-azureappservice
-    code --install-extension ms-azuretools.vscode-azurecontainerapps
-    code --install-extension ms-azuretools.vscode-azurefunctions
-    code --install-extension ms-azuretools.vscode-azureresourcegroups
-    code --install-extension ms-azuretools.vscode-azurestaticwebapps
-    code --install-extension ms-azuretools.vscode-azurestorage
-    code --install-extension ms-azuretools.vscode-azurevirtualmachines
-    code --install-extension ms-azuretools.vscode-bicep
-    code --install-extension ms-azuretools.vscode-cosmosdb
-    code --install-extension ms-azuretools.vscode-docker
-    code --install-extension ms-vscode.azure-repos
-    code --install-extension ms-vscode.azurecli
-    code --install-extension bencoleman.armview
-    code --install-extension msazurermtools.azurerm-vscode-tools
-    code --install-extension ms-dotnettools.csdevkit
-    code --install-extension ms-dotnettools.csharp
-    code --install-extension ms-dotnettools.vscode-dotnet-runtime
-    code --install-extension ms-vscode.cpptools
-    code --install-extension ms-vscode.powershell
-    code --install-extension ms-vscode-remote.remote-containers
-    code --install-extension ms-vscode-remote.remote-ssh
-    code --install-extension ms-vscode-remote.remote-ssh-edit
-    code --install-extension ms-vscode-remote.remote-wsl
-    code --install-extension ms-vscode-remote.vscode-remote-extensionpack
-}
-
 Remove-Variable configDir
 Remove-Variable profileDir
