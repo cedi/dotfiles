@@ -147,6 +147,14 @@ properties:
         id: Microsoft.VisualStudioCode
         source: winget
 
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: Install delta pager
+        allowPrerelease: false
+      settings:
+        id: dandavison.delta
+        source: winget
+
     # Other Tools
     - resource: Microsoft.WinGet.DSC/WinGetPackage
       id: installPowerToys
