@@ -14,3 +14,22 @@ $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 if (Test-Path($ChocolateyProfile)) {
     Import-Module "$ChocolateyProfile"
 }
+
+# Set my $env:PATH here
+
+$MY_PATH = ""
+
+# Define directories
+$paths = @(
+    "$HOME\bin"
+)
+
+# Check if directories exist and add them
+foreach ($p in $paths) {
+    if (Test-Path $p) {
+        $MY_PATH += "$p;"
+    }
+}
+
+# Construct PATH variable
+$env:Path = ($MY_PATH + $env:Path -split ';' | Select-Object -Unique) -join ';'

@@ -14,7 +14,7 @@ properties:
     - resource: Microsoft.Windows.Developer/DeveloperMode
       directives:
         description: Enable Developer Mode
-        allowPrerelease: false
+        allowPrerelease: true
       settings:
         Ensure: Present
 
@@ -154,6 +154,67 @@ properties:
       settings:
         id: dandavison.delta
         source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: Install Tailscale
+        allowPrerelease: false
+      settings:
+        id: tailscale.tailscale
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: Install jq
+        allowPrerelease: false
+      settings:
+        id: jqlang.jq
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: Install Rust
+        allowPrerelease: false
+      settings:
+        id: Rustlang.Rustup
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: Install curl
+        allowPrerelease: false
+      settings:
+        id: cURL.cURL
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: Install GoLang
+        allowPrerelease: false
+      settings:
+        id: GoLang.Go
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: vsPackage
+      directives:
+        description: Install Visual Studio 2022 Community
+        allowPrerelease: true
+      settings:
+        id: Microsoft.VisualStudio.2022.Community
+        source: winget
+
+    - resource: Microsoft.VisualStudio.DSC/VSComponents
+      dependsOn:
+        - vsPackage
+      directives:
+        description: Install required VS workloads from vsconfig file
+        allowPrerelease: true
+      settings:
+        productId: Microsoft.VisualStudio.Product.Enterprise
+        channelId: VisualStudio.17.Release
+        vsConfigFile: '${WinGetConfigRoot}\.vsconfig'
+        includeRecommended: true
 
     # Other Tools
     - resource: Microsoft.WinGet.DSC/WinGetPackage

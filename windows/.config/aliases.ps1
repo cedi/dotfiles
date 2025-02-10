@@ -42,3 +42,8 @@ else {
 if (Test-Path 'C:\Program Files (x86)\GnuWin32\bin\sed.exe') {
     Set-Alias -Name sed 'C:\Program Files (x86)\GnuWin32\bin\sed.exe'
 }
+
+if (Test-CommandExists git-tool) {
+    Invoke-Expression (&C:\Users\ckienzler\bin\git-tool.exe shell-init powershell)
+    New-Alias -Name gt -Value C:\Users\ckienzler\bin\git-tool.exe
+}
