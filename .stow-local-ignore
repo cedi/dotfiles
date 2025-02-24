@@ -30,3 +30,7 @@ fonts/*
 windows/
 install.ps1
 Microsoft.PowerShell_profile.ps1
+
+# Tailscale ACL and github workflows
+\.github
+tailscale.acl.hujson

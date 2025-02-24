@@ -1,0 +1,253 @@
+// Example/default ACLs for unrestricted connections.
+{
+	// Declare static groups of users beyond those in the identity service.
+	"groups": {
+		"group:admins": [
+			"cedi@github",
+		],
+		// group:vpn is given access to (mullvad) exit nodes
+		"group:vpn": [
+			"cedi@github",
+			"heiko.borchers@gmail.com",
+			"x1bay@github",
+		],
+	},
+
+	// Declare convenient hostname aliases to use in place of IP addresses.
+	"hosts": {
+		"nas":                 "100.71.201.45",
+		"clusterpi-leader":    "100.92.89.43",
+		"hass":                "100.75.135.70",
+		"lyn":                 "100.122.149.90",
+		"idp":                 "100.115.22.54",
+		"cloud-gateway-ultra": "100.83.85.56",
+		"hass-schiltach":      "100.89.41.43",
+	},
+
+	// Declare ACL-Tags and their owners
+	"tagOwners": {
+		"tag:core-infra":     ["group:admins"], // Devices tagged with tag:core-infra are critical services in the infrastructure that need to be treated more carefully and should not be as exposed
+		"tag:core-services":  ["group:admins"], // Devices tagged with tag:core-services are the services that every user gets access to
+		"tag:smarthome":      ["group:admins"], // Devices tagged with tag:smarthome are smart-home devices with should be treated with tighter access controll restrictions
+		"tag:k8s-operator":   ["group:admins"], // tag:k8s-operator is the tailscale operator running on my k8s clusters
+		"tag:k3s-operator":   ["group:admins"], // tag:k8s-operator is the tailscale operator running on my k8s clusters
+		"tag:k8s":            ["tag:k8s-operator"], // Devices tagged with tag:k8s are services exposed by the k8s-operator
+		"tag:k3s":            ["tag:k3s-operator"], // Devices tagged with tag:k8s are services exposed by the k8s-operator
+		"tag:o11y-collector": ["group:admins"], // Devices tagged with tag:o11y-collector can scrape o11y data and send o11y it to o11y-endpoints
+		"tag:o11y-agent":     ["group:admins"], // Devices tagged with tag:o11y-agent can send o11y data to o11y-endpoints
+		"tag:o11y-endpoint":  ["group:admins", "tag:k8s-operator"], // Devices tagged with tag:o11y-endpoint accept o11y data send by o11-collector
+		"tag:jumphost":       ["group:admins"], // Devices tagged with tag:jumphost are allowed to initiate SSH connections via tailscale-ssh
+		"tag:homelab":        ["group:admins", "tag:k3s-operator"], // Devices tagged with tag:homelab should be considered as experimental devices running test workloads
+	},
+
+	"nodeAttrs": [
+		// allow the k8s-operator to enable funnel
+		{
+			"target": ["tag:k8s-operator", "tag:k3s-operator"],
+			"attr":   ["funnel"],
+		},
+
+		// group:vpn has access to mullvad exit nodes
+		{
+			"target": ["group:vpn"],
+			"attr":   ["mullvad"],
+		},
+	],
+
+	// Access control lists.
+	"acls": [
+		// Allow admin to access everything unrestricted
+		{
+			"action": "accept",
+			"src":    ["group:admins"],
+			"dst":    ["*:*"],
+		},
+		// Allow tag:o11y-collector to scrape all prometheus endpoints
+		{
+			"action": "accept",
+			"src":    ["tag:o11y-collector"],
+			"dst": [
+				"*:9100", // node-exporter
+				"*:9243", // rpi-exporter
+				"*:9116", // snmp-exporter
+				"*:8123", // cadvisor
+			],
+		},
+		// Allow tag:o11y-collector and tag:o11y-agent to send metrics to tag:o11y-endpoint
+		{
+			"action": "accept",
+			"src":    ["tag:o11y-collector", "tag:o11y-agent"],
+			"dst":    ["tag:o11y-endpoint:*"],
+		},
+		// Allow homelab to homelab
+		{
+			"action": "accept",
+			"src":    ["tag:homelab"],
+			"dst":    ["tag:homelab:*"],
+		},
+		// Allow core-services to core-services
+		{
+			"action": "accept",
+			"src":    ["tag:core-services"],
+			"dst":    ["tag:core-services:*"],
+		},
+	],
+
+	"ssh": [
+		// admins can access the homelab unrestricted
+		{
+			"action": "accept",
+			"src":    ["group:admins", "tag:jumphost"],
+			"dst":    ["tag:homelab", "tag:smarthome"],
+			"users":  ["autogroup:nonroot", "root"],
+		},
+		// admins and jumphost can access the core-infra resources as nonroot
+		{
+			"action": "accept",
+			"src":    ["group:admins", "tag:jumphost"],
+			"dst":    ["tag:core-infra", "tag:core-services"],
+			"users":  ["autogroup:nonroot"],
+		},
+		// admins can access the core-infra resources as root in check mode
+		{
+			"action":      "check",
+			"checkPeriod": "8h",
+			"src":         ["group:admins"],
+			"dst":         ["tag:core-infra", "tag:core-services"],
+			"users":       ["root"],
+		},
+		// any user can use Tailscale SSH to connect to their own devices as non-root user
+		{
+			"action": "accept",
+			"src":    ["autogroup:member"],
+			"dst":    ["autogroup:self"],
+			"users":  ["autogroup:nonroot"],
+		},
+		// any user can use Tailscale SSH to connect to their own devices in check mode as root user
+		{
+			"action": "check",
+			"src":    ["autogroup:member"],
+			"dst":    ["autogroup:self"],
+			"users":  ["root"],
+		},
+	],
+
+	"grants": [
+		// Allow vpn members to access exit nodes
+		{
+			"src": ["group:vpn"],
+			"dst": ["autogroup:internet"],
+			"ip":  ["*"],
+		},
+		// Allow everyone to access core services
+		{
+			"src": ["autogroup:member", "autogroup:tagged"],
+			"dst": ["tag:core-services"],
+			"ip":  ["*"],
+		},
+		// Allow admins to access all tailscale web interfaces and edit everything
+		{
+			"src": ["group:admins"],
+			"dst": ["tag:smarthome"],
+			"ip":  ["5252"], // admins can access all ports
+			"app": {
+				"tailscale.com/cap/webui": [
+					{
+						"canEdit": ["*"], // can edit everything
+					},
+				],
+			},
+		},
+		// Allow users to access the tailscale web interface for their own devices
+		// and edit account, ssh and exitNode settings
+		// does not allow configuring and setting up subnetRouters
+		{
+			"src": ["autogroup:member"],
+			"dst": ["autogroup:self"],
+			"ip":  ["5252"],
+			"app": {
+				"tailscale.com/cap/webui": [
+					{
+						"canEdit": ["account", "ssh", "exitNodes"], // can edit everything
+					},
+				],
+			},
+		},
+	],
+
+	"tests": [
+		{
+			"src":   "cedi@github",
+			"proto": "tcp",
+			"accept": [
+				"nas:5000",
+				"clusterpi-leader:443",
+				"clusterpi-leader:6443",
+				"hass:8123",
+				"lyn:1234",
+				"idp:443",
+				"hass-schiltach:8123",
+			],
+		},
+		{
+			"src":    "x1bay@github",
+			"proto":  "tcp",
+			"accept": ["nas:5000", "idp:443", "hass:8123"],
+			"deny":   ["hass-schiltach:8123"],
+		},
+		{
+			"src":   "group:vpn",
+			"proto": "tcp",
+			"deny":  ["tag:homelab:443", "tag:homelab:80"],
+		},
+		{
+			"src":    "group:vpn",
+			"proto":  "tcp",
+			"accept": ["1.1.1.1:443"],
+		},
+		{
+			"src":    "tag:o11y-collector",
+			"proto":  "tcp",
+			"accept": ["tag:o11y-endpoint:443"],
+		},
+		{
+			"src":    "tag:o11y-agent",
+			"proto":  "tcp",
+			"accept": ["tag:o11y-endpoint:443"],
+		},
+		{
+			"src":    "tag:o11y-collector",
+			"proto":  "tcp",
+			"accept": ["tag:homelab:9100"],
+		},
+		{
+			"src":   "tag:o11y-collector",
+			"proto": "tcp",
+			"deny":  ["tag:core-infra:443"],
+		},
+		{
+			"src":   "group:vpn",
+			"proto": "tcp",
+			"deny":  ["tag:smarthome:8123"],
+		},
+	],
+
+	"sshTests": [
+		{
+			"src":    "cedi@github",
+			"dst":    ["lyn"],
+			"accept": ["cedi", "root"],
+		},
+		{
+			"src":    "cedi@github",
+			"dst":    ["cloud-gateway-ultra"],
+			"accept": ["cedi"],
+			"check":  ["root"],
+		},
+		{
+			"src":  "group:vpn",
+			"dst":  ["cloud-gateway-ultra"],
+			"deny": ["cedi", "root"],
+		},
+	],
+}
