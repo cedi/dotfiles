@@ -1,3 +1,4 @@
+// This tailnet's ACLs are maintained in https://github.com/cedi/dotfiles/blob/main/tailscale.acl.hujson
 {
 	// Declare static groups of users beyond those in the identity service.
 	"groups": {
