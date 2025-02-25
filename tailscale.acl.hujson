@@ -158,19 +158,6 @@
 				],
 			},
 		},
-		// Admins accessing smarthome have admin group
-		{
-			"src": ["group:admins"],
-			"dst": ["*"],
-			"ip":  ["*"],
-			"app": {
-				"tsidp.com/cap/tsidp": [
-					{
-						"groups": ["admin"],
-					},
-				],
-			},
-		},
 		// Allow users to access the tailscale web interface for their own devices
 		// and edit account, ssh and exitNode settings
 		// does not allow configuring and setting up subnetRouters
