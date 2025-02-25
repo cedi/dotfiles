@@ -161,12 +161,12 @@
 		// Admins accessing smarthome have admin group
 		{
 			"src": ["group:admins"],
-			"dst": ["tag:smarthome"],
+			"dst": ["autogroup:self"],
 			"ip":  ["*"],
 			"app": {
 				"tsidp.com/cap/tsidp": [
 					{
-						"groups": ["admin"], // can edit everything
+						"groups": ["admin"],
 					},
 				],
 			},
