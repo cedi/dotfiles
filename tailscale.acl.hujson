@@ -52,6 +52,10 @@
 			"target": ["group:vpn"],
 			"attr":   ["mullvad"],
 		},
+		{
+			"target": ["cedi@github"],
+			"attr":   ["tsidp-group:admin"],
+		},
 	],
 
 	// Access control lists.
