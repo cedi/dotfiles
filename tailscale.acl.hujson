@@ -164,7 +164,7 @@
 			"dst": ["tag:smarthome"],
 			"ip":  ["*"],
 			"app": {
-				"tailscale.com/cap/tsidp": [
+				"tsidp.com/cap/tsidp": [
 					{
 						"groups": ["admin"], // can edit everything
 					},
