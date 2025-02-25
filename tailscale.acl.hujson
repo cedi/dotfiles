@@ -52,10 +52,6 @@
 			"target": ["group:vpn"],
 			"attr":   ["mullvad"],
 		},
-		{
-			"target": ["cedi@github"],
-			"attr":   ["tsidp-group:admin"],
-		},
 	],
 
 	// Access control lists.
@@ -153,11 +149,24 @@
 		{
 			"src": ["group:admins"],
 			"dst": ["tag:smarthome"],
-			"ip":  ["5252"], // admins can access all ports
+			"ip":  ["5252"],
 			"app": {
 				"tailscale.com/cap/webui": [
 					{
 						"canEdit": ["*"], // can edit everything
+					},
+				],
+			},
+		},
+		// Admins accessing smarthome have admin group
+		{
+			"src": ["group:admins"],
+			"dst": ["tag:smarthome"],
+			"ip":  ["*"],
+			"app": {
+				"tailscale.com/cap/tsidp": [
+					{
+						"groups": ["admin"], // can edit everything
 					},
 				],
 			},
