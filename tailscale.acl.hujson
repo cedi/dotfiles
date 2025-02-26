@@ -241,11 +241,11 @@
 		{
 			"src":    "cedi@github",
 			"dst":    ["lyn"],
-			"accept": ["cedi", "root"],
+			"accept": ["cedi"],
 		},
 		{
 			"src":    "cedi@github",
-			"dst":    ["cloud-gateway-ultra"],
+			"dst":    ["cloud-gateway-ultra", "lyn"],
 			"accept": ["cedi"],
 			"check":  ["root"],
 		},
