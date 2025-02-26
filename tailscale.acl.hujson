@@ -8,7 +8,6 @@
 		// group:vpn is given access to (mullvad) exit nodes
 		"group:vpn": [
 			"cedi@github",
-			"heiko.borchers@gmail.com",
 			"x1bay@github",
 		],
 	},
