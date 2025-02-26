@@ -1,0 +1,106 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+properties:
+  configurationVersion: "0.2.0"
+  assertions:
+    - resource: Microsoft.Windows.Developer/OsVersion
+      directives:
+        description: Verify min OS version requirement
+        allowPrerelease: true
+      settings:
+        MinVersion: "10.0.22000"
+  resources:
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: Install NodeJS
+        allowPrerelease: false
+      settings:
+        id: OpenJS.NodeJS
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: Install Rust
+        allowPrerelease: false
+      settings:
+        id: Rustlang.Rustup
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: Install GoLang
+        allowPrerelease: false
+      settings:
+        id: GoLang.Go
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: Install .NET 9 runtime
+        allowPrerelease: false
+      settings:
+        id: Microsoft.DotNet.Runtime.9
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: Install .NET 9 aspnet
+        allowPrerelease: false
+      settings:
+        id: Microsoft.DotNet.AspNetCore.9
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: Install .NET 9 desktop runtime
+        allowPrerelease: false
+      settings:
+        id: Microsoft.DotNet.DesktopRuntime.9
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: Install .NET 9 SDK
+        allowPrerelease: false
+      settings:
+        id: Microsoft.DotNet.SDK.9
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: Install .NET 8 runtime
+        allowPrerelease: false
+      settings:
+        id: Microsoft.DotNet.Runtime.8
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: Install .NET 8 aspnet
+        allowPrerelease: false
+      settings:
+        id: Microsoft.DotNet.AspNetCore.8
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: Install .NET 8 desktop runtime
+        allowPrerelease: false
+      settings:
+        id: Microsoft.DotNet.DesktopRuntime.8
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: Install .NET 8 SDK
+        allowPrerelease: false
+      settings:
+        id: Microsoft.DotNet.SDK.8
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: Install zig programming language / compiler
+        allowPrerelease: false
+      settings:
+        id: zig.zig
+        source: winget

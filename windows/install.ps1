@@ -36,8 +36,35 @@ Set-ItemProperty "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliver
 Set-ItemProperty "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" "SubscribedContent-338389Enabled" 0
 
 # Install tools
+
 Write-Host "Installing tools using winget configuration" -ForegroundColor "Yellow"
-winget configure -f $PSScriptRoot\configuration.dsc.yaml --accept-configuration-agreements
+
+$confirm = Read-Host "Apply custom windows styling? (y/n): "
+if ($confirm -eq 'y') {
+  Write-Host "Installing core tools" -ForegroundColor "DarkGray"
+  winget configure -f $PSScriptRoot\style.dsc.yaml --accept-configuration-agreements
+}
+
+$confirm = Read-Host "Install core tools? (y/n): "
+if ($confirm -eq 'y') {
+  Write-Host "Installing core tools" -ForegroundColor "DarkGray"
+  winget configure -f $PSScriptRoot\core.dsc.yaml --accept-configuration-agreements
+}
+
+$confirm = Read-Host "Install additional applications? (y/n): "
+if ($confirm -eq 'y') {
+  Write-Host "Installing additional applications" -ForegroundColor "DarkGray"
+  winget configure -f $PSScriptRoot\apps.dsc.yaml --accept-configuration-agreements
+}
+
+$confirm = Read-Host "Install programming languages and compilers? (y/n): "
+if ($confirm -eq 'y') {
+  Write-Host "Installing additional applications" -ForegroundColor "DarkGray"
+  winget configure -f $PSScriptRoot\languages.dsc.yaml --accept-configuration-agreements
+}
+
+# Install .NET artifacts-credprovider
+iex "& { $(irm https://aka.ms/install-artifacts-credprovider.ps1) } -InstallNet8"
 
 # Install dotfiles
 Write-Host "Installing dotfiles" -ForegroundColor "Yellow"

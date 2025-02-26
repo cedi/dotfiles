@@ -1,0 +1,107 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+properties:
+  configurationVersion: "0.2.0"
+  assertions:
+    - resource: Microsoft.Windows.Developer/OsVersion
+      directives:
+        description: Verify min OS version requirement
+        allowPrerelease: true
+      settings:
+        MinVersion: "10.0.22000"
+
+  resources:
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: Install Tailscale
+        allowPrerelease: false
+      settings:
+        id: tailscale.tailscale
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: Install 1Password
+        allowPrerelease: false
+      settings:
+        id: AgileBits.1Password
+        source: winget
+
+    # Other Tools
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: installPowerToys
+      directives:
+        description: Install PowerToys
+        allowPrerelease: true
+      settings:
+        id: Microsoft.PowerToys
+        source: winget
+
+    - resource: Microsoft.PowerToys.Configure/PowerToysConfigure
+      dependsOn:
+        - installPowerToys
+      directives:
+        description: Configure PowerToys
+      settings:
+        AdvancedPaste:
+          Enabled: true
+        AlwaysOnTop:
+          Enabled: true
+        Awake:
+          Enabled: true
+        ColorPicker:
+          Enabled: true
+        CropAndLock:
+          Enabled: true
+        EnvironmentVariables:
+          Enabled: true
+        FancyZones:
+          Enabled: true
+        FileLocksmith:
+          Enabled: true
+        ImageResizer:
+          Enabled: true
+        KeyboardManager:
+          Enabled: true
+        FindMyMouse:
+          Enabled: true
+        MouseHighlighter:
+          Enabled: true
+        MouseJump:
+          Enabled: false
+        MousePointerCrosshairs:
+          Enabled: false
+        MouseWithoutBorders:
+          Enabled: false
+        Peek:
+          Enabled: true
+        PowerRename:
+          Enabled: true
+        PowerLauncher:
+          Enabled: true
+        PowerAccent:
+          Enabled: false
+        PowerPreview:
+          EnableSvgPreview: true
+          EnableSvgThumbnail: true
+          EnableMdPreview: true
+          EnableMonacoPreview: true
+          EnablePdfPreview: true
+          EnablePdfThumbnail: true
+          EnableGcodePreview: true
+          EnableGcodeThumbnail: true
+          EnableStlThumbnail: true
+          EnableQoiPreview: true
+          EnableQoiThumbnail: true
+        PowerOcr:
+          Enabled: true
+        ShortcutGuide:
+          Enabled: true
+          OverlayOpacity: 50
+        VideoConference:
+          Enabled: true
+        MeasureTool:
+          Enabled: true
+        Hosts:
+          Enabled: true
+        RegistryPreview:
+          Enabled: true
