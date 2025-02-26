@@ -87,8 +87,8 @@
 		// Allow core-services to core-services
 		{
 			"action": "accept",
-			"src":    ["tag:core-services"],
-			"dst":    ["tag:core-services:*"],
+			"src":    ["tag:core-services", "tag:core-infra"],
+			"dst":    ["tag:core-services:*", "tag:core-infra:*"],
 		},
 	],
 
