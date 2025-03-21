@@ -152,7 +152,7 @@
 			"dst": ["tag:core-services"],
 			"ip":  ["*"],
 			"app": {
-				"specht-labs.de/cap/tsidp": [
+				"tailscale.com/cap/tsidp": [
 					{
 						"extraClaims": {
 							"groups": ["reader"],
@@ -168,7 +168,7 @@
 			"dst": ["tag:core-services"],
 			"ip":  ["*"],
 			"app": {
-				"specht-labs.de/cap/tsidp": [
+				"tailscale.com/cap/tsidp": [
 					{
 						"extraClaims": {
 							"username": "foobar",
