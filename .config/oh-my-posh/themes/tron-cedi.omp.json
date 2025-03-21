@@ -37,7 +37,7 @@
     "foreground": "p:foreground",
     "background": "transparent"
   },
-  "console_title_template": " {{ .UserName }}@{{ .HostName }} in {{ .Folder }} - {{ .Shell }}",
+  "console_title_template": "{{ .PWD }} :: {{ .UserName }}@{{ .HostName }}",
   "blocks": [
     {
       "type": "prompt",
@@ -59,7 +59,7 @@
           },
           "template": "{{ if .SSHSession }}\uf817 {{ end }}{{ .UserName }}@{{ .HostName }} ",
           "foreground": "p:foreground-session",
-          "powerline_symbol": "\ue0b0",
+          "powerline_symbol": " ",
           "background": "p:background-session",
           "type": "session",
           "style": "powerline",
@@ -222,8 +222,7 @@
             "always_enabled": true,
             "cache_duration": "none"
           },
-          "template": "{{ if eq .Code 0 }}\uf00c {{ else }}\uf7d3 {{ reason .Code }} ({{ .Code }}){{ end }}",
-          "powerline_symbol": "\ue0b0",
+          "template": "{{ if eq .Code 0 }} \uf00c {{ else }} \uf7d3 {{ reason .Code }} ({{ .Code }}){{ end }}",
           "background": "p:background",
           "type": "status",
           "style": "powerline",
