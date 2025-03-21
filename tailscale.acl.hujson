@@ -162,6 +162,23 @@
 				],
 			},
 		},
+		// Allow everyone to access core services
+		{
+			"src": ["cedi@github"],
+			"dst": ["tag:core-services"],
+			"ip":  ["*"],
+			"app": {
+				"specht-labs.de/cap/tsidp": [
+					{
+						"extraClaims": {
+							"username": "foobar",
+							"groups": ["reader"],
+							"entitlements": ["read-stuff"],
+						}
+					},
+				],
+			},
+		},
 		// Allow admins to access all tailscale web interfaces and edit everything
 		{
 			"src": ["group:admins"],
