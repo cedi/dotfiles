@@ -151,33 +151,6 @@
 			"src": ["autogroup:member", "autogroup:tagged"],
 			"dst": ["tag:core-services"],
 			"ip":  ["*"],
-			"app": {
-				"tailscale.com/cap/tsidp": [
-					{
-						"extraClaims": {
-							"groups": ["reader"],
-							"entitlements": ["read-stuff"],
-						}
-					},
-				],
-			},
-		},
-		// Allow everyone to access core services
-		{
-			"src": ["cedi@github"],
-			"dst": ["tag:core-services"],
-			"ip":  ["*"],
-			"app": {
-				"tailscale.com/cap/tsidp": [
-					{
-						"extraClaims": {
-							"username": "foobar",
-							"groups": ["reader"],
-							"entitlements": ["read-stuff"],
-						}
-					},
-				],
-			},
 		},
 		// Allow admins to access all tailscale web interfaces and edit everything
 		{
