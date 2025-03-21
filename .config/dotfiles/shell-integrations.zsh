@@ -8,6 +8,11 @@ fi
 # enable zoxide as cd alternative
 [[ $(command -v zoxide) ]] && eval "$(zoxide init --cmd cd zsh)"
 
+if [[ $(command -v git-tool) ]]; then
+    eval "$(git-tool shell-init zsh)"
+    alias gt="git-tool"
+fi
+
 # enable navi as shell widget
 if [[ $(command -v navi) ]]; then
 	eval "$(navi widget zsh)"
