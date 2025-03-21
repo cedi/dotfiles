@@ -151,6 +151,16 @@
 			"src": ["autogroup:member", "autogroup:tagged"],
 			"dst": ["tag:core-services"],
 			"ip":  ["*"],
+			"app": {
+				"specht-labs.de/cap/tsidp": [
+					{
+						"extraClaims": {
+							"groups": ["reader"],
+							"entitlements": ["read-stuff"],
+						}
+					},
+				],
+			},
 		},
 		// Allow admins to access all tailscale web interfaces and edit everything
 		{
@@ -176,21 +186,6 @@
 				"tailscale.com/cap/webui": [
 					{
 						"canEdit": ["account", "ssh", "exitNodes"], // can edit everything
-					},
-				],
-			},
-		},
-		{
-			"src": ["autogroup:member"],
-			"dst": ["*"],
-			"ip":  ["*"],
-			"app": {
-				"specht-labs.de/cap/tsidp": [
-					{
-						"extraClaims": {
-							"groups": ["reader"],
-							"entitlements": ["read-stuff"],
-						}
 					},
 				],
 			},
