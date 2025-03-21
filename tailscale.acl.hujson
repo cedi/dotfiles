@@ -180,6 +180,21 @@
 				],
 			},
 		},
+		{
+			"src": ["autogroup:member"],
+			"dst": ["*"],
+			"ip":  ["*"],
+			"app": {
+				"specht-labs.de/cap/tsidp": [
+					{
+						"extraClaims": {
+							"groups": ["reader"],
+							"entitlements": ["read-stuff"],
+						}
+					},
+				],
+			},
+		},
 	],
 
 	"tests": [
