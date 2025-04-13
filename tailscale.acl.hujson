@@ -72,6 +72,7 @@
 				"*:9116", // snmp-exporter
 				"*:8123", // cadvisor
 				"*:5252", // tailscale-exporter
+				"*:9666", // compute-blade-agent
 			],
 		},
 		// Allow tag:o11y-collector and tag:o11y-agent to send metrics to tag:o11y-endpoint
