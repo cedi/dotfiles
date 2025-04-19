@@ -181,6 +181,37 @@
 				],
 			},
 		},
+    // Manage tsidp extraClaims
+    {
+      "src": ["group:admins"],
+      "dst": ["*"],
+      "ip":  ["*"],
+      "app": {
+        "tailscale.com/cap/tsidp": [
+          {
+            "includeInUserInfo": true,
+            "extraClaims": {
+              "groups": ["admin"],
+            },
+          }
+        ]
+      }
+    },
+    {
+      "src": ["group:reader"],
+      "dst": ["*"],
+      "ip":  ["*"],
+      "app": {
+        "tailscale.com/cap/tsidp": [
+          {
+            "includeInUserInfo": true,
+            "extraClaims": {
+              "groups": ["reader"],
+            },
+          }
+        ]
+      }
+    }
 	],
 
 	"tests": [
