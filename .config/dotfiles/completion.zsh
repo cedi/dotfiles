@@ -9,6 +9,11 @@ if [[ $(command -v az) && -f $HOME/.azure/az.completion ]]; then
 	source $HOME/.azure/az.completion
 fi
 
+# enable calendarapi completion
+if [[ $(command -v calendarapi) ]]; then
+  eval "$(calendarapi completion zsh)"
+fi
+
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
