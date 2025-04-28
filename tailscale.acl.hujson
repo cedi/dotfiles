@@ -104,7 +104,7 @@
 		{
 			"action": "accept",
 			"src":    ["tag:homelab"],
-			"dst":    ["hosts:nuc:3493"],
+			"dst":    ["tag:core-infra:3493"],
 		},
 	],
 
@@ -278,10 +278,9 @@
 		},
 
 		{
-			"src":     "group:homelab",
+			"src":     "clusterpi-leader",
 			"proto":   "tcp",
-			"accept":  ["nuc:3493"],
-			"deny":    ["hole:3493"],
+			"accept":  ["tag:core-infra:3493"],
 		},
 	],
 
