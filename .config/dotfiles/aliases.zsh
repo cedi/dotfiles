@@ -108,3 +108,15 @@ fi
 function mkcd() {
 	mkdir -p "$@" && cd "$@";
 }
+
+if command -v kubectl &>/dev/null; then
+  kube-cleanup() {
+    kubectl get ns -o jsonpath='{.items[*].metadata.name}' | xargs -n1 -I{} bash -c '
+      rs=$(kubectl get rs -n "$0" -o jsonpath="{range .items[?(@.spec.replicas==0)]}{.metadata.name}{\"\\n\"}{end}")
+      if [ -n "$rs" ]; then
+        echo "Deleting in $0:"
+        echo "$rs" | xargs -n1 -r kubectl delete rs -n "$0"
+      fi
+    ' {}
+  }
+fi
