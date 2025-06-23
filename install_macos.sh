@@ -44,8 +44,8 @@ if [[ ! $(command -v brew) ]]; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-echo "* install eza python3 neovim tfswitch ripgrep iproute2mac zsh thefuck sops watch wget ansible navi zoxide tmux git-delta node@20"
-brew install eza python3 neovim tfswitch ripgrep iproute2mac zsh thefuck sops watch wget ansible navi zoxide tmux git-delta bat node@20
+echo "* install eza python3 neovim ripgrep iproute2mac zsh thefuck sops watch wget ansible navi zoxide tmux git-delta node@20"
+brew install eza python3 neovim ripgrep iproute2mac zsh thefuck sops watch wget ansible navi zoxide tmux git-delta bat node@20
 
 echo "* install gnutils"
 brew install coreutils findutils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt grep

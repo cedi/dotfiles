@@ -9,6 +9,21 @@
     # https://git-scm.com/docs/git-update-index#_untracked_cache
     untrackedCache = true
     excludesfile = ~/.gitignore_global
+    sshCommand = "ssh -i ~/.ssh/id_ed25519"
+
+[user]
+    name = Cedric Specht
+    email = cedric@specht-labs.de
+
+[github]
+    user = cedi
+    username = cedi
+
+[includeIf "gitdir:~/src/gh/databricks-eng/"]
+    path = ~/src/gh/databricks-eng/.gitconfig
+
+[includeIf "gitdir:~/src/gh/neondatabase/"]
+    path = ~/src/gh/neondatabase/.gitconfig
 
 [alias]
     ls = status --short
@@ -53,10 +68,3 @@
 [diff "astextplain"]
     textconv = astextplain
 
-[credential "https://dev.azure.com"]
-    helper = manager
-    useHttpPath = true
-
-[user]
-    name = Cedric Kienzler
-    email = cedric@specht-labs.de
