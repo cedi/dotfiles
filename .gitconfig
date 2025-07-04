@@ -68,3 +68,5 @@
 [diff "astextplain"]
     textconv = astextplain
 
+[diff "sopsdiffer"]
+	textconv = sops --decrypt --config /dev/null
