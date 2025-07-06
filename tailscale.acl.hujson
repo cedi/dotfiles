@@ -55,59 +55,6 @@
 		},
 	],
 
-	// Access control lists.
-	"acls": [
-		// Allow admin to access everything unrestricted
-		{
-			"action": "accept",
-			"src":    ["group:admins"],
-			"dst":    ["*:*"],
-		},
-		// Allow tag:o11y-collector to scrape all prometheus endpoints
-		{
-			"action": "accept",
-			"src":    ["tag:o11y-collector"],
-			"dst": [
-				"*:9100", // node-exporter
-				"*:9243", // rpi-exporter
-				"*:9116", // snmp-exporter
-				"*:8123", // cadvisor
-				"*:5252", // tailscale-exporter
-				"*:9666", // compute-blade-agent
-			],
-		},
-		// Allow tag:o11y-collector and tag:o11y-agent to send metrics to tag:o11y-endpoint
-		{
-			"action": "accept",
-			"src":    ["tag:o11y-collector", "tag:o11y-agent"],
-			"dst":    ["tag:o11y-endpoint:*"],
-		},
-		// Allow homelab to homelab
-		{
-			"action": "accept",
-			"src":    ["tag:homelab"],
-			"dst":    ["tag:homelab:*"],
-		},
-		// Allow core-services to core-services
-		{
-			"action": "accept",
-			"src":    ["tag:core-services"],
-			"dst":    ["tag:core-services:*"],
-		},
-		// Allow core-infra to core-infra
-		{
-			"action": "accept",
-			"src":    ["tag:core-infra"],
-			"dst":    ["tag:core-infra:*"],
-		},
-		// Allow homelab resources to access the nut-server
-		{
-			"action": "accept",
-			"src":    ["tag:homelab"],
-			"dst":    ["tag:core-infra:3493"],
-		},
-	],
-
 	"ssh": [
 		// admins can access the homelab unrestricted
 		{
@@ -148,11 +95,47 @@
 	],
 
 	"grants": [
+		// Allow admin to access everything unrestricted
+		{
+			"src":    ["group:admins"],
+			"dst":    ["*"],
+			"ip":     ["*"],
+		},
+		// Allow tag:o11y-collector and tag:o11y-agent to send metrics to tag:o11y-endpoint
+		{
+			"src":    ["tag:o11y-collector", "tag:o11y-agent"],
+			"dst":    ["tag:o11y-endpoint"],
+			"ip":     ["*"],
+		},
+		// Allow homelab to homelab
+		{
+			"src":    ["tag:homelab"],
+			"dst":    ["tag:homelab"],
+			"ip":     ["*"],
+		},
 		// Allow vpn members to access exit nodes
 		{
 			"src": ["group:vpn"],
 			"dst": ["autogroup:internet"],
 			"ip":  ["*"],
+		},
+		// Allow core-services to core-services
+		{
+			"src":  ["tag:core-services"],
+			"dst":  ["tag:core-services"],
+			"ip":   ["*"],
+		},
+		// Allow core-infra to core-infra
+		{
+			"src":    ["tag:core-infra"],
+			"dst":    ["tag:core-infra"],
+			"ip":  ["*"],
+		},
+		// Allow homelab resources to access the nut-server
+		{
+			"src":    ["tag:homelab"],
+			"dst":    ["tag:core-infra"],
+			"ip":     ["3493"],
 		},
 		// Allow everyone to access core services
 		{
@@ -201,6 +184,19 @@
 					},
 				],
 			},
+		},
+		// Allow tag:o11y-collector to scrape all prometheus endpoints
+		{
+			"src":    ["tag:o11y-collector"],
+			"dst": ["*"],
+			"ip": [
+				"9100", // node-exporter
+				"9243", // rpi-exporter
+				"9116", // snmp-exporter
+				"8123", // cadvisor
+				"5252", // tailscale-exporter
+				"9666", // compute-blade-agent
+			],
 		},
 		//    // Manage tsidp extraClaims
 		//    {
