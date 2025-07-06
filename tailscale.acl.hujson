@@ -33,6 +33,7 @@
 		"tag:k8s-operator":   ["group:admins"], // tag:k8s-operator is the tailscale operator running on my k8s clusters
 		"tag:k3s-operator":   ["group:admins"], // tag:k8s-operator is the tailscale operator running on my k8s clusters
 		"tag:k8s":            ["tag:k8s-operator"], // Devices tagged with tag:k8s are services exposed by the k8s-operator
+		"tag:tka":            ["tag:k8s-operator", "group:admins"], // Devices tagged with tag:tka are tailscale-k8s-auth services exposed by tka
 		"tag:k3s":            ["tag:k3s-operator"], // Devices tagged with tag:k8s are services exposed by the k8s-operator
 		"tag:o11y-collector": ["group:admins"], // Devices tagged with tag:o11y-collector can scrape o11y data and send o11y it to o11y-endpoints
 		"tag:o11y-agent":     ["group:admins"], // Devices tagged with tag:o11y-agent can send o11y data to o11y-endpoints
@@ -174,7 +175,7 @@
 		// Allow admins to use tka & connect via admin role
 		{
 			"src": ["group:admins"],
-			"dst": ["*"],
+			"dst": ["tag:tka"],
 			"ip":  ["*"],
 			"app": {
 				"specht-labs.de/cap/tka": [
