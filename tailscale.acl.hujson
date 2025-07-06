@@ -188,37 +188,51 @@
 				],
 			},
 		},
-//    // Manage tsidp extraClaims
-//    {
-//      "src": ["group:admins"],
-//      "dst": ["*"],
-//      "ip":  ["*"],
-//      "app": {
-//        "tailscale.com/cap/tsidp": [
-//          {
-//            "includeInUserInfo": true,
-//            "extraClaims": {
-//              "groups": ["admin"],
-//            },
-//          }
-//        ]
-//      }
-//    },
-//    {
-//      "src": ["group:reader"],
-//      "dst": ["*"],
-//      "ip":  ["*"],
-//      "app": {
-//        "tailscale.com/cap/tsidp": [
-//          {
-//            "includeInUserInfo": true,
-//            "extraClaims": {
-//              "groups": ["reader"],
-//            },
-//          }
-//        ]
-//      }
-//    }
+		// Allow admins to use tka & connect via admin role
+		{
+			"src": ["group:admins"],
+			"dst": ["*"],
+			"ip":  ["*"],
+			"app": {
+				"specht-labs.de/cap/tka": [
+					{
+						"role": "admin",
+						"period": "1h",
+					},
+				],
+			},
+		},
+		//    // Manage tsidp extraClaims
+		//    {
+		//      "src": ["group:admins"],
+		//      "dst": ["*"],
+		//      "ip":  ["*"],
+		//      "app": {
+		//        "tailscale.com/cap/tsidp": [
+		//          {
+		//            "includeInUserInfo": true,
+		//            "extraClaims": {
+		//              "groups": ["admin"],
+		//            },
+		//          }
+		//        ]
+		//      }
+		//    },
+		//    {
+		//      "src": ["group:reader"],
+		//      "dst": ["*"],
+		//      "ip":  ["*"],
+		//      "app": {
+		//        "tailscale.com/cap/tsidp": [
+		//          {
+		//            "includeInUserInfo": true,
+		//            "extraClaims": {
+		//              "groups": ["reader"],
+		//            },
+		//          }
+		//        ]
+		//      }
+		//    }
 	],
 
 	"tests": [
@@ -278,9 +292,9 @@
 		},
 
 		{
-			"src":     "clusterpi-leader",
-			"proto":   "tcp",
-			"accept":  ["tag:core-infra:3493"],
+			"src":    "clusterpi-leader",
+			"proto":  "tcp",
+			"accept": ["tag:core-infra:3493"],
 		},
 	],
 
