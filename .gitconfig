@@ -3,6 +3,7 @@
     pager = delta
     autocrlf = input
     fscache = true
+    fsmonitor = true
     symlinks = true
     longpaths = true
     # Speed up commands involving untracked files such as `git status`.
@@ -69,4 +70,4 @@
     textconv = astextplain
 
 [diff "sopsdiffer"]
-	textconv = sops --decrypt --config /dev/null
+    textconv = sops --decrypt --config /dev/null
