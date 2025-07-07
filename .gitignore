@@ -1,3 +1,12 @@
 .vscode/
 .config/nvim/lazy-lock.json
 .DS_Store
+.ssh/*.ssh
+.ssh/*.pub
+.ssh/*_key
+.ssh/id_*
+.ssh/known_hosts
+.ssh/known_hosts.old
+.azure/
+!.azure/config
+!.azure/az.completion
