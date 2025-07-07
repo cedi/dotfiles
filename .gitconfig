@@ -3,7 +3,6 @@
     pager = delta
     autocrlf = input
     fscache = true
-    fsmonitor = true
     symlinks = true
     longpaths = true
     # Speed up commands involving untracked files such as `git status`.
