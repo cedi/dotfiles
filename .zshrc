@@ -1,3 +1,6 @@
+# Skip the rest if not running interactively
+[[ -o interactive ]] || return
+
 source ~/.zshenv
 
 [ -f "$DOTFILE_HOME/oh-my-posh.zsh" ] && source "$DOTFILE_HOME/oh-my-posh.zsh"

@@ -23,7 +23,7 @@ export MY_PATH=""
 [ -d $HOME/src/go ] && export GOPATH="$HOME/src/go"
 [ -d $HOME/src/go ] && export GOBIN="$GOPATH/bin"
 
-[ -d $GOPATH ] && export MY_PATH="$MY_PATH:$GOPATH/bin"
+[[ -n "$GOPATH" ]] && [ -d $GOPATH ] && export MY_PATH="$MY_PATH:$GOPATH/bin"
 [ -d $HOME/.krew/bin ] && export MY_PATH="$MY_PATH:$HOME/.krew/bin"
 [ -d $HOME/bin ] && export MY_PATH="$MY_PATH:$HOME/bin"
 [ -d $HOME/.local/bin ] && export MY_PATH="$MY_PATH:$HOME/.local/bin"
@@ -37,8 +37,11 @@ export MY_PATH=""
 [ -d $HOME/.kube/kubediff ] && export MY_PATH="$MY_PATH:$HOME/.kube/kubediff"
 
 # construct PATH variable
-export PATH="$(echo "$MY_PATH:$PATH" | sed "s/:/\n/g" | awk '!x[$0]++' | sed -r '/^\s*$/d' | tr '\n' ':')"
-
+# construct PATH variable
+{
+  PATH_CLEANED=$(echo "$MY_PATH:$PATH" | tr ':' '\n' | awk '!x[$0]++' | sed '/^\s*$/d' | tr '\n' ':')
+  export PATH="${PATH_CLEANED%:}"
+} || true
 # If we have a cargo env -> load it
 [ -f $HOME/.cargo/env ] && . "$HOME/.cargo/env"
 
@@ -53,4 +56,6 @@ export GITTOOL_CONFIG="$XDG_CONFIG_HOME/git-tool/git-tool.yml"
 
 # .env.zsh contains local environment variables not shared between machines
 [ -f $HOME/.env.zsh ] && . $HOME/.env.zsh
+
+return 0 2>/dev/null
 

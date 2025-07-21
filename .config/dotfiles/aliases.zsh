@@ -30,6 +30,7 @@ if [ $(command -v eza) ]; then
 	alias ll='ls --long --time-style=long-iso --time=modified'
 	alias lla='ll --all' # same as ll but show hidden
 else
+  alias ls='ls --color=always'
 	alias ll='ls -ltr'
 	alias lla='ll -a'
 fi

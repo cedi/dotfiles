@@ -10,6 +10,7 @@
     untrackedCache = true
     excludesfile = ~/.gitignore_global
     sshCommand = "ssh -i ~/.ssh/id_ed25519"
+    trustctime = false
 
 [user]
     name = Cedric Specht
