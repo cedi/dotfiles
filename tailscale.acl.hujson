@@ -180,7 +180,7 @@
 			"app": {
 				"specht-labs.de/cap/tka": [
 					{
-						"role": "admin",
+						"role": "cluster-admin",
 						"period": "1h",
 					},
 				],
