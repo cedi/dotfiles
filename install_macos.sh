@@ -33,10 +33,10 @@ echo "#########################################################"
 echo "* install fzf"
 if [ -d "$HOME/.config/fzf/" ]; then
     pushd "$HOME/.config/fzf"
-    git pull && "$HOME/.config/fzf/install" --bin
+    git pull && "$HOME/.config/fzf/install" --all
     popd
 else
-    git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME/.config/fzf" && "$HOME/.config/fzf/install" --bin
+    git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME/.config/fzf" && "$HOME/.config/fzf/install" --all
 fi
 
 if [[ ! $(command -v brew) ]]; then
