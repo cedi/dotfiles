@@ -1,23 +1,4 @@
-return {
-  { import = "lazyvim.plugins.extras.dap.core" },
-  { import = "lazyvim.plugins.extras.dap.nlua" },
-
-  { import = "lazyvim.plugins.extras.formatting.prettier" },
-  { import = "lazyvim.plugins.extras.linting.eslint" },
-
-  { import = "lazyvim.plugins.extras.lang.ansible" },
-  { import = "lazyvim.plugins.extras.lang.docker" },
-  { import = "lazyvim.plugins.extras.lang.git" },
-  { import = "lazyvim.plugins.extras.lang.go" },
-  { import = "lazyvim.plugins.extras.lang.helm" },
-  { import = "lazyvim.plugins.extras.lang.json" },
-  { import = "lazyvim.plugins.extras.lang.markdown" },
-  { import = "lazyvim.plugins.extras.lang.python" },
-  { import = "lazyvim.plugins.extras.lang.terraform" },
-  { import = "lazyvim.plugins.extras.lang.typescript" },
-  { import = "lazyvim.plugins.extras.lang.toml" },
-  { import = "lazyvim.plugins.extras.lang.yaml" },
-  -- nvim-lspconfig
+return { -- nvim-lspconfig
   {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -26,9 +7,13 @@ return {
       },
       {
         "someone-stole-my-name/yaml-companion.nvim",
-        config = function()
+        opts = function()
+          return require("plugins.configs.yaml-companion")
+        end,
+        config = function(_, opts)
           -- :Telescope yaml_schema
           require("telescope").load_extension("yaml_schema")
+          require("yaml-companion").setup(opts)
 
           local wk = require("which-key")
           wk.add({
@@ -40,8 +25,6 @@ return {
     },
     opts = {
       servers = {
-        codeqlls = {},
-        -- csharp_ls = {},
         cssls = {},
         dotls = {},
         helm_ls = {},
@@ -51,7 +34,6 @@ return {
         css_variables = {},
         html = {},
         nginx_language_server = {},
-        -- powershell_es = {},
       },
       -- you can do any additional lsp server setup here
       -- return true if you don't want this server to be setup with lspconfig
@@ -75,5 +57,4 @@ return {
   },
 
   require("plugins.configs.lsp.bash"),
-  require("plugins.configs.lsp.bicep"),
 }
