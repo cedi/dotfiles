@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://schemas.sierrasoftworks.com/git-tool/v2/config.schema.json
 $schema: https://schemas.sierrasoftworks.com/git-tool/v2/config.schema.json
-directory: /Users/cedi/src
+directory: ~/src
 scratchpads: null
 services:
   - name: gh
