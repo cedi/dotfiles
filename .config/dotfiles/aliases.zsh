@@ -238,5 +238,6 @@ if [[ $(command -v tsh) && $(command -v fzf) ]]; then
   }
 
   alias kube-login='tsh kube login $(tsh-kube-ls)'
+  alias dbproxy='tsh proxy db --tunnel $(tsh-db-ls)'
   alias tssh='tsh ssh $(tsh-ls)'
 fi

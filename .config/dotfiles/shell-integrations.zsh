@@ -18,6 +18,12 @@ if [[ $(command -v navi) ]]; then
 	eval "$(navi widget zsh)"
 fi
 
+if [[ $(command -v mise) ]]; then
+    eval "$(mise activate zsh)"
+    alias m="mise"
+fi
+
+
 # make cursor movement convenient in macOS
 bindkey "^[^[[D" backward-word
 bindkey "^[^[[C" forward-word
