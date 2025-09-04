@@ -1,9 +1,19 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
 SETUVAR --export CARGO_HOME:/Users/cedi/\x2ecargo
+SETUVAR --export DOTFILE_HOME:/Users/cedi/\x2econfig/dotfiles
+SETUVAR --export EDITOR:nvim
+SETUVAR --export GITTOOL_CONFIG:/Users/cedi/\x2econfig/git\x2dtool/git\x2dtool\x2eyml
+SETUVAR --export GO111MODULE:on
+SETUVAR --export GOBIN:/Users/cedi/src/go/bin
+SETUVAR --export --path GOPATH:/Users/cedi/src/go
+SETUVAR HOMEBREW_KEG_ONLY_APPS:ruby\x1ecurl\x1esqlite
+SETUVAR --export LC_CTYPE:en_US\x2eUTF\x2d8
+SETUVAR --export OMP_CUSTOM:/Users/cedi/\x2econfig/oh\x2dmy\x2dposh/
 SETUVAR --export PAGER:less
 SETUVAR --export RUSTUP_HOME:/Users/cedi/\x2erustup
 SETUVAR --export VISUAL:nvim
+SETUVAR --export XDG_CONFIG_HOME:/Users/cedi/\x2econfig
 SETUVAR __fish_initialized:3800
 SETUVAR _fisher_jorgebucaran_2F_fisher_files:\x7e/\x2econfig/fish/functions/fisher\x2efish\x1e\x7e/\x2econfig/fish/completions/fisher\x2efish
 SETUVAR _fisher_patrickf1_2F_fzf_2E_fish_files:\x7e/\x2econfig/fish/functions/_fzf_configure_bindings_help\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_extract_var_info\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_preview_changed_file\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_preview_file\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_report_diff_type\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_report_file_type\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_directory\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_git_log\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_git_status\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_history\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_processes\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_variables\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_wrapper\x2efish\x1e\x7e/\x2econfig/fish/functions/fzf_configure_bindings\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/fzf\x2efish\x1e\x7e/\x2econfig/fish/completions/fzf_configure_bindings\x2efish
@@ -37,7 +47,7 @@ SETUVAR fish_pager_color_description:yellow\x1e\x2di
 SETUVAR fish_pager_color_prefix:normal\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
 SETUVAR fish_pager_color_selected_background:\x2dr
-SETUVAR fish_user_paths:/usr/local/go/bin\x1e/usr/local/bin\x1e/Users/cedi/\x2econfig/fzf/bin\x1e/Users/cedi/\x2ecargo/bin\x1e/Users/cedi/\x2elocal/bin\x1e/Users/cedi/bin\x1e/Users/cedi/\x2ekrew/bin\x1e/Users/cedi/src/go/bin
+SETUVAR fish_user_paths:/opt/homebrew/opt/sqlite/bin\x1e/opt/homebrew/opt/ruby/bin\x1e/usr/local/go/bin\x1e/usr/local/bin\x1e/Users/cedi/\x2econfig/fzf/bin\x1e/Users/cedi/\x2ecargo/bin\x1e/Users/cedi/\x2elocal/bin\x1e/Users/cedi/bin\x1e/Users/cedi/\x2ekrew/bin\x1e/Users/cedi/src/go/bin
 SETUVAR --export fzf_history_opts:\x2d\x2dheight\x1e40\x25\x1e\x2d\x2dborder\x3drounded\x1e\x2d\x2dborder\x2dlabel\x3d\x1e\x2d\x2dprompt\x3d\x20\u276f\x20\x1e\x2d\x2dmarker\x3d\x2a\x1e\x2d\x2dpointer\x3d\u2192\x1e\x2d\x2dseparator\x3d\u2500\x1e\x2d\x2dscrollbar\x3d\u2502\x1e\x2d\x2dlayout\x3dreverse\x1e\x2d\x2dinfo\x3dright\x1e\x2d\x2dcycle\x1e\x2d\x2dkeep\x2dright\x1e\x2d\x2dinfo\x3dinline\x1e\x2d\x2dbind\x3dbtab\x3aup\x2ctab\x3adown\x1e\x2d\x2dtabstop\x3d1
 SETUVAR --export fzf_preview_dir_cmd:eza\x1e\x2d\x2dall\x1e\x2d\x2dcolor\x3dalways
 SETUVAR --export fzf_preview_z_cmd:eza\x1e\x2d\x2dall\x1e\x2d\x2dcolor\x3dalways

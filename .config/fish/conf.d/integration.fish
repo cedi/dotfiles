@@ -5,16 +5,9 @@ else if type -q fzf
     fzf --fish | source
 end
 
-# --- iTerm2 integration ---
-if test "$TERM_PROGRAM" = "iTerm.app"
-    if test -f "$DOTFILE_HOME/iterm2.fish"
-        source "$DOTFILE_HOME/iterm2.fish"
-    end
-end
-
 # --- zoxide (cd alternative) ---
 if type -q zoxide
-    zoxide init fish | source
+    zoxide init --cmd cd fish | source
 end
 
 # --- git-tool integration ---
