@@ -1,6 +1,8 @@
 # Locale (defaults, persistent)
-set -q LANG; or set -x LANG en_US.UTF-8
-set -q LC_CTYPE; or set -x LC_CTYPE en_US.UTF-8
+set -x LANG en_US.UTF-8
+set -x LC_ALL en_US.UTF-8
+set -x LC_CTYPE en_US.UTF-8
+set -x LC_MESSAGES en_US.UTF-8
 
 # Editor defaults (persistent)
 set -q EDITOR; or set -x EDITOR nvim
