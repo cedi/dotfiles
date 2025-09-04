@@ -22,7 +22,7 @@ end
 
 # --- ts-k8s-auth integration ---
 if type -q ts-k8s-auth
-    ts-k8s-auth shell fish | source
+    ts-k8s-auth integration fish | source
 end
 
 # --- the-fuck integration ---
