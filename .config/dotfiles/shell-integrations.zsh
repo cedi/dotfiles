@@ -23,6 +23,9 @@ if [[ $(command -v mise) ]]; then
     alias m="mise"
 fi
 
+if [[ $(command -v ts-k8s-auth) ]]; then
+  eval "$(ts-k8s-auth shell bash)"
+fi
 
 # make cursor movement convenient in macOS
 bindkey "^[^[[D" backward-word

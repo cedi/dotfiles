@@ -53,9 +53,7 @@ export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS --exact --no-sort --bind=ctrl-z:ignore --
 
 export GITTOOL_CONFIG="$XDG_CONFIG_HOME/git-tool/git-tool.yml"
 
-
 # .env.zsh contains local environment variables not shared between machines
 [ -f $HOME/.env.zsh ] && . $HOME/.env.zsh
 
 return 0 2>/dev/null
-

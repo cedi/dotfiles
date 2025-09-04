@@ -32,6 +32,7 @@ if type -q ts-k8s-auth
     ts-k8s-auth shell fish | source
 end
 
+# --- the-fuck integration ---
 if type -q thefuck
     thefuck --alias wtf | source
     abbr -a wtf 'wtf --yeah'

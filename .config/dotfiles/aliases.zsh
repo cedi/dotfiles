@@ -88,23 +88,10 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 fi
 
-# Function for always using one (and only one) vim server
-# If you really want a new vim session, simply do not pass any
-# argument to this function.
-
-if [ $(command -v nvr) ]; then
-	function vim {
-	  nvim="nvim"
-	  nvr="nvr"
-	  if [ -z $nvr ]; then
-	    echo "$SHELL: vim: command not found"
-		$nvim "$@"
-	    return 127;
-	  fi
-
-	  $nvr -s --servername 127.0.0.1:6789 "$@"
-	}
-fi
+# Always start independent instances with plain `nvim`
+function nvim() {
+  env -u NVIM_LISTEN_ADDRESS command nvim "$@"
+}
 
 function mkcd() {
 	mkdir -p "$@" && cd "$@";
