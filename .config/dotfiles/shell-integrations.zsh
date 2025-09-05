@@ -24,7 +24,12 @@ if [[ $(command -v mise) ]]; then
 fi
 
 if [[ $(command -v ts-k8s-auth) ]]; then
-  eval "$(ts-k8s-auth shell bash)"
+  eval "$(ts-k8s-auth integration zsh)"
+  eval "$(ts-k8s-auth completion zsh)"
+fi
+
+if [[ $(command -v calendarapi) ]]; then
+  eval "$(calendarapi completion zsh)"
 fi
 
 # make cursor movement convenient in macOS
