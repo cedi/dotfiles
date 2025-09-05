@@ -38,3 +38,6 @@ renovate.json
 # Tailscale ACL and github workflows
 \.github
 tailscale.acl.hujson
+
+
+Dracula.itermcolors

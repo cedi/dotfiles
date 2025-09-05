@@ -48,10 +48,15 @@ export MY_PATH=""
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
-export FZF_DEFAULT_OPTS='--height 40% --border="rounded" --border-label="" --preview-window="border-rounded" --preview "bat --color=always --style=numbers --line-range=:500 {}" --prompt=" ❯ " --marker="*" --pointer="→" --separator="─" --scrollbar="│" --layout="reverse" --info="right" --cycle --keep-right --info=inline --bind=btab:up,tab:down --tabstop=1'
+export FZF_COLORS='--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9 --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4'
+export FZF_OPTS='--height 40% --border="rounded" --border-label="" --preview-window="border-rounded" --preview "bat --color=always --style=numbers --line-range=:500 {}" --prompt=" ❯ " --marker="*" --pointer="→" --separator="─" --scrollbar="│" --layout="reverse" --info="right" --cycle --keep-right --info=inline --bind=btab:up,tab:down --tabstop=1'
+export FZF_DEFAULT_OPTS="$FZF_COLORS $FZF_OPTS"
 export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS --exact --no-sort --bind=ctrl-z:ignore --exit-0 --select-1"
 
 export GITTOOL_CONFIG="$XDG_CONFIG_HOME/git-tool/git-tool.yml"
+
+# Dracula theme for GNU grep - https://draculatheme.com/grep
+export GREP_COLORS="mt=1;38;2;255;85;85:fn=38;2;255;121;198:ln=38;2;80;250;123:bn=38;2;80;250;123:se=38;2;139;233;253"
 
 # .env.zsh contains local environment variables not shared between machines
 [ -f $HOME/.env.zsh ] && . $HOME/.env.zsh

@@ -23,6 +23,9 @@ end
 # Dotfile home (persistent)
 set -q DOTFILE_HOME; or set -x DOTFILE_HOME $XDG_CONFIG_HOME/dotfiles
 
+# dracula theme for GNU grep
+set -x GREP_COLORS "mt=1;38;2;255;85;85:fn=38;2;255;121;198:ln=38;2;80;250;123:bn=38;2;80;250;123:se=38;2;139;233;253"
+
 # Oh-My-Posh config (persistent if exists)
 if test -d $XDG_CONFIG_HOME/oh-my-posh/
     set -q OMP_CUSTOM; or set -x OMP_CUSTOM $XDG_CONFIG_HOME/oh-my-posh/

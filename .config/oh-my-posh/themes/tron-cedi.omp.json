@@ -20,12 +20,12 @@
     "foreground-path": "p:background",
     "foreground-session": "p:foreground",
     "foreground-shell": "p:background",
-    "good": "#0fc56a",
-    "important": "#C50F1F",
-    "primary": "#37EBF3",
-    "secondary": "#9381FF",
-    "tertinary": "#fdf500",
-    "warning": "#c5610f"
+    "good": "#50fa7b",
+    "important": "#f74148",
+    "primary": "#8be9fd",
+    "secondary": "#6272a4",
+    "tertinary": "#a97eff",
+    "warning": "#ffb45d"
   },
   "secondary_prompt": {
     "template": " ❯❯ ",
@@ -227,7 +227,7 @@
           "type": "status",
           "style": "powerline",
           "foreground_templates": [
-            "{{ if .Error }}p:warning{{ else }}p:good{{ end }}"
+            "{{ if .Error }}p:important{{ else }}p:good{{ end }}"
           ]
         },
         {
