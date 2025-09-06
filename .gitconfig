@@ -38,6 +38,14 @@
     ignore = "!f() { echo $1 >> \"${GIT_PREFIX}.gitignore\"; }; f"
     uncommit = reset --soft HEAD^
     remotes = remote -v
+    fzf = "!f() { \
+      git log --graph --abbrev-commit --decorate \
+        --format=format:'%h (%ar) - %s - %an%d' | \
+      fzf --ansi \
+        --preview \"echo {} | grep -oE '[a-f0-9]{7,}' | head -1 | xargs -I % git show --color=always %\" \
+        --preview-window=right:50%:wrap \
+      | grep -oE '[a-f0-9]{7,}' | head -1; \
+    }; f"
 
 [gpg]
     program = gpg2
