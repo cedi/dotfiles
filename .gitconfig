@@ -44,6 +44,7 @@
       fzf --ansi \
         --preview \"echo {} | grep -oE '[a-f0-9]{7,}' | head -1 | xargs -I % git show --color=always %\" \
         --preview-window=right:50%:wrap \
+        --height 100% \
       | grep -oE '[a-f0-9]{7,}' | head -1; \
     }; f"
 
