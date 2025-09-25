@@ -22,7 +22,7 @@ end
 
 # --- ts-k8s-auth integration ---
 if type -q ts-k8s-auth
-    ts-k8s-auth integration fish | source
+    ts-k8s-auth generate integration fish | source
     ts-k8s-auth completion fish | source
 end
 

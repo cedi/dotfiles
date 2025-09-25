@@ -18,3 +18,7 @@ zinit cdreplay -q
 
 # If you're using macOS, you'll want this enabled
 [ -f "/opt/homebrew/bin/brew" ] && eval "$(/opt/homebrew/bin/brew shellenv)"
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"

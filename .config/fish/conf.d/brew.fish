@@ -27,3 +27,8 @@ set -q HOMEBREW_NO_ANALYTICS || set -gx HOMEBREW_NO_ANALYTICS 1
 
 # Reset pre-path
 set -q prepath && fish_add_path --prepend --move $prepath
+
+set HOMEBREW_COMMAND_NOT_FOUND_HANDLER (brew --repository)/Library/Homebrew/command-not-found/handler.fish
+if test -f $HOMEBREW_COMMAND_NOT_FOUND_HANDLER
+  source $HOMEBREW_COMMAND_NOT_FOUND_HANDLER
+end

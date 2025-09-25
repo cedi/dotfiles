@@ -33,7 +33,7 @@ end
 
 # SOPS AGE Keys (session-specific, host-dependent)
 if test -d "$HOME/.age/sops"
-    set keyfile "$HOME/.age/sops/keys_(hostname).txt"
+    set keyfile "$HOME/.age/sops/keys_$hostname.txt"
     if test -f $keyfile
         set -x SOPS_AGE_KEY_FILE $keyfile
     end
