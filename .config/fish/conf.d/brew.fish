@@ -1,3 +1,7 @@
+if not type -q brew
+    exit
+end
+
 if not set -q HOMEBREW_PREFIX
     if test -e /opt/homebrew/bin/brew
         /opt/homebrew/bin/brew shellenv | source
