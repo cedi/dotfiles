@@ -4,6 +4,22 @@ if not status is-interactive && test "$CI" != true && not functions -q fzf_confi
     exit
 end
 
+if not type -q fzf
+    echo "fzf not found in PATH. Please install fzf via your package manager or from"
+    exit
+end
+
+if type -q atuin
+    exit
+end
+
+# --- fzf integration ---
+if test -f ~/.fzf.fish
+    source ~/.fzf.fish
+else if type -q fzf
+    fzf --fish | source
+end
+
 # Because of scoping rules, to capture the shell variables exactly as they are, we must read
 # them before even executing _fzf_search_variables. We use psub to store the
 # variables' info in temporary files and pass in the filenames as arguments.

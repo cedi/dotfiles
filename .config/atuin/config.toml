@@ -74,7 +74,7 @@ style = "auto"
 ## the maximum number of lines the interface should take up
 ## when atuin is invoked from a shell up-key binding
 ## the accepted values are identical to those of "inline_height"
-inline_height_shell_up_key_binding = 10
+# inline_height_shell_up_key_binding = 10
 
 ## Invert the UI - put the search bar at the top , Default to `false`
 invert = true

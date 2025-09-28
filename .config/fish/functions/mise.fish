@@ -3,7 +3,7 @@ set -gx __MISE_ORIG_PATH $PATH
 
 function mise
   if test (count $argv) -eq 0
-    command /Users/cedi/.local/bin/mise
+    command $HOME/.local/bin/mise
     return
   end
 
@@ -11,7 +11,7 @@ function mise
   set -e argv[1]
 
   if contains -- --help $argv
-    command /Users/cedi/.local/bin/mise "$command" $argv
+    command $HOME/.local/bin/mise "$command" $argv
     return $status
   end
 
@@ -19,26 +19,26 @@ function mise
   case deactivate shell sh
     # if help is requested, don't eval
     if contains -- -h $argv
-      command /Users/cedi/.local/bin/mise "$command" $argv
+      command $HOME/.local/bin/mise "$command" $argv
     else if contains -- --help $argv
-      command /Users/cedi/.local/bin/mise "$command" $argv
+      command $HOME/.local/bin/mise "$command" $argv
     else
-      source (command /Users/cedi/.local/bin/mise "$command" $argv |psub)
+      source (command $HOME/.local/bin/mise "$command" $argv |psub)
     end
   case '*'
-    command /Users/cedi/.local/bin/mise "$command" $argv
+    command $HOME/.local/bin/mise "$command" $argv
   end
 end
 
 function __mise_env_eval --on-event fish_prompt --description 'Update mise environment when changing directories';
-    /Users/cedi/.local/bin/mise hook-env -s fish | source;
+    $HOME/.local/bin/mise hook-env -s fish | source;
 
     if test "$mise_fish_mode" != "disable_arrow";
         function __mise_cd_hook --on-variable PWD --description 'Update mise environment when changing directories';
             if test "$mise_fish_mode" = "eval_after_arrow";
                 set -g __mise_env_again 0;
             else;
-                /Users/cedi/.local/bin/mise hook-env -s fish | source;
+                $HOME/.local/bin/mise hook-env -s fish | source;
             end;
         end;
     end;
@@ -47,7 +47,7 @@ end;
 function __mise_env_eval_2 --on-event fish_preexec --description 'Update mise environment when changing directories';
     if set -q __mise_env_again;
         set -e __mise_env_again;
-        /Users/cedi/.local/bin/mise hook-env -s fish | source;
+        $HOME/.local/bin/mise hook-env -s fish | source;
         echo;
     end;
 
@@ -62,8 +62,8 @@ end
 
 function fish_command_not_found
     if string match -qrv -- '^(?:mise$|mise-)' $argv[1] &&
-        /Users/cedi/.local/bin/mise hook-not-found -s fish -- $argv[1]
-        /Users/cedi/.local/bin/mise hook-env -s fish | source
+        $HOME/.local/bin/mise hook-not-found -s fish -- $argv[1]
+        $HOME/.local/bin/mise hook-env -s fish | source
     else if functions -q __mise_fish_command_not_found
         __mise_fish_command_not_found $argv
     else

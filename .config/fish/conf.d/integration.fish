@@ -1,10 +1,3 @@
-# --- fzf integration ---
-if test -f ~/.fzf.fish
-    source ~/.fzf.fish
-else if type -q fzf
-    fzf --fish | source
-end
-
 # --- zoxide (cd alternative) ---
 if type -q zoxide
     zoxide init --cmd cd fish | source

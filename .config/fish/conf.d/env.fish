@@ -76,9 +76,6 @@ if test -d $HOME/.cargo/bin
     fish_add_path $HOME/.cargo/bin
 end
 
-# Git tool config (persistent)
-set -q GITTOOL_CONFIG; or set -x GITTOOL_CONFIG $XDG_CONFIG_HOME/git-tool/git-tool.yml
-
 # Local overrides (session-specific)
 if test -f $HOME/.env.fish
     source $HOME/.env.fish

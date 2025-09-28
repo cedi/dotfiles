@@ -17,6 +17,11 @@ for app in $HOMEBREW_KEG_ONLY_APPS
     end
 end
 
+set HOMEBREW_COMMAND_NOT_FOUND_HANDLER (brew --repository)/Library/Homebrew/command-not-found/handler.fish
+if test -f $HOMEBREW_COMMAND_NOT_FOUND_HANDLER
+    source $HOMEBREW_COMMAND_NOT_FOUND_HANDLER
+end
+
 # Add fish completions
 if test -e "$HOMEBREW_PREFIX/share/fish/completions"
     set --append fish_complete_path "$HOMEBREW_PREFIX/share/fish/completions"
@@ -28,7 +33,8 @@ set -q HOMEBREW_NO_ANALYTICS || set -gx HOMEBREW_NO_ANALYTICS 1
 # Reset pre-path
 set -q prepath && fish_add_path --prepend --move $prepath
 
-set HOMEBREW_COMMAND_NOT_FOUND_HANDLER (brew --repository)/Library/Homebrew/command-not-found/handler.fish
-if test -f $HOMEBREW_COMMAND_NOT_FOUND_HANDLER
-  source $HOMEBREW_COMMAND_NOT_FOUND_HANDLER
+
+set HB_CNF_HANDLER (brew --repository)"/Library/Taps/homebrew/homebrew-command-not-found/handler.fish"
+if test -f $HB_CNF_HANDLER
+  source $HB_CNF_HANDLER
 end
