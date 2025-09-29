@@ -1,7 +1,3 @@
-if not type -q brew
-    exit
-end
-
 if not set -q HOMEBREW_PREFIX
     if test -e /opt/homebrew/bin/brew
         /opt/homebrew/bin/brew shellenv | source
@@ -11,6 +7,11 @@ if not set -q HOMEBREW_PREFIX
         return 1
     end
 end
+
+if not type -q brew
+    exit
+end
+
 
 # Add keg-only apps
 set -q HOMEBREW_KEG_ONLY_APPS || set -U HOMEBREW_KEG_ONLY_APPS ruby curl sqlite
