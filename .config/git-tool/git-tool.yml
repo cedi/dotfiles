@@ -16,9 +16,12 @@ apps:
     args:
       - .
   - name: shell
-    command: zsh
-  - name: zsh
-    command: zsh
+    command: fish
+  - name: vim
+    command: nvim
+    args:
+      - .
+
 aliases: {}
 features:
   fork_remote: true

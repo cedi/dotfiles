@@ -20,11 +20,8 @@
     user = cedi
     username = cedi
 
-[includeIf "gitdir:~/src/gh/databricks-eng/"]
-    path = ~/src/gh/databricks-eng/.gitconfig
-
-[includeIf "gitdir:~/src/gh/neondatabase/"]
-    path = ~/src/gh/neondatabase/.gitconfig
+[includeIf "gitdir:~/src/gh/celonis/"]
+    path = ~/src/gh/celonis/.gitconfig
 
 [alias]
     ls = status --short

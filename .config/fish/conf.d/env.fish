@@ -55,6 +55,7 @@ end
 for dir in \
     $HOME/.krew/bin \
     $HOME/bin \
+    $HOME/.bin \
     $HOME/.local/bin \
     $HOME/.cargo/bin \
     $HOME/.gem/ruby/2.5.0/bin \

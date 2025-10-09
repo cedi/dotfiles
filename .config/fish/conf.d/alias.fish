@@ -12,7 +12,7 @@ alias egrep 'egrep --color=auto'
 alias fgrep 'fgrep --color=auto'
 alias cgrep 'grep -rsniI'
 if type -q rg
-    abbr -a crg 'rg --pretty --ignore-case'
+    abbr -a crg 'rg --pretty --ignore-case --hidden'
 end
 
 # GoLang
@@ -43,3 +43,4 @@ end
 if string match -q "darwin*" $OSTYPE
     alias tailscale='/Applications/Tailscale.app/Contents/MacOS/Tailscale'
 end
+

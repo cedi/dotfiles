@@ -11,7 +11,7 @@ echo "#########################################################"
 echo "# ensure all submodules exist                           #"
 echo "#########################################################"
 
-git submodule update --init --recursive
+#git submodule update --init --recursive
 
 echo "#########################################################"
 echo "# ensure dirs exist                                     #"
@@ -44,8 +44,8 @@ if [[ ! $(command -v brew) ]]; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-echo "* install eza python3 neovim nvr ripgrep iproute2mac zsh thefuck sops watch wget ansible navi zoxide tmux git-delta node@20"
-brew install eza python3 neovim nvr ripgrep iproute2mac zsh thefuck sops watch wget ansible navi zoxide tmux git-delta bat node@20
+echo "* install eza neovim ripgrep iproute2mac zsh thefuck sops watch wget ansible navi zoxide tmux git-delta"
+brew install eza neovim ripgrep iproute2mac zsh thefuck sops watch wget ansible navi zoxide tmux git-delta bat
 
 echo "* install gnutils"
 brew install coreutils findutils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt grep
@@ -56,6 +56,12 @@ brew install kubectl helm k9s stern hcloud
 echo "* Install oh-my-posh"
 brew tap jandedobbeleer/oh-my-posh
 brew install oh-my-posh
+
+echo "* install language features"
+brew install node@20 markdownlint-cli2
+
+echo "* install mise"
+curl https://mise.run | sh
 
 echo "install krew"
 (
@@ -69,23 +75,7 @@ echo "install krew"
     ./"${KREW}" install krew
 )
 
-if [[ ! $(command -v go) ]]; then
-  echo "* Install GoLang"
-  sudo ./update-golang/update-golang.sh
-elif [[ ! ($(go version | awk '{print $3}') =~ go1.22.*) ]]; then
-  echo "* updating GoLang"
-  sudo ./update-golang/update-golang.sh
-else
-  echo "* GoLang installed & up to date"
-fi
-
-if [[ ! $(command -v cargo) ]]; then
-  echo "* Install Rust/Cargo"
-  curl https://sh.rustup.rs -sSf | sh
-fi
-
-echo "* Install hcloud completion"
-if [[ $(command -v hcloud) ]]; then
-  mkdir -p ~/.config/hcloud/completion/zsh
-  hcloud completion zsh >~/.config/hcloud/completion/zsh/_hcloud
-fi
+#if [[ ! $(command -v cargo) ]]; then
+#  echo "* Install Rust/Cargo"
+#  curl https://sh.rustup.rs -sSf | sh
+#fi
