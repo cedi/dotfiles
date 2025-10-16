@@ -12,9 +12,6 @@ set -q PAGER; or set -x PAGER less
 # Go settings (persistent defaults)
 set -q GO111MODULE; or set -x GO111MODULE on
 
-# NVIM socket (session-specific, don’t persist)
-set -x NVIM_LISTEN_ADDRESS /tmp/nvimsocket
-
 # XDG config home (persistent)
 if test -d $HOME/.config
     set -q XDG_CONFIG_HOME; or set -x XDG_CONFIG_HOME $HOME/.config

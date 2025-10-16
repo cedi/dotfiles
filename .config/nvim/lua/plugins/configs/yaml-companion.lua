@@ -45,6 +45,10 @@ return {
       name = "Argo Workflow",
       uri = "https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json",
     },
+    {
+      name = "Markdownlint CLI2",
+      uri = "https://raw.githubusercontent.com/DavidAnson/markdownlint-cli2/refs/heads/main/schema/markdownlint-cli2-config-schema.json",
+    },
   },
 
   -- Pass any additional options that will be merged in the final LSP config
