@@ -44,24 +44,15 @@ if [[ ! $(command -v brew) ]]; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-echo "* install eza neovim ripgrep iproute2mac zsh thefuck sops watch wget ansible navi zoxide tmux git-delta"
-brew install eza neovim ripgrep iproute2mac zsh thefuck sops watch wget ansible navi zoxide tmux git-delta bat
+BREWFILE="${HOME}/.dotfiles/.Brewfile"
 
-echo "* install gnutils"
-brew install coreutils findutils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt grep
+if [ ! -f "$BREWFILE" ]; then
+  echo "ERROR: Brewfile not found at ${BREWFILE}"
+  exit 1
+fi
 
-echo "* install kubernetes tools"
-brew install kubectl helm k9s stern hcloud
-
-echo "* Install oh-my-posh"
-brew tap jandedobbeleer/oh-my-posh
-brew install oh-my-posh
-
-echo "* install language features"
-brew install node@20 markdownlint-cli2
-
-echo "* install mise"
-curl https://mise.run | sh
+echo "* Install packages from Brewfile via brew bundle"
+brew bundle --file "$BREWFILE"
 
 echo "install krew"
 (
