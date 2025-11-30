@@ -3,8 +3,6 @@
 # ========================================
 
 # --- Core tooling taps ---
-# Missing command suggestions when a binary is not installed
-tap "homebrew/command-not-found"
 # HashiCorp maintained releases (Terraform, Consul, etc.)
 tap "hashicorp/tap"
 # Manage Terraform version switching
