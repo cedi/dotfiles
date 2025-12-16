@@ -15,3 +15,4 @@ function kube-cleanup --description "Delete ReplicaSets with 0 replicas in all n
         end
     end
 end
+
