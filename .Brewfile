@@ -230,6 +230,8 @@ cask "devcleaner"
 cask "inkscape"
 # Customize macOS menu bar icons with themed variants
 cask "jordanbaird-ice"
+# Terminal emulator that uses platform-native UI and GPU acceleration
+cask "ghostty"
 
 # ========================================
 # Visual Studio Code Extensions

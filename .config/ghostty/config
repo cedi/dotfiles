@@ -1,0 +1,15 @@
+font-family = "FiraCode Nerd Font"
+theme = "Catppuccin Macchiato"
+shell-integration = fish
+macos-auto-secure-input = true
+macos-secure-input-indication = true
+window-height = 40
+window-width = 140
+window-save-state = default
+window-inherit-working-directory = true
+background-opacity = 0.9
+background-blur = true
+unfocused-split-opacity = 1
+#make option-backspace delete the last word
+keybind = option+backspace=text:\x1b\x7f
+
