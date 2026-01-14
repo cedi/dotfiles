@@ -1,8 +1,77 @@
+-- Fix contrast for neo-tree confirmation/input popups
+local function fix_neotree_highlights()
+  vim.api.nvim_set_hl(0, "NeoTreeMessage", { link = "Normal" })
+  vim.api.nvim_set_hl(0, "NeoTreeDimText", { link = "Normal" })
+  vim.api.nvim_set_hl(0, "NeoTreeFloatNormal", { link = "Normal" })
+  vim.api.nvim_set_hl(0, "NeoTreeFloatTitle", { link = "Title" })
+  vim.api.nvim_set_hl(0, "NeoTreeTitleBar", { link = "Title" })
+end
+vim.api.nvim_create_autocmd("ColorScheme", { callback = fix_neotree_highlights })
+fix_neotree_highlights()
+
+-- Cache for git repo info (avoids repeated shell calls)
+local git_cache = {}
+
+-- Get git info with caching (single shell call for all data)
+local function get_git_info(filepath)
+  local dir = vim.fn.fnamemodify(filepath, ":h")
+
+  -- Check cache first
+  if git_cache[dir] and (vim.loop.now() - git_cache[dir].time) < 5000 then
+    return git_cache[dir].data
+  end
+
+  -- Single shell call to get all git info at once
+  local cmd = string.format(
+    "git -C %s rev-parse --show-toplevel 2>/dev/null && git -C %s remote get-url origin 2>/dev/null && git -C %s rev-parse --abbrev-ref HEAD 2>/dev/null",
+    vim.fn.shellescape(dir),
+    vim.fn.shellescape(dir),
+    vim.fn.shellescape(dir)
+  )
+
+  local result = vim.fn.systemlist(cmd)
+  if vim.v.shell_error ~= 0 or #result < 3 then
+    git_cache[dir] = { time = vim.loop.now(), data = nil }
+    return nil
+  end
+
+  local data = {
+    root = result[1],
+    remote = result[2],
+    branch = result[3],
+  }
+
+  git_cache[dir] = { time = vim.loop.now(), data = data }
+  return data
+end
+
+-- Build VCS link from cached git info
+local function get_vcs_link(filepath)
+  local git = get_git_info(filepath)
+  if not git then
+    return nil
+  end
+
+  local relative_path = filepath:sub(#git.root + 2)
+
+  local base_url = git.remote
+    :gsub("%.git$", "")
+    :gsub("git@github.com:", "https://github.com/")
+    :gsub("git@gitlab.com:", "https://gitlab.com/")
+    :gsub("git@bitbucket.org:", "https://bitbucket.org/")
+    :gsub("ssh://git@([^/]+)/", "https://%1/") -- Generic SSH URLs
+
+  local link_pattern = base_url:match("gitlab") and "/-/blob/" or "/blob/"
+
+  return base_url .. link_pattern .. git.branch .. "/" .. relative_path
+end
+
 return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
       close_if_last_window = true,
+      hijack_netrw_behavior = "open_current", -- explicitly handle netrw
       filesystem = {
         filtered_items = {
           hide_dotfiles = false,
@@ -23,92 +92,34 @@ return {
               return
             end
 
-            if vim.fn.has("clipboard") == 0 then
-              vim.notify("System clipboard is not available.", vim.log.levels.ERROR)
-              return
-            end
-
             local filepath = node:get_id()
             local filename = node.name
             local modify = vim.fn.fnamemodify
 
-            -- Helper function to generate the VCS link
-            local function get_vcs_link()
-              -- 1. Get the root directory of the git repository
-              local git_root_list = vim.fn.systemlist(
-                "git -C " .. vim.fn.shellescape(modify(filepath, ":h")) .. " rev-parse --show-toplevel"
-              )
-              if vim.v.shell_error ~= 0 or #git_root_list == 0 then
-                return nil -- Not a git repository
-              end
-              local git_root = git_root_list[1]
-
-              -- 2. Get the remote URL (we assume 'origin')
-              local remote_list =
-                vim.fn.systemlist("git -C " .. vim.fn.shellescape(git_root) .. " remote get-url origin")
-              if vim.v.shell_error ~= 0 or #remote_list == 0 then
-                return nil -- No remote named 'origin'
-              end
-              local remote_url = remote_list[1]
-
-              -- 3. Get the current branch name
-              local branch_list =
-                vim.fn.systemlist("git -C " .. vim.fn.shellescape(git_root) .. " rev-parse --abbrev-ref HEAD")
-              if vim.v.shell_error ~= 0 or #branch_list == 0 then
-                return nil -- Could not determine branch
-              end
-              local branch = branch_list[1]
-
-              -- 4. Get the file path relative to the git root
-              local relative_path = filepath:sub(#git_root + 2)
-
-              -- 5. Parse the remote URL to get a base HTTPS URL
-              local base_url = remote_url
-                :gsub("%.git$", "") -- Remove .git suffix
-                :gsub("git@github.com:", "https://github.com/") -- Convert SSH to HTTPS
-                :gsub("git@gitlab.com:", "https://gitlab.com/") -- Support for GitLab
-                :gsub("git@bitbucket.org:", "https://bitbucket.org/") -- Support for Bitbucket
-
-              -- 6. Construct the final link
-              -- Note: GitLab and others use `/-/blob/` instead of `/blob/`
-              local link_pattern = "/blob/"
-              if base_url:match("gitlab.com") then
-                link_pattern = "/-/blob/"
-              end
-
-              return base_url .. link_pattern .. branch .. "/" .. relative_path
-            end
-
             local choices = {
-              { label = "Absolute path", value = filepath },
-              { label = "Path relative to CWD", value = modify(filepath, ":.") },
-              { label = "Path relative to HOME", value = modify(filepath, ":~") },
-              { label = "Filename", value = filename },
-              { label = "Filename without extension", value = modify(filename, ":r") },
-              { label = "Extension of the filename", value = modify(filename, ":e") },
+              "Absolute path: " .. filepath,
+              "Relative to CWD: " .. modify(filepath, ":."),
+              "Relative to HOME: " .. modify(filepath, ":~"),
+              "Filename: " .. filename,
+              "Filename (no ext): " .. modify(filename, ":r"),
+              "Extension: " .. modify(filename, ":e"),
             }
 
-            -- Conditionally add the VCS link option
-            local vcs_link = get_vcs_link()
+            local vcs_link = get_vcs_link(filepath)
             if vcs_link then
-              table.insert(choices, { label = "VCS Link", value = vcs_link })
+              table.insert(choices, "VCS Link: " .. vcs_link)
             end
 
-            require("snacks").picker.select(choices, {
-              prompt = "Choose to copy to clipboard:",
-              format_item = function(item)
-                return string.format("%-30s %s", item.label, item.value)
-              end,
-            }, function(choice)
+            vim.ui.select(choices, { prompt = "Copy to clipboard:" }, function(choice)
               if not choice then
-                vim.notify("Copy cancelled.", vim.log.levels.INFO)
                 return
               end
-
-              local value_to_copy = choice.value
-
-              vim.fn.setreg("+", value_to_copy)
-              vim.notify("Copied to clipboard: " .. value_to_copy)
+              -- Extract value after ": "
+              local value = choice:match(": (.+)$")
+              if value then
+                vim.fn.setreg("+", value)
+                vim.notify("Copied: " .. value)
+              end
             end)
           end,
         },
