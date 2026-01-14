@@ -1,6 +1,9 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
+    dependencies = {
+      "nvim-telescope/telescope-file-browser.nvim",
+    },
     opts = {
       defaults = {
         vimgrep_arguments = {
@@ -22,11 +25,11 @@ return {
           hijack_netrw = true,
         },
       },
-      config = function(_, opts)
-        local telescope = require("telescope")
-        telescope.setup(opts)
-        telescope.load_extension("file_browser")
-      end,
     },
+    config = function(_, opts)
+      local telescope = require("telescope")
+      telescope.setup(opts)
+      telescope.load_extension("file_browser")
+    end,
   },
 }

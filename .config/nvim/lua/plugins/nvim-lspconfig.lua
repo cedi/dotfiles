@@ -55,6 +55,4 @@ return { -- nvim-lspconfig
       },
     },
   },
-
-  require("plugins.configs.lsp.bash"),
 }
