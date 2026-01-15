@@ -1,45 +1,102 @@
-# Dotfiles
+# dotfiles
 
-This repository contains my dotfiles, ready to be used with [gnu-stow](https://www.gnu.org/software/stow/manual/stow.html)
-
-## Screenshot
+My personal dotfiles, managed with [GNU Stow](https://www.gnu.org/software/stow/).
 
 ![Screenshot](screenshot.png?raw=true)
 
-## Installation
+## Quick Start (macOS)
 
-installing the dotfiles and setting up the environment is different for Windows or Linux/MacOS for obvious reasons 😆
-
-### Prerequisites
-
-* [] Have [git](https://git-scm.com/) installed and available in your `$PATH`
-* [] Clone this repository (`git clone git@github.com:cedi/dotfiles.git $HOME/.dotfiles`)
-* [] _(Unix* only)_ Have [`stow`](https://www.gnu.org/software/stow/) installed
-
-### macOS
-
-```shell
-cd $HOME.dotfiles/
-./install_macos.sh
-stow .
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/cedi/dotfiles/main/install_macos.sh)
 ```
 
-### Linux
+This handles everything: Xcode CLI tools, Homebrew, git, cloning the repo, and runs the interactive installer.
 
-```shell
-cd $HOME.dotfiles/
+Already have the repo cloned?
+
+```bash
+cd ~/.dotfiles
+./install_macos.sh
+```
+
+## What's Included
+
+### Brewfiles
+
+Split into components for flexibility:
+
+| File               | Contents                                  |
+| ------------------ | ----------------------------------------- |
+| `.Brewfile.core`   | Shell, editor, git, k8s tools, cloud CLIs |
+| `.Brewfile.extras` | Media tools, networking, build tools      |
+| `.Brewfile.vscode` | VS Code extensions                        |
+| `.Brewfile`        | All of the above                          |
+
+### Shell
+
+- **Fish** as primary shell with modular `conf.d/` config
+- **Oh My Posh** prompt with custom theme
+- **zsh** config also included
+
+### Editor
+
+- **Neovim** with LazyVim
+
+### Tools managed by mise
+
+Language runtimes are handled by [mise](https://mise.jdx.dev/) instead of Homebrew for easier version management:
+
+- Node.js
+- Python
+- Go
+- Rust
+- Terraform
+
+Global defaults in `.config/mise/config.toml`, override per-project with `.mise.toml`.
+
+## Install Options
+
+The installer presents a menu:
+
+```
+1) Full installation     (recommended for new machines)
+2) Core tools only       (shell, git, editor, k8s, cloud)
+3) Extras only           (media, networking, build tools)
+4) Custom                (choose components)
+5) Exit
+```
+
+For automation/CI:
+
+```bash
+./install_macos.sh --yes
+```
+
+## Linux
+
+```bash
+cd ~/.dotfiles
 ./install_linux.sh
 stow .
 ```
 
-### Setup Windows systems
+## Windows
 
-> [!NOTE]
-> This is very much untested (yet) and might be a bit flaky
+See [windows/README.md](windows/README.md)
 
-```powershell
-cd $env:HOME\.dotfiles\windows
-.\install.ps2
+## Structure
+
 ```
-
-See more about the Windows setup [here](windows/README.md)
+.dotfiles/
+├── .Brewfile*            # Homebrew packages
+├── .config/
+│   ├── fish/             # Fish shell
+│   ├── nvim/             # Neovim (LazyVim)
+│   ├── mise/             # Runtime version manager
+│   ├── oh-my-posh/       # Prompt themes
+│   ├── tmux/             # Terminal multiplexer
+│   └── ...
+├── fonts/                # FiraCode + Nerd Fonts
+├── install_macos.sh      # macOS bootstrap
+└── install_linux.sh      # Linux bootstrap
+```
