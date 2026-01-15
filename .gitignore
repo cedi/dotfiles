@@ -1,5 +1,6 @@
 .vscode/
 .config/nvim/lazy-lock.json
+.config/fish/fish_variables
 .DS_Store
 .ssh/*.ssh
 .ssh/*.pub

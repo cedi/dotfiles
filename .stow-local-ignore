@@ -35,6 +35,14 @@ install.ps1
 Microsoft.PowerShell_profile.ps1
 renovate.json
 
+# Brewfiles (managed separately, not symlinked)
+\.Brewfile\.core
+\.Brewfile\.extras
+\.Brewfile\.vscode
+
+# Fish universal variables (machine-specific, contains paths with usernames)
+\.config/fish/fish_variables
+
 # Tailscale ACL and github workflows
 \.github
 tailscale.acl.hujson

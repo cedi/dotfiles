@@ -1,0 +1,45 @@
+# ========================================
+# Global mise Configuration
+# ========================================
+# This file sets global defaults for language runtimes.
+# Projects can override with their own .mise.toml file.
+#
+# Documentation: https://mise.jdx.dev/configuration.html
+
+[settings]
+# Automatically install tools when entering a directory with .mise.toml
+auto_install = true
+
+# Support .tool-versions files for asdf compatibility
+legacy_version_file = true
+
+# Directories to trust automatically (no confirmation prompt)
+trusted_config_paths = ["~/src", "~/work", "~/projects"]
+
+# Number of parallel jobs for installing tools
+jobs = 4
+
+# Don't use experimental features
+experimental = false
+
+# ========================================
+# Global Tool Defaults
+# ========================================
+# These are installed globally and available everywhere.
+# Projects can override specific versions with .mise.toml
+
+[tools]
+# Node.js - LTS version for stability
+node = "lts"
+
+# Python - latest 3.12.x
+python = "3.12"
+
+# Go - latest stable
+go = "latest"
+
+# Rust - stable toolchain
+rust = "stable"
+
+# Terraform - latest (projects should pin specific versions)
+terraform = "latest"

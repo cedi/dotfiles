@@ -70,10 +70,6 @@ end
 set -q CARGO_HOME; or set -x CARGO_HOME $HOME/.cargo
 set -q RUSTUP_HOME; or set -x RUSTUP_HOME $HOME/.rustup
 
-if test -d $HOME/.cargo/bin
-    fish_add_path $HOME/.cargo/bin
-end
-
 # Local overrides (session-specific)
 if test -f $HOME/.env.fish
     source $HOME/.env.fish

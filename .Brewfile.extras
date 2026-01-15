@@ -1,0 +1,138 @@
+# ========================================
+# Extras Brewfile - Optional Tools
+# ========================================
+# Additional tools for specialized workflows.
+# Install with: brew bundle --file=.Brewfile.extras
+
+# ========================================
+# Additional Taps
+# ========================================
+
+# Custom FFmpeg builds with optional codecs
+tap "homebrew-ffmpeg/ffmpeg"
+# Terminal screenshot capture helper
+tap "homeport/tap"
+# USB device discovery tools for macOS
+tap "jlhonora/lsusb"
+# GitGuardian CLI for secret scanning
+tap "gitguardian/tap"
+# Releases for golangci-lint toolchain
+tap "golangci/tap"
+# TinyGo compiler and utilities
+tap "tinygo-org/tools"
+# S3-compatible MinIO client updates
+tap "minio/stable"
+# AI assistant for Kubernetes troubleshooting
+tap "robusta-dev/holmesgpt"
+# Media transcoding utilities
+tap "sandreas/tap"
+
+# ========================================
+# Kubernetes Extras
+# ========================================
+
+# Lightweight Kubernetes clusters inside Docker
+brew "k3d"
+# Bootstrap k3s clusters on any remote host
+brew "k3sup"
+# Validate Kubernetes manifests against the API
+brew "kubeval"
+
+# ========================================
+# Build & Compilation Tools
+# ========================================
+
+# Generate configure scripts for compiling software
+brew "autoconf"
+# Automate Makefile generation for GNU build systems
+brew "automake"
+# Cross-platform build system generator
+brew "cmake"
+# Classic make build orchestrator
+brew "make"
+
+# ========================================
+# Networking & Diagnostics
+# ========================================
+
+# Network diagnostic tool combining traceroute and ping
+brew "mtr"
+# Network exploration and security auditing toolkit
+brew "nmap"
+# Calculate IP address ranges and subnet masks
+brew "ipcalc"
+# Linux-style networking utilities adapted for macOS
+brew "iproute2mac"
+# Mobile shell for resilient SSH connections
+brew "mosh"
+# Classic telnet client for legacy systems
+brew "telnet"
+# Non-interactive network downloader
+brew "wget"
+
+# ========================================
+# Media & Imaging
+# ========================================
+
+# Custom FFmpeg build with Fraunhofer FDK AAC support
+brew "homebrew-ffmpeg/ffmpeg/ffmpeg", args: ["with-fdk-aac"]
+# Swiss-army knife for image conversions
+brew "imagemagick"
+# Read and edit EXIF metadata
+brew "exiftool"
+# Encode and decode WebP images
+brew "webp"
+# Support for JPEG XL image format
+brew "jpeg-xl"
+# Encode/decode High Efficiency Image File Format (HEIF)
+brew "libheif"
+
+# ========================================
+# CLI Utilities & Productivity
+# ========================================
+
+# Interactive cheatsheet navigator for the terminal
+brew "navi"
+# System info dashboard for shell screenshots
+brew "neofetch"
+# Context-aware correction of previous console commands
+brew "thefuck"
+# Community-driven TL;DR cheatsheets viewer
+brew "tldr"
+# Count lines of code across languages
+brew "cloc"
+# Capture terminal output as shareable images
+brew "homeport/tap/termshot"
+# Markdown linter with extensible rules
+brew "markdownlint-cli2"
+# GNU indent for C/C++ source formatting
+brew "gnu-indent"
+
+# ========================================
+# CI/CD & Automation
+# ========================================
+
+# Run GitHub Actions workflows locally
+brew "act"
+# IT automation engine (kept unlinked to avoid PATH conflicts)
+brew "ansible", link: false
+
+# ========================================
+# Cloud Storage
+# ========================================
+
+# Backblaze B2 storage management utilities
+brew "b2-tools"
+
+# ========================================
+# Homebrew Casks (GUI Applications)
+# ========================================
+
+# Remove outdated Xcode caches to reclaim disk space
+cask "devcleaner"
+# Vector illustration editor for SVG workflows
+cask "inkscape"
+# Customize macOS menu bar icons
+cask "jordanbaird-ice"
+# Terminal emulator with platform-native UI and GPU acceleration
+cask "ghostty"

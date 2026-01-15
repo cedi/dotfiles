@@ -1,0 +1,161 @@
+# ========================================
+# Core Brewfile - Essential System Tools
+# ========================================
+# These packages form the foundation of the development environment.
+# Install with: brew bundle --file=.Brewfile.core
+
+# ========================================
+# Homebrew Taps
+# ========================================
+
+# HashiCorp maintained releases (Terraform language server)
+tap "hashicorp/tap"
+# Prompt theming via Oh My Posh
+tap "jandedobbeleer/oh-my-posh"
+
+# ========================================
+# Shell & Terminal
+# ========================================
+
+# Friendly interactive shell with advanced scripting
+brew "fish"
+# Terminal multiplexer for persistent sessions
+brew "tmux"
+# Manage dotfiles via symlinks
+brew "stow"
+# Smarter cd command with directory ranking
+brew "zoxide"
+# Fuzzy finder for files, history, and more
+brew "fzf"
+# Customizable prompt theming
+brew "jandedobbeleer/oh-my-posh/oh-my-posh"
+
+# ========================================
+# GNU Userland Enhancements
+# ========================================
+
+# GNU core utilities for consistent CLI behavior on macOS
+brew "coreutils"
+# GNU find, locate, updatedb, xargs
+brew "findutils"
+# GNU tar with extended features
+brew "gnu-tar"
+# GNU sed with enhanced regex support
+brew "gnu-sed"
+# GNU awk for text processing
+brew "gawk"
+# Transport layer security library
+brew "gnutls"
+# GNU getopt for consistent argument parsing
+brew "gnu-getopt"
+# GNU grep with Perl-compatible regex support
+brew "grep"
+
+# ========================================
+# CLI Productivity
+# ========================================
+
+# Modern replacement for ls with git integration
+brew "eza"
+# Syntax-highlighted cat clone
+brew "bat"
+# Fast recursive search across files
+brew "ripgrep"
+# Command-line JSON processor
+brew "jq"
+# YAML processor mirroring jq syntax
+brew "yq"
+# Visual directory tree listing
+brew "tree"
+# Render Markdown files in terminal
+brew "glow"
+
+# ========================================
+# Version Control
+# ========================================
+
+# Distributed version control system
+brew "git"
+# GitHub CLI for repo management and workflows
+brew "gh"
+# Enhanced diff viewer for Git output
+brew "git-delta"
+# Colorized diff utility
+brew "colordiff"
+
+# ========================================
+# Editor
+# ========================================
+
+# Modal text editor with Lua-based configuration
+brew "neovim"
+# Incremental parsing library for editors
+brew "tree-sitter"
+# Language server for Lua IDE features
+brew "lua-language-server"
+
+# ========================================
+# Tool & Runtime Manager
+# ========================================
+
+# Universal runtime and toolchain manager (node, python, go, rust, terraform)
+brew "mise"
+
+# ========================================
+# Security & Secrets
+# ========================================
+
+# GNU Privacy Guard for encryption and signing
+brew "gnupg"
+# Modern encryption tool for simple key management
+brew "age"
+# Secret management tool compatible with GitOps
+brew "sops"
+# Container image signing and verification
+brew "cosign"
+
+# ========================================
+# System Monitoring
+# ========================================
+
+# Interactive process viewer
+brew "htop"
+# Periodically rerun commands and display output
+brew "watch"
+
+# ========================================
+# Kubernetes & Container Tooling
+# ========================================
+
+# Official kubectl CLI
+brew "kubernetes-cli"
+# Quickly switch between contexts and namespaces
+brew "kubectx"
+# Terminal UI for navigating Kubernetes clusters
+brew "k9s"
+# Tail multiple pod logs centrally
+brew "stern"
+# Package manager for Kubernetes applications
+brew "helm"
+# Language server for Helm charts
+brew "helm-ls"
+# Template-free Kubernetes configuration management
+brew "kustomize"
+
+# ========================================
+# Cloud Provider CLIs
+# ========================================
+
+# AWS command-line interface
+brew "awscli"
+# Azure command-line tools
+brew "azure-cli"
+# Hetzner Cloud CLI
+brew "hcloud"
+
+# ========================================
+# Infrastructure as Code
+# ========================================
+
+# Language server for Terraform configuration
+brew "hashicorp/tap/terraform-ls"
