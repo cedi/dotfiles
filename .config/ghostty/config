@@ -12,4 +12,5 @@ background-blur = true
 unfocused-split-opacity = 1
 #make option-backspace delete the last word
 keybind = option+backspace=text:\x1b\x7f
+no-scroll-to-bottom
 
