@@ -3,11 +3,6 @@ if type -q zoxide
     zoxide init --cmd cd fish | source
 end
 
-# --- git-tool integration ---
-if type -q git-tool
-    alias gt=git-tool
-end
-
 # --- navi integration ---
 if type -q navi
     navi widget fish | source
