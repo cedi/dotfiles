@@ -18,9 +18,7 @@ trusted_config_paths = ["~/src", "~/work", "~/projects"]
 
 # Number of parallel jobs for installing tools
 jobs = 4
-
-# Don't use experimental features
-experimental = false
+experimental = true
 
 # ========================================
 # Global Tool Defaults
