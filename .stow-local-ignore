@@ -40,6 +40,13 @@ renovate.json
 \.Brewfile\.extras
 \.Brewfile\.vscode
 
+# macOS setup scripts (run directly, not symlinked)
+setup_dock\.sh
+setup_macos_defaults\.sh
+
+# Raycast settings backup (copied by setup script)
+\.raycast\.plist
+
 # Fish universal variables (machine-specific, contains paths with usernames)
 \.config/fish/fish_variables
 

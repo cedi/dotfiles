@@ -469,6 +469,169 @@ configure_security() {
 }
 
 # ═══════════════════════════════════════════════════════════════
+# Computer Name
+# ═══════════════════════════════════════════════════════════════
+
+configure_computer_name() {
+  print_header "Computer Name"
+
+  local current_name
+  current_name=$(scutil --get ComputerName 2>/dev/null)
+
+  # Check if name is still a default (contains "MacBook", "iMac", "Mac mini", etc.)
+  if [[ "$current_name" =~ ^(MacBook|iMac|Mac\ mini|Mac\ Pro|Mac\ Studio) ]]; then
+    echo -e "  ${YELLOW}○${NC} Computer name appears to be default: $current_name"
+    echo -n "  Enter new computer name (or press Enter to skip): "
+    read -r new_name
+
+    if [[ -n "$new_name" ]]; then
+      sudo scutil --set ComputerName "$new_name"
+      sudo scutil --set LocalHostName "$new_name"
+      sudo scutil --set HostName "$new_name"
+      print_status "Computer name set to: $new_name"
+    else
+      print_status "Skipped - keeping: $current_name"
+    fi
+  else
+    print_status "Computer name: $current_name"
+  fi
+}
+
+# ═══════════════════════════════════════════════════════════════
+# Night Shift
+# ═══════════════════════════════════════════════════════════════
+
+configure_night_shift() {
+  print_header "Night Shift"
+
+  # Night Shift is controlled by CoreBrightness framework
+  # Enable Night Shift on schedule (sunset to sunrise)
+  # This uses the private CoreBrightness framework via defaults
+
+  # Note: Full Night Shift control requires using the private CBBlueLightClient
+  # The most reliable way is via AppleScript or manual setup
+  # We'll set what we can via defaults
+
+  # Set schedule to sunset to sunrise (mode 1)
+  # Mode: 0 = off, 1 = sunset to sunrise, 2 = custom schedule
+  defaults write com.apple.CoreBrightness "CBBlueReductionStatus" -dict \
+    AutoBlueReductionEnabled -int 1 \
+    BlueLightReductionSchedule -dict \
+      DayStartHour -int 7 \
+      DayStartMinute -int 0 \
+      NightStartHour -int 22 \
+      NightStartMinute -int 0 \
+    BlueReductionMode -int 1 \
+    BlueReductionSunScheduleAllowed -bool true \
+    UserAutoBlueReductionEnabled -bool true 2>/dev/null || true
+
+  print_status "Night Shift: Sunset to Sunrise"
+  echo -e "  ${YELLOW}Note: May need to toggle in System Settings to activate${NC}"
+}
+
+# ═══════════════════════════════════════════════════════════════
+# Mouse
+# ═══════════════════════════════════════════════════════════════
+
+configure_mouse() {
+  print_header "Mouse"
+
+  # Mouse tracking speed (0.0 to 3.0, default is ~1.0)
+  defaults write NSGlobalDomain com.apple.mouse.scaling -float 2.0
+  print_status "Mouse tracking speed: 2.0"
+
+  # Scroll wheel speed
+  defaults write NSGlobalDomain com.apple.scrollwheel.scaling -float 0.5
+  print_status "Scroll wheel speed: 0.5"
+
+  # Natural scrolling (true = natural, false = traditional)
+  defaults write NSGlobalDomain com.apple.swipescrolldirection -bool true
+  print_status "Natural scrolling: enabled"
+
+  # Bluetooth mouse settings
+  defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseButtonMode -string "OneButton"
+  defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseHorizontalScroll -bool true
+  defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseMomentumScroll -bool true
+  defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseVerticalScroll -bool true
+  print_status "Bluetooth mouse: momentum scroll, horizontal scroll"
+}
+
+# ═══════════════════════════════════════════════════════════════
+# Login Items
+# ═══════════════════════════════════════════════════════════════
+
+configure_login_items() {
+  print_header "Login Items"
+
+  # Function to add login item if app exists
+  add_login_item() {
+    local app_path="$1"
+    local app_name="$2"
+
+    if [[ -e "$app_path" ]]; then
+      # Check if already a login item
+      if osascript -e "tell application \"System Events\" to get the name of every login item" 2>/dev/null | grep -q "$app_name"; then
+        print_status "$app_name (already set)"
+      else
+        osascript -e "tell application \"System Events\" to make login item at end with properties {path:\"$app_path\", hidden:false}" 2>/dev/null
+        print_status "$app_name"
+      fi
+    fi
+  }
+
+  # Add common apps as login items (only if installed)
+  add_login_item "/Applications/Raycast.app" "Raycast"
+  add_login_item "/Applications/1Password.app" "1Password"
+  add_login_item "/Applications/iStatistica Pro.app" "iStatistica Pro"
+  add_login_item "/Applications/Rectangle.app" "Rectangle"
+  add_login_item "/Applications/Ice.app" "Ice"
+  add_login_item "/Applications/BetterMouse.app" "BetterMouse"
+  add_login_item "/Applications/OrbStack.app" "OrbStack"
+  add_login_item "/Applications/Elgato Control Center.app" "Elgato Control Center"
+  add_login_item "/Applications/Bartender 5.app" "Bartender 5"
+  add_login_item "/Applications/Alfred 5.app" "Alfred 5"
+  add_login_item "/Applications/Synology Drive Client.app" "Synology Drive Client"
+}
+
+# ═══════════════════════════════════════════════════════════════
+# Raycast Settings
+# ═══════════════════════════════════════════════════════════════
+
+configure_raycast() {
+  print_header "Raycast Settings"
+
+  local DOTFILES_DIR="${DOTFILES_DIR:-$HOME/.dotfiles}"
+  local raycast_plist="$HOME/Library/Preferences/com.raycast.macos.plist"
+  local backup_plist="$DOTFILES_DIR/.raycast.plist"
+
+  # If backup exists in dotfiles, restore it
+  if [[ -f "$backup_plist" ]]; then
+    if [[ -f "$raycast_plist" ]]; then
+      print_status "Raycast settings exist, skipping restore"
+      echo -e "  ${YELLOW}To restore from backup: cp $backup_plist $raycast_plist${NC}"
+    else
+      cp "$backup_plist" "$raycast_plist"
+      print_status "Raycast settings restored from dotfiles"
+    fi
+  else
+    # No backup in dotfiles - offer to create one
+    if [[ -f "$raycast_plist" ]]; then
+      echo -e "  ${YELLOW}○${NC} No Raycast backup in dotfiles"
+      echo -n "  Export current Raycast settings to dotfiles? [y/N] "
+      read -r response
+      if [[ "$response" =~ ^[Yy]$ ]]; then
+        cp "$raycast_plist" "$backup_plist"
+        print_status "Raycast settings exported to .raycast.plist"
+      else
+        print_status "Skipped Raycast backup"
+      fi
+    else
+      print_status "Raycast not configured yet"
+    fi
+  fi
+}
+
+# ═══════════════════════════════════════════════════════════════
 # Main
 # ═══════════════════════════════════════════════════════════════
 
@@ -477,14 +640,19 @@ main() {
   echo -e "${BLUE}  macOS System Defaults${NC}"
   echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 
+  configure_computer_name
   configure_appearance
   configure_menubar
   configure_finder
   configure_keyboard
   configure_trackpad
+  configure_mouse
+  configure_night_shift
   configure_screenshots
   configure_safari
   configure_activity_monitor
+  configure_login_items
+  configure_raycast
   configure_sudo_touchid
   configure_remote_login
   configure_security
