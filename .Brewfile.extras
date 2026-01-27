@@ -159,6 +159,8 @@ cask "telegram"
 cask "1password"
 # Docker and Linux VM replacement
 cask "orbstack"
+# Synology NAS file sync client
+cask "synology-drive"
 
 # ========================================
 # Mac App Store Applications
