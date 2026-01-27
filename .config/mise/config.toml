@@ -12,6 +12,16 @@ auto_install = true
 
 # Support .tool-versions files for asdf compatibility
 legacy_version_file = true
+idiomatic_version_file_enable_tools = [
+  "node",
+  "go",
+  "java",
+  "opentofu",
+  "python",
+  "terraform",
+  "terragrunt",
+  "yarn",
+]
 
 # Directories to trust automatically (no confirmation prompt)
 trusted_config_paths = ["~/src", "~/work", "~/projects"]
