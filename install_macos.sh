@@ -87,8 +87,16 @@ confirm() {
 # ═══════════════════════════════════════════════════════════════
 
 bootstrap_dotfiles() {
-  # If dotfiles already exist, nothing to do
+  # If dotfiles already exist, pull latest updates
   if [[ -d "$DOTFILES_DIR" ]]; then
+    if [[ -d "$DOTFILES_DIR/.git" ]]; then
+      print_status "install" "Updating dotfiles repository..."
+      if git -C "$DOTFILES_DIR" pull --ff-only 2>/dev/null; then
+        print_status "ok" "Dotfiles updated"
+      else
+        print_status "skip" "Dotfiles up to date (or merge required)"
+      fi
+    fi
     return 0
   fi
 
