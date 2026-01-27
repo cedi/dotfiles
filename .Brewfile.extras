@@ -35,8 +35,8 @@ tap "sandreas/tap"
 brew "k3d"
 # Bootstrap k3s clusters on any remote host
 brew "k3sup"
-# Validate Kubernetes manifests against the API
-brew "kubeval"
+# Validate Kubernetes manifests against schemas
+brew "kubeconform"
 
 # ========================================
 # Build & Compilation Tools

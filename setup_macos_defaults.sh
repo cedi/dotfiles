@@ -344,18 +344,37 @@ configure_screenshots() {
 configure_safari() {
   print_header "Safari"
 
+  # Safari settings may fail on fresh installs due to sandboxing
+  # The container directory doesn't exist until Safari runs for the first time
+  local safari_prefs="$HOME/Library/Containers/com.apple.Safari/Data/Library/Preferences/com.apple.Safari"
+
+  # Check if Safari has been run (container exists)
+  if [[ ! -d "$HOME/Library/Containers/com.apple.Safari" ]]; then
+    echo -e "  ${YELLOW}○${NC} Safari container not found - run Safari once first, then re-run this script"
+    return 0
+  fi
+
   # Show full URL in address bar
-  defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
-  print_status "Show full URL"
+  if defaults write "$safari_prefs" ShowFullURLInSmartSearchField -bool true 2>/dev/null; then
+    print_status "Show full URL"
+  else
+    echo -e "  ${YELLOW}○${NC} Could not set full URL preference (run Safari first)"
+  fi
 
   # Enable developer menu
-  defaults write com.apple.Safari IncludeDevelopMenu -bool true
-  defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
-  print_status "Developer menu enabled"
+  if defaults write "$safari_prefs" IncludeDevelopMenu -bool true 2>/dev/null &&
+     defaults write "$safari_prefs" WebKitDeveloperExtrasEnabledPreferenceKey -bool true 2>/dev/null; then
+    print_status "Developer menu enabled"
+  else
+    echo -e "  ${YELLOW}○${NC} Could not enable developer menu (run Safari first)"
+  fi
 
   # Disable auto-open of "safe" downloads
-  defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
-  print_status "Disabled auto-open safe downloads"
+  if defaults write "$safari_prefs" AutoOpenSafeDownloads -bool false 2>/dev/null; then
+    print_status "Disabled auto-open safe downloads"
+  else
+    echo -e "  ${YELLOW}○${NC} Could not set safe downloads preference (run Safari first)"
+  fi
 }
 
 # ═══════════════════════════════════════════════════════════════

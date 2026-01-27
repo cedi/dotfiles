@@ -30,7 +30,7 @@ vscode "gruntfuggly.todo-tree"
 # Syntax-highlight ANSI color codes in output panes
 vscode "ibm.output-colorizer"
 # Side-by-side folder comparison utility
-vscode "moshfeu.compare-folders-insider"
+vscode "moshfeu.compare-folders"
 # Rainbow-colored indentation guides
 vscode "oderwat.indent-rainbow"
 # Highlight and trim trailing whitespace
