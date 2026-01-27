@@ -114,9 +114,6 @@ brew "gnu-indent"
 
 # Run GitHub Actions workflows locally
 brew "act"
-# IT automation engine (kept unlinked to avoid PATH conflicts)
-brew "ansible", link: false
-
 # ========================================
 # Cloud Storage
 # ========================================
@@ -167,6 +164,18 @@ cask "elgato-stream-deck"
 cask "elgato-control-center"
 # Elgato Facecam configuration software
 cask "elgato-camera-hub"
+# YubiKey management utility
+cask "yubico-yubikey-manager"
+# Write OS images to SD cards
+cask "raspberry-pi-imager"
+# Team messaging platform
+cask "slack"
+# Voice, video, and text chat
+cask "discord"
+# API development and testing
+cask "postman"
+# AI-powered code editor
+cask "cursor"
 
 # ========================================
 # Mac App Store Applications
