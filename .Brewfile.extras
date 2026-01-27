@@ -125,6 +125,13 @@ brew "ansible", link: false
 brew "b2-tools"
 
 # ========================================
+# Mac App Store CLI
+# ========================================
+
+# Command-line interface for the Mac App Store
+brew "mas"
+
+# ========================================
 # Homebrew Casks (GUI Applications)
 # ========================================
 
@@ -136,3 +143,31 @@ cask "inkscape"
 cask "jordanbaird-ice"
 # Terminal emulator with platform-native UI and GPU acceleration
 cask "ghostty"
+# Note-taking with Markdown and bidirectional linking
+cask "obsidian"
+# VPN mesh networking
+cask "tailscale"
+# Spotlight replacement with extensions
+cask "raycast"
+# Kubernetes IDE
+cask "lens"
+# Encrypted messaging
+cask "signal"
+# Messaging app
+cask "telegram"
+# Password manager
+cask "1password"
+# Docker and Linux VM replacement
+cask "orbstack"
+
+# ========================================
+# Mac App Store Applications
+# ========================================
+# Requires being signed into the Mac App Store first
+
+# System monitoring in menu bar
+mas "iStatistica Pro", id: 1025822138
+# Apple's IDE (includes simulators, etc.)
+mas "Xcode", id: 497799835
+# GitHub enhancements for Safari
+mas "Refined GitHub", id: 1519867270
