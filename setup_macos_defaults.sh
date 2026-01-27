@@ -37,10 +37,6 @@ configure_appearance() {
   defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
   print_status "Dark mode enabled"
 
-  # Accent color: Multicolor (-1 = multicolor, 0 = blue, 1 = purple, etc.)
-  defaults write NSGlobalDomain AppleAccentColor -int -1
-  print_status "Accent color: Multicolor"
-
   # Highlight color: Automatic (delete the key to use automatic)
   defaults delete NSGlobalDomain AppleHighlightColor 2>/dev/null || true
   print_status "Highlight color: Automatic"
