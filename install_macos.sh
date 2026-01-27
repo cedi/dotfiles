@@ -295,6 +295,33 @@ install_krew() {
   print_status "ok" "Krew installed"
 }
 
+configure_dock() {
+  print_header "Dock Configuration"
+
+  if ! is_installed dockutil; then
+    print_status "error" "dockutil not installed - run Brewfile first"
+    return 1
+  fi
+
+  print_status "install" "Configuring dock layout..."
+  if "$DOTFILES_DIR/setup_dock.sh"; then
+    print_status "ok" "Dock configured"
+  else
+    print_status "error" "Dock configuration failed"
+  fi
+}
+
+configure_macos_defaults() {
+  print_header "macOS System Defaults"
+
+  print_status "install" "Configuring system preferences..."
+  if "$DOTFILES_DIR/setup_macos_defaults.sh"; then
+    print_status "ok" "System defaults configured"
+  else
+    print_status "error" "System defaults configuration failed"
+  fi
+}
+
 # ═══════════════════════════════════════════════════════════════
 # Main Menu
 # ═══════════════════════════════════════════════════════════════
@@ -336,6 +363,8 @@ run_custom_menu() {
   confirm "  Symlink dotfiles (stow)?" && components+=("stow")
   confirm "  Language runtimes (mise: node, python, go, rust)?" && components+=("mise")
   confirm "  Krew (kubectl plugin manager)?" && components+=("krew")
+  confirm "  Dock configuration (layout and spacers)?" && components+=("dock")
+  confirm "  macOS defaults (appearance, finder, keyboard)?" && components+=("macos")
 
   echo "${components[@]}"
 }
@@ -374,6 +403,8 @@ main() {
       install_stow
       install_mise_runtimes
       install_krew
+      configure_macos_defaults
+      configure_dock
       ;;
     2) # Core only
       ensure_dirs
@@ -381,6 +412,8 @@ main() {
       install_brewfile "$DOTFILES_DIR/.Brewfile.core" "Core"
       install_fonts
       install_stow
+      configure_macos_defaults
+      configure_dock
       ;;
     3) # Extras only
       install_brewfile "$DOTFILES_DIR/.Brewfile.extras" "Extras"
@@ -398,6 +431,8 @@ main() {
           stow)     install_stow ;;
           mise)     install_mise_runtimes ;;
           krew)     install_krew ;;
+          dock)     configure_dock ;;
+          macos)    configure_macos_defaults ;;
         esac
       done
       ;;

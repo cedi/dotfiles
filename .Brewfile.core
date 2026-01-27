@@ -115,6 +115,13 @@ brew "sops"
 brew "cosign"
 
 # ========================================
+# System Configuration
+# ========================================
+
+# Programmatically manage macOS Dock items
+brew "dockutil"
+
+# ========================================
 # System Monitoring
 # ========================================
 
