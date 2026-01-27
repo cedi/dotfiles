@@ -161,6 +161,12 @@ cask "1password"
 cask "orbstack"
 # Synology NAS file sync client
 cask "synology-drive"
+# Elgato Stream Deck configuration software
+cask "elgato-stream-deck"
+# Elgato device control center (lights, etc.)
+cask "elgato-control-center"
+# Elgato Facecam configuration software
+cask "elgato-camera-hub"
 
 # ========================================
 # Mac App Store Applications
