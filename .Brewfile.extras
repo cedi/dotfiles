@@ -26,15 +26,15 @@ tap "minio/stable"
 tap "robusta-dev/holmesgpt"
 # Media transcoding utilities
 tap "sandreas/tap"
+# A CLI for configuring "Night Shift" on macOS
+tap "smudge/smudge"
 
 # ========================================
 # Kubernetes Extras
 # ========================================
 
 # Lightweight Kubernetes clusters inside Docker
-brew "k3d"
-# Bootstrap k3s clusters on any remote host
-brew "k3sup"
+brew "kind"
 # Validate Kubernetes manifests against schemas
 brew "kubeconform"
 
@@ -107,6 +107,8 @@ brew "homeport/tap/termshot"
 brew "markdownlint-cli2"
 # GNU indent for C/C++ source formatting
 brew "gnu-indent"
+# A CLI for configuring "Night Shift" on macOS
+brew "smudge/smudge/nightlight"
 
 # ========================================
 # CI/CD & Automation
@@ -157,7 +159,7 @@ cask "1password"
 # Docker and Linux VM replacement
 cask "orbstack"
 # Synology NAS file sync client
-cask "synology-drive"
+#cask "synology-drive"
 # Elgato Stream Deck configuration software
 cask "elgato-stream-deck"
 # Elgato device control center (lights, etc.)
@@ -165,13 +167,13 @@ cask "elgato-control-center"
 # Elgato Facecam configuration software
 cask "elgato-camera-hub"
 # YubiKey management utility
-cask "yubico-yubikey-manager"
+cask "yubico-authenticator"
 # Write OS images to SD cards
 cask "raspberry-pi-imager"
 # Team messaging platform
 cask "slack"
 # Voice, video, and text chat
-cask "discord"
+#cask "discord"
 # API development and testing
 cask "postman"
 # AI-powered code editor
@@ -183,8 +185,8 @@ cask "cursor"
 # Requires being signed into the Mac App Store first
 
 # System monitoring in menu bar
-mas "iStatistica Pro", id: 1025822138
+#mas "iStatistica Pro", id: 1025822138
 # Apple's IDE (includes simulators, etc.)
-mas "Xcode", id: 497799835
+#mas "Xcode", id: 497799835
 # GitHub enhancements for Safari
 mas "Refined GitHub", id: 1519867270

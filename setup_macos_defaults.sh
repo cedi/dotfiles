@@ -308,73 +308,7 @@ configure_screenshots() {
   print_status "Screenshot format: PNG"
 
   # Disable shadow in screenshots
-  defaults write com.apple.screencapture disable-shadow -bool true
-  print_status "Screenshot shadow disabled"
-
-  # ── Screenshot Keyboard Shortcuts ──
-  # Symbolic hotkey IDs: 28=screen to file, 29=screen to clipboard,
-  #                      30=selection to file, 31=selection to clipboard, 184=options
-  # Modifier values: Shift=131072, Cmd=1048576, Ctrl=262144
-  # Shift+Cmd=1179648, Ctrl+Shift+Cmd=1441792
-
-  # Copy picture of selected area to clipboard: ⇧⌘S (instead of default ⌃⇧⌘4)
-  # S key: ASCII=115, keycode=1
-  defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 31 "
-    <dict>
-      <key>enabled</key><true/>
-      <key>value</key>
-      <dict>
-        <key>type</key><string>standard</string>
-        <key>parameters</key>
-        <array>
-          <integer>115</integer>
-          <integer>1</integer>
-          <integer>1179648</integer>
-        </array>
-      </dict>
-    </dict>
-  "
-  print_status "Copy selection to clipboard: ⇧⌘S"
-}
-
-# ═══════════════════════════════════════════════════════════════
-# Safari (if used)
-# ═══════════════════════════════════════════════════════════════
-
-configure_safari() {
-  print_header "Safari"
-
-  # Safari settings may fail on fresh installs due to sandboxing
-  # The container directory doesn't exist until Safari runs for the first time
-  local safari_prefs="$HOME/Library/Containers/com.apple.Safari/Data/Library/Preferences/com.apple.Safari"
-
-  # Check if Safari has been run (container exists)
-  if [[ ! -d "$HOME/Library/Containers/com.apple.Safari" ]]; then
-    echo -e "  ${YELLOW}○${NC} Safari container not found - run Safari once first, then re-run this script"
-    return 0
-  fi
-
-  # Show full URL in address bar
-  if defaults write "$safari_prefs" ShowFullURLInSmartSearchField -bool true 2>/dev/null; then
-    print_status "Show full URL"
-  else
-    echo -e "  ${YELLOW}○${NC} Could not set full URL preference (run Safari first)"
-  fi
-
-  # Enable developer menu
-  if defaults write "$safari_prefs" IncludeDevelopMenu -bool true 2>/dev/null &&
-     defaults write "$safari_prefs" WebKitDeveloperExtrasEnabledPreferenceKey -bool true 2>/dev/null; then
-    print_status "Developer menu enabled"
-  else
-    echo -e "  ${YELLOW}○${NC} Could not enable developer menu (run Safari first)"
-  fi
-
-  # Disable auto-open of "safe" downloads
-  if defaults write "$safari_prefs" AutoOpenSafeDownloads -bool false 2>/dev/null; then
-    print_status "Disabled auto-open safe downloads"
-  else
-    echo -e "  ${YELLOW}○${NC} Could not set safe downloads preference (run Safari first)"
-  fi
+  defaults write com.apple.screencapture disable-shadow -bool false
 }
 
 # ═══════════════════════════════════════════════════════════════
@@ -387,11 +321,6 @@ configure_activity_monitor() {
   # Show all processes
   defaults write com.apple.ActivityMonitor ShowCategory -int 0
   print_status "Show all processes"
-
-  # Sort by CPU usage
-  defaults write com.apple.ActivityMonitor SortColumn -string "CPUUsage"
-  defaults write com.apple.ActivityMonitor SortDirection -int 0
-  print_status "Sort by CPU usage (descending)"
 }
 
 # ═══════════════════════════════════════════════════════════════
@@ -437,9 +366,8 @@ configure_remote_login() {
   print_header "Remote Login (SSH)"
 
   # Check if already enabled
-  if systemsetup -getremotelogin 2>/dev/null | grep -q "On"; then
+  if sudo systemsetup -getremotelogin 2>/dev/null | grep -q "On"; then
     print_status "Remote Login already enabled"
-    return 0
   fi
 
   echo -e "  ${BLUE}→${NC} Enabling Remote Login (requires password)..."
@@ -447,11 +375,10 @@ configure_remote_login() {
   # Enable SSH
   sudo systemsetup -setremotelogin on
 
-  if systemsetup -getremotelogin 2>/dev/null | grep -q "On"; then
+  if sudo systemsetup -getremotelogin 2>/dev/null | grep -q "On"; then
     print_status "Remote Login (SSH) enabled"
   else
     echo -e "  ${YELLOW}○${NC} Failed to enable Remote Login"
-    return 1
   fi
 }
 
@@ -523,29 +450,10 @@ configure_computer_name() {
 configure_night_shift() {
   print_header "Night Shift"
 
-  # Night Shift is controlled by CoreBrightness framework
-  # Enable Night Shift on schedule (sunset to sunrise)
-  # This uses the private CoreBrightness framework via defaults
-
-  # Note: Full Night Shift control requires using the private CBBlueLightClient
-  # The most reliable way is via AppleScript or manual setup
-  # We'll set what we can via defaults
-
-  # Set schedule to sunset to sunrise (mode 1)
-  # Mode: 0 = off, 1 = sunset to sunrise, 2 = custom schedule
-  defaults write com.apple.CoreBrightness "CBBlueReductionStatus" -dict \
-    AutoBlueReductionEnabled -int 1 \
-    BlueLightReductionSchedule -dict \
-      DayStartHour -int 7 \
-      DayStartMinute -int 0 \
-      NightStartHour -int 22 \
-      NightStartMinute -int 0 \
-    BlueReductionMode -int 1 \
-    BlueReductionSunScheduleAllowed -bool true \
-    UserAutoBlueReductionEnabled -bool true 2>/dev/null || true
+  nightlight schedule start
+  nightlight temp 50
 
   print_status "Night Shift: Sunset to Sunrise"
-  echo -e "  ${YELLOW}Note: May need to toggle in System Settings to activate${NC}"
 }
 
 # ═══════════════════════════════════════════════════════════════
@@ -668,7 +576,6 @@ main() {
   configure_mouse
   configure_night_shift
   configure_screenshots
-  configure_safari
   configure_activity_monitor
   configure_login_items
   configure_raycast

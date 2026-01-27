@@ -12,7 +12,7 @@
 #   - Conditional: only adds installed apps
 #   - Grouped: uses small spacers for visual organization
 
-set -e
+#set -e
 
 # Colors
 GREEN='\033[0;32m'
@@ -127,32 +127,25 @@ configure_dock_apps() {
       add_app "/Applications/Google Chrome.app" "Chrome"
   fi
 
+  add_app "/System/Applications/Music.app" "Music"
   add_app "/Applications/1Password.app" "1Password"
 
-  # ────────────────────────────────────────────────────────────
-  # Group 2: Communication
-  # ────────────────────────────────────────────────────────────
-  add_spacer "Communication"
-  if [[ "$(hostname -s)" == "zoe" ]]; then
-    add_app "/Applications/Slack.app" "Slack"
-  else
-    add_app "/Applications/Telegram.app" "Telegram"
-  fi
-
-  # Password manager
-
-  add_spacer "Media & Productivity"
+  add_spacer "Productivity"
 
   # ────────────────────────────────────────────────────────────
   # Group 3: Media & Productivity
   # ────────────────────────────────────────────────────────────
-  add_app "/Applications/Obsidian.app" "Obsidian"
   if [[ "$(hostname -s)" == "zoe" ]]; then
-    add_app "/System/Applications/Calendar.app" "Calendar"
+    add_app "/Applications/Slack.app" "Slack"
+    add_app "$HOME/Applications/Chrome Apps.localized/Google Calendar.app" "Calendar"
+    add_app "$HOME/Applications/Chrome Apps.localized/Google Meet.app" "Meet"
+
   else
-    add_app "/System/Applications/Music.app" "Music"
+    add_app "/Applications/Telegram.app" "Telegram"
     add_app "/System/Applications/Calendar.app" "Calendar"
   fi
+
+  add_app "/Applications/Obsidian.app" "Obsidian"
 
   add_spacer "Development"
 
