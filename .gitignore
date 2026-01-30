@@ -12,3 +12,4 @@
 .azure/
 !.azure/config
 !.azure/az.completion
+.claude/
