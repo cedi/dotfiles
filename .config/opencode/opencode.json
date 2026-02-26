@@ -1,0 +1,12 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "default_agent": "talk",
+  "server": {
+    "hostname": "0.0.0.0",
+    "cors": [
+      "http://zoe.sphinx-map.ts.net",
+      "https://zoe.sphinx-map.ts.net",
+      "http://100.90.58.64"
+    ]
+  }
+}

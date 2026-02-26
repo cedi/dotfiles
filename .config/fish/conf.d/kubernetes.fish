@@ -40,3 +40,7 @@ end
 if type -q kubeval
     abbr -a kubeval 'kubeval --schema-location https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/ --ignore-missing-schemas --strict'
 end
+
+if type -q operator-sdk
+    operator-sdk completion fish | source
+end

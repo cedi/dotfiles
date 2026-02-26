@@ -56,3 +56,6 @@ tailscale.acl.hujson
 
 
 Dracula.itermcolors
+
+# Markdownlint config (repo-level, not symlinked)
+\.markdownlint\.json
