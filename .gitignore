@@ -13,3 +13,4 @@
 !.azure/config
 !.azure/az.completion
 .claude/
+.config/atuin/atuin-receipt.json
