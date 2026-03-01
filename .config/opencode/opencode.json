@@ -4,9 +4,12 @@
   "server": {
     "hostname": "0.0.0.0",
     "cors": [
+      "http://nyx.sphinx-map.ts.net",
+      "https://nyx.sphinx-map.ts.net",
       "http://zoe.sphinx-map.ts.net",
       "https://zoe.sphinx-map.ts.net",
-      "http://100.90.58.64"
+      "http://100.90.58.64",
+      "http://100.70.121.8"
     ]
   }
 }
