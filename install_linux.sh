@@ -67,32 +67,32 @@ EXTRAS_APT_PACKAGES=(
 
 while [[ $# -gt 0 ]]; do
   case $1 in
-    -y|--yes)
-      AUTO_YES=true
-      shift
-      ;;
-    -p|--preset)
-      PRESET="$2"
-      shift 2
-      ;;
-    -h|--help)
-      echo "Usage: $0 [OPTIONS]"
-      echo ""
-      echo "Options:"
-      echo "  -y, --yes              Non-interactive mode"
-      echo "  -p, --preset PRESET    Installation preset (full, core, server, extras)"
-      echo "  -h, --help             Show this help message"
-      echo ""
-      echo "Presets:"
-      echo "  full    - Workstation: all tools + runtimes + k8s"
-      echo "  core    - Dev server: shell, editor, k8s, cloud tools"
-      echo "  server  - Homelab/Pi: shell, editor, stow only (default)"
-      echo "  extras  - Extra apt packages only"
-      exit 0
-      ;;
-    *)
-      shift
-      ;;
+  -y | --yes)
+    AUTO_YES=true
+    shift
+    ;;
+  -p | --preset)
+    PRESET="$2"
+    shift 2
+    ;;
+  -h | --help)
+    echo "Usage: $0 [OPTIONS]"
+    echo ""
+    echo "Options:"
+    echo "  -y, --yes              Non-interactive mode"
+    echo "  -p, --preset PRESET    Installation preset (full, core, server, extras)"
+    echo "  -h, --help             Show this help message"
+    echo ""
+    echo "Presets:"
+    echo "  full    - Workstation: all tools + runtimes + k8s"
+    echo "  core    - Dev server: shell, editor, k8s, cloud tools"
+    echo "  server  - Homelab/Pi: shell, editor, stow only (default)"
+    echo "  extras  - Extra apt packages only"
+    exit 0
+    ;;
+  *)
+    shift
+    ;;
   esac
 done
 
@@ -110,15 +110,15 @@ print_status() {
   local status=$1
   local message=$2
   case $status in
-    "ok")      echo -e "  ${GREEN}✓${NC} $message" ;;
-    "skip")    echo -e "  ${YELLOW}○${NC} $message ${YELLOW}(already installed)${NC}" ;;
-    "install") echo -e "  ${BLUE}→${NC} $message" ;;
-    "error")   echo -e "  ${RED}✗${NC} $message" ;;
+  "ok") echo -e "  ${GREEN}✓${NC} $message" ;;
+  "skip") echo -e "  ${YELLOW}○${NC} $message ${YELLOW}(already installed)${NC}" ;;
+  "install") echo -e "  ${BLUE}→${NC} $message" ;;
+  "error") echo -e "  ${RED}✗${NC} $message" ;;
   esac
 }
 
 is_installed() {
-  command -v "$1" &> /dev/null
+  command -v "$1" &>/dev/null
 }
 
 confirm() {
@@ -130,10 +130,10 @@ confirm() {
 
 detect_arch() {
   case $(uname -m) in
-    x86_64)  echo "amd64" ;;
-    aarch64) echo "arm64" ;;
-    armv7l)  echo "arm" ;;
-    *)       echo "unknown" ;;
+  x86_64) echo "amd64" ;;
+  aarch64) echo "arm64" ;;
+  armv7l) echo "arm" ;;
+  *) echo "unknown" ;;
   esac
 }
 
@@ -216,7 +216,7 @@ install_eza() {
   print_status "install" "Adding eza repository..."
   sudo mkdir -p /etc/apt/keyrings
   wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg 2>/dev/null || true
-  echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list > /dev/null
+  echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list >/dev/null
   sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list 2>/dev/null || true
   sudo apt-get update
   sudo apt-get install -y eza
@@ -233,9 +233,9 @@ install_gh_cli() {
 
   print_status "install" "Adding GitHub CLI repository..."
   sudo mkdir -p /etc/apt/keyrings
-  wget -qO- https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg > /dev/null
+  wget -qO- https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg >/dev/null
   sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg
-  echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+  echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list >/dev/null
   sudo apt-get update
   sudo apt-get install -y gh
   print_status "ok" "GitHub CLI installed"
@@ -315,9 +315,12 @@ install_delta() {
   arch=$(detect_arch)
   local deb_arch
   case $arch in
-    amd64) deb_arch="amd64" ;;
-    arm64) deb_arch="arm64" ;;
-    *)     print_status "error" "Unsupported architecture for delta"; return 1 ;;
+  amd64) deb_arch="amd64" ;;
+  arm64) deb_arch="arm64" ;;
+  *)
+    print_status "error" "Unsupported architecture for delta"
+    return 1
+    ;;
   esac
 
   print_status "install" "Downloading delta..."
@@ -342,7 +345,7 @@ install_kubectl() {
   print_status "install" "Adding Kubernetes repository..."
   sudo mkdir -p /etc/apt/keyrings
   curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.31/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg 2>/dev/null || true
-  echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.31/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list > /dev/null
+  echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.31/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list >/dev/null
   sudo apt-get update
   sudo apt-get install -y kubectl
   print_status "ok" "kubectl installed"
@@ -575,6 +578,7 @@ run_server() {
   install_eza
   install_oh_my_posh
   install_zoxide
+  install_mise
   install_stow
 }
 
@@ -583,29 +587,29 @@ run_extras() {
 }
 
 run_custom() {
-  IFS=' ' read -ra components <<< "$(run_custom_menu)"
+  IFS=' ' read -ra components <<<"$(run_custom_menu)"
   ensure_dirs
   for comp in "${components[@]}"; do
     case $comp in
-      server_apt)  install_apt_packages "Server" "${SERVER_APT_PACKAGES[@]}" ;;
-      core_apt)    install_apt_packages "Core" "${CORE_APT_PACKAGES[@]}" ;;
-      extras_apt)  install_apt_packages "Extras" "${EXTRAS_APT_PACKAGES[@]}" ;;
-      eza)         install_eza ;;
-      gh)          install_gh_cli ;;
-      oh_my_posh)  install_oh_my_posh ;;
-      zoxide)      install_zoxide ;;
-      mise)        install_mise ;;
-      yq)          install_yq ;;
-      delta)       install_delta ;;
-      stow)        install_stow ;;
-      runtimes)    install_mise_runtimes ;;
-      k8s)
-        install_kubectl
-        install_kubectx
-        install_k9s
-        install_helm
-        ;;
-      krew)        install_krew ;;
+    server_apt) install_apt_packages "Server" "${SERVER_APT_PACKAGES[@]}" ;;
+    core_apt) install_apt_packages "Core" "${CORE_APT_PACKAGES[@]}" ;;
+    extras_apt) install_apt_packages "Extras" "${EXTRAS_APT_PACKAGES[@]}" ;;
+    eza) install_eza ;;
+    gh) install_gh_cli ;;
+    oh_my_posh) install_oh_my_posh ;;
+    zoxide) install_zoxide ;;
+    mise) install_mise ;;
+    yq) install_yq ;;
+    delta) install_delta ;;
+    stow) install_stow ;;
+    runtimes) install_mise_runtimes ;;
+    k8s)
+      install_kubectl
+      install_kubectx
+      install_k9s
+      install_helm
+      ;;
+    krew) install_krew ;;
     esac
   done
 }
@@ -630,35 +634,35 @@ main() {
   if [[ -n "$PRESET" ]]; then
     # Preset mode
     case $PRESET in
-      full)   choice="1" ;;
-      core)   choice="2" ;;
-      server) choice="3" ;;
-      extras) choice="4" ;;
-      *)
-        echo -e "${RED}Error: Unknown preset '$PRESET'. Use: full, core, server, extras${NC}"
-        exit 1
-        ;;
+    full) choice="1" ;;
+    core) choice="2" ;;
+    server) choice="3" ;;
+    extras) choice="4" ;;
+    *)
+      echo -e "${RED}Error: Unknown preset '$PRESET'. Use: full, core, server, extras${NC}"
+      exit 1
+      ;;
     esac
   elif $AUTO_YES; then
-    choice="3"  # Default to server in non-interactive mode
+    choice="3" # Default to server in non-interactive mode
   else
     choice=$(show_menu)
   fi
 
   case $choice in
-    1) run_full ;;
-    2) run_core ;;
-    3) run_server ;;
-    4) run_extras ;;
-    5) run_custom ;;
-    6)
-      echo "Exiting."
-      exit 0
-      ;;
-    *)
-      echo "Invalid option"
-      exit 1
-      ;;
+  1) run_full ;;
+  2) run_core ;;
+  3) run_server ;;
+  4) run_extras ;;
+  5) run_custom ;;
+  6)
+    echo "Exiting."
+    exit 0
+    ;;
+  *)
+    echo "Invalid option"
+    exit 1
+    ;;
   esac
 
   print_header "Done!"
