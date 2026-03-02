@@ -20,7 +20,6 @@
 		"hass":                "100.75.135.70",
 		"nuc":                 "100.122.149.90",
 		"idp":                 "100.94.137.32",
-		"cloud-gateway-ultra": "100.83.85.56",
 		"hass-schiltach":      "100.89.41.43",
 		"hole":                "100.65.216.48",
 	},
@@ -305,16 +304,12 @@
 		},
 		{
 			"src":    "cedi@github",
-			"dst":    ["cloud-gateway-ultra", "nuc"],
+			"dst":    ["nuc"],
 			"accept": ["cedi"],
 			"check":  ["root"],
 		},
-		{
-			"src":  "group:vpn",
-			"dst":  ["cloud-gateway-ultra"],
-			"deny": ["cedi", "root"],
-		},
 	],
 }
+
 
 
