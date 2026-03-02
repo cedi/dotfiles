@@ -250,7 +250,7 @@
 		{
 			"src":    "x1bay@github",
 			"proto":  "tcp",
-			"accept": ["nas:5000", "idp:443", "hass:8123"],
+			"accept": ["nas:5000", "hass:8123"],
 			"deny":   ["hass-schiltach:8123"],
 		},
 		{
@@ -310,6 +310,7 @@
 		},
 	],
 }
+
 
 
 
