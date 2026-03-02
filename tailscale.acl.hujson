@@ -40,6 +40,7 @@
 		"tag:o11y-endpoint":  ["group:admins", "tag:k8s-operator"], // Devices tagged with tag:o11y-endpoint accept o11y data send by o11-collector
 		"tag:jumphost":       ["group:admins"], // Devices tagged with tag:jumphost are allowed to initiate SSH connections via tailscale-ssh
 		"tag:homelab":        ["group:admins", "tag:k3s-operator"], // Devices tagged with tag:homelab should be considered as experimental devices running test workloads
+		"tag:opencode":       ["group:admins"], // Devices tagged with tag:opencode are running the OpenCode Web UI
 	},
 
 	"nodeAttrs": [
@@ -315,4 +316,5 @@
 		},
 	],
 }
+
 
