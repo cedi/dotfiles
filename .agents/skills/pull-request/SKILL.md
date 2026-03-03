@@ -2,7 +2,7 @@
 name: pull-request
 description: Create GitHub pull requests using the gh CLI with conventional commit
   titles and structured, human-written descriptions that cover goal, rationale,
-  and concrete before/after examples where applicable.
+  and concrete code examples woven into the narrative.
 ---
 
 # Pull Request Creation
@@ -51,44 +51,28 @@ Examples:
 
 ### Description: Structured but Human
 
-The description should be easy to scan and technically useful, while still reading like a real person wrote it. Use lightweight section headers to give structure, but write the content in a natural voice. No corporate jargon, no LLM filler.
+The description should be easy to scan and technically useful, while still reading like a real person wrote it. No corporate jargon, no LLM filler.
 
-**Structure:**
+**What to cover:**
 
-Use these sections as a template. Skip any that don't apply. Headers should be simple `##` markdown headers with short, plain names.
+A good PR description answers these questions, roughly in this order:
 
-```
-## Goal
+- What are we doing and why?
+- Why this approach over the alternatives?
+- What changed, at the level of detail a reviewer needs before opening the diff?
+- Anything to watch out for (edge cases, compatibility, operational impact)?
 
-What this change sets out to accomplish, in one or two sentences. State the
-outcome, not the mechanics.
+These map loosely to Goal, Rationale, Changes, and Notes sections, and those headers are reasonable defaults. But they're not mandatory containers. Use your judgement. A small fix might only need a Goal paragraph and a sentence of rationale, with no headers at all. A larger change might merge rationale into the goal section because they flow naturally together, or break Changes into `###` subheadings organized by logical concern. The structure should emerge from the content, not the other way around.
 
-## Rationale
+The only hard rule: every description should make the *why* clear. The diff shows *what* changed. The description's job is to explain the reasoning, context, and trade-offs that the diff can't convey.
 
-Why we're doing this now, and why this particular approach. What's the context?
-What alternatives were considered and why they didn't win? This is where the
-reasoning lives, and it's the most valuable part of the description for
-reviewers.
+**Using code in descriptions:**
 
-## Changes
+Code snippets belong wherever they make the description clearer. Don't isolate them in a separate section. Embed them in the goal (to show what the feature looks like for users), alongside design reasoning (to illustrate a trade-off), or in the change summary (to show a key mechanism).
 
-A concise summary of what actually changed, written for someone who hasn't
-looked at the diff yet. Focus on the important moving parts, not a file-by-file
-inventory. A short paragraph or a few bullet points both work, whichever fits
-the change better.
+The code is illustrative, not comparative. Show "here's how it looks" or "here's the key mechanism," not a before-then-after exhibit. After a code block, add a brief sentence explaining its implication.
 
-## Before / After
-
-(Optional) When behavior changes in a way that's easier to show than explain,
-include concrete examples. Code snippets, API responses, CLI output, UI states,
-whatever makes the difference clear. Skip this for refactors or internal
-plumbing where there's no user-visible change.
-
-## Notes
-
-(Optional) Anything reviewers should know: edge cases, follow-up work,
-migration steps, risks, things to watch in production. Keep it short.
-```
+Scale depth to importance. Key mechanisms get a code snippet and explanation. Peripheral changes get a sentence. Don't try to be exhaustive.
 
 **Voice rules:**
 
@@ -109,47 +93,54 @@ Don't pad. If the change is small, the description should be small. A two-line g
 ```
 ## Goal
 
-Let Enterprise customers do bulk imports without hitting rate limits.
+Allow operators to tune reconciliation intervals per-config at runtime,
+without redeploying.
 
 ## Rationale
 
-We've been getting support tickets from Enterprise customers who hit the
-100/min rate limit during bulk imports. That limit was set conservatively
-when we first launched the API and doesn't account for plan tiers.
+All requeue intervals (phase progression, deletion cleanup, steady-state
+re-check) were hardcoded as Go constants. Changing them required a code
+change and a new release. In production, different configs need different
+tuning: a high-churn config benefits from faster phase polling, while a
+stable one can poll less aggressively to reduce API server load.
 
-I went with a token-bucket algorithm instead of the existing sliding window
-because it handles bursts better, which is exactly the import use case. A
-sliding window would still throttle legitimate bursts even with a higher
-ceiling.
+```yaml
+spec:
+  reconcile:
+    reconcileInterval: 10m
+    phaseRequeueInterval: 15s
+```
+
+The PhasedReconciler is a singleton per controller type, not per CR
+instance, so struct-level interval fields can't vary between instances.
+A callback-based resolver solves this (more on that in Changes).
 
 ## Changes
 
-The rate limiting middleware now checks the user's plan tier and applies
-different limits (Enterprise gets 500/min, up from the flat 100/min). The
-token-bucket implementation replaces the sliding window in the hot path
-but the old code is still available behind a feature flag in case we need
-to roll back.
+New `ReconcileConfig` type with four optional duration fields, each with
+CEL validation on the CRD and defense-in-depth clamping in Go accessor
+methods.
 
-## Before / After
+Parent controllers read intervals from the config and propagate them to
+children. Child controllers resolve per-object intervals via a callback:
 
+```go
+phased.WithRequeueResolver(func(_ context.Context, obj *v1.ServiceSLO) phased.RequeueIntervals {
+    rc := obj.Spec.Reconcile
+    return phased.RequeueIntervals{
+        Phase:     rc.GetPhaseRequeueInterval(),
+        Reconcile: rc.GetReconcileInterval(),
+    }
+})
 ```
-# Before: Enterprise user during bulk import
-HTTP 429 Too Many Requests
-X-RateLimit-Limit: 100
-X-RateLimit-Remaining: 0
 
-# After: same user, same load
-HTTP 200 OK
-X-RateLimit-Limit: 500
-X-RateLimit-Remaining: 342
-X-RateLimit-Plan: enterprise
-```
+The resolver takes precedence when set, falling back to struct-level
+defaults when fields are nil.
 
 ## Notes
 
-The response now includes an `X-RateLimit-Plan` header. This is additive
-and non-breaking, but worth knowing about if you maintain API client
-libraries.
+Fully backwards-compatible. All fields are optional with the same defaults
+as the previous hardcoded values.
 ```
 
 **Bad description (don't do this):**
@@ -225,7 +216,7 @@ Based on the full set of changes, write a conventional commit title. Pick the ty
 
 ### Step 5: Write the Description
 
-Follow the section template (Goal, Rationale, Changes, Before/After, Notes). Skip sections that don't apply. Write the Goal and Rationale first since those are the most valuable parts for reviewers, then fill in the rest.
+Follow the "what to cover" guidance above. Start with the goal and reasoning since those are the most valuable parts for reviewers, then fill in what changed and any caveats. Let the content dictate the structure. Use section headers when they help scanability, skip them when the description is short enough without them. Embed code snippets wherever they make the text clearer.
 
 If the change is small and obvious, Goal + Rationale might be all you need. Don't pad.
 

@@ -352,6 +352,10 @@ Testing:
 □ Learning curve improving over time
 ```
 
+## Writing Style
+
+Never use em-dashes. Use commas, periods, or parentheses instead.
+
 ## Resources
 
 - [Cognitive Load Theory - John Sweller](https://www.instructionaldesign.org/theories/cognitive-load/)

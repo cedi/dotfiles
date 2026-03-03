@@ -368,6 +368,10 @@ Near CTA:
 □ Privacy commitment
 ```
 
+## Writing Style
+
+Never use em-dashes. Use commas, periods, or parentheses instead.
+
 ## Resources
 
 - [Don't Make Me Think - Steve Krug](https://sensible.com/dont-make-me-think/)

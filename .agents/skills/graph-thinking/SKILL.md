@@ -351,6 +351,10 @@ Bottleneck: Auth Service (single point of failure)
 - **Neo4j** - Graph database for complex queries
 - **NetworkX** - Python library for graph algorithms
 
+## Writing Style
+
+Never use em-dashes. Use commas, periods, or parentheses instead.
+
 ## Resources
 
 - [Graph of Thoughts: ArXiv Paper](https://arxiv.org/abs/2308.09687)

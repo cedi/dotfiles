@@ -419,6 +419,10 @@ Prompt Optimization:
 □ Contextually relevant
 ```
 
+## Writing Style
+
+Never use em-dashes. Use commas, periods, or parentheses instead.
+
 ## Resources
 
 - [BJ Fogg's Behavior Model](https://behaviormodel.org/)

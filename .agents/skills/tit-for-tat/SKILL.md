@@ -359,6 +359,10 @@ When applying TFT, consider:
    - 1:1 → TFT works well
    - Group → More complex dynamics
 
+## Writing Style
+
+Never use em-dashes. Use commas, periods, or parentheses instead.
+
 ## Resources
 
 - [The Evolution of Cooperation - Robert Axelrod](https://www.goodreads.com/book/show/366821.The_Evolution_of_Cooperation)

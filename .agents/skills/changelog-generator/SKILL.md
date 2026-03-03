@@ -95,6 +95,7 @@ guidelines from CHANGELOG_STYLE.md
 - Use your CHANGELOG_STYLE.md for consistent formatting
 - Review and adjust the generated changelog before publishing
 - Save output directly to CHANGELOG.md
+- Never use em-dashes in generated output. Use commas, periods, or parentheses instead.
 
 ## Related Use Cases
 

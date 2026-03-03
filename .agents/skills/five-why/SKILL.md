@@ -247,11 +247,12 @@ Solutions:
 
 ## Communication Tips
 
-- Give people time to respond - embrace silence
+- Give people time to respond, embrace silence
 - Ask one question at a time
 - Resist the urge to clarify before they answer
 - Focus on curiosity rather than interrogation
 - Frame as collaborative problem-solving
+- Never use em-dashes. Use commas, periods, or parentheses instead.
 
 ## Integration with Other Methods
 

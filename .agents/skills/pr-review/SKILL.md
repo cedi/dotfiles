@@ -93,9 +93,11 @@ For multi-line comments, use `start_line` and `line` together to highlight a ran
 
 Comments should read like they came from a human reviewer.
 
-Write in plain prose. Explain what the problem is, why it matters operationally, and suggest what to do instead. If a code snippet makes the suggestion clearer, include one, but don't force a before/after block on every comment.
+Explain what the problem is, why it matters operationally, and what to do instead. When suggesting a different approach, show it in code. A short before/after or a pseudo-code sketch of the intended flow is almost always more useful than describing it in prose. Keep snippets focused (3-8 lines, not full rewrites). If the issue is purely about naming, documentation, or high-level architecture, prose alone is fine.
 
-Don't use emojis, severity labels, or templated formats in the comment body. No "**Problem:**" or "**Suggestion:**" prefixes. Just talk.
+Don't use emojis, severity labels, or templated formats in the comment body. No "**Problem:**" or "**Suggestion:**" prefixes.
+
+Never use em-dashes. Use commas, periods, or parentheses instead.
 
 Keep each comment focused on one thing. If a single line has two separate issues, post two comments.
 

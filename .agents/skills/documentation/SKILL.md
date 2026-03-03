@@ -423,6 +423,7 @@ Announce document completion. Provide a few final tips:
 - Be direct and procedural
 - Explain rationale briefly when it affects user behavior
 - Don't try to "sell" the approach - just execute it
+- Never use em-dashes. Use commas, periods, or parentheses instead.
 
 **Handling Deviations:**
 
