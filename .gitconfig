@@ -15,6 +15,7 @@
 [user]
     name = Cedric Specht
     email = cedric@specht-labs.de
+    signingkey = ~/.ssh/id_ed25519.pub
 
 [github]
     user = cedi
@@ -46,7 +47,16 @@
     }; f"
 
 [gpg]
-    program = gpg2
+    format = ssh
+
+[gpg "ssh"]
+    allowedSignersFile = ~/.ssh/allowed_signers
+
+[commit]
+    gpgsign = true
+
+[tag]
+    gpgsign = true
 
 [init]
     defaultBranch = main
