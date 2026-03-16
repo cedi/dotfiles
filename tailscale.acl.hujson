@@ -200,37 +200,40 @@
 				"9666", // compute-blade-agent
 			],
 		},
-		//    // Manage tsidp extraClaims
-		//    {
-		//      "src": ["group:admins"],
-		//      "dst": ["*"],
-		//      "ip":  ["*"],
-		//      "app": {
-		//        "tailscale.com/cap/tsidp": [
-		//          {
-		//            "includeInUserInfo": true,
-		//            "extraClaims": {
-		//              "groups": ["admin"],
-		//            },
-		//          }
-		//        ]
-		//      }
-		//    },
-		//    {
-		//      "src": ["group:reader"],
-		//      "dst": ["*"],
-		//      "ip":  ["*"],
-		//      "app": {
-		//        "tailscale.com/cap/tsidp": [
-		//          {
-		//            "includeInUserInfo": true,
-		//            "extraClaims": {
-		//              "groups": ["reader"],
-		//            },
-		//          }
-		//        ]
-		//      }
-		//    }
+		// Manage tsidp extraClaims
+		{
+		  "src": ["group:admins"],
+		  "dst": ["*"],
+		  "ip":  ["*"],
+		  "app": {
+		    "tailscale.com/cap/tsidp": [
+		      {
+          // allow access to UI
+          "allow_admin_ui": true,
+
+          // allow dynamic client registration
+          "allow_dcr": true,
+
+          // Secure Token Service (STS) controls
+          "users":     ["*"],
+          "resources": ["*"],
+
+          // extraClaims are included in the id_token
+          // recommend: keep this small and simple
+          "extraClaims": {
+            "bools": true,
+            "strings": "Mon Jan 2 15:04:05 MST 2006",
+            "numbers": 180,
+            "array1": [1,2,3],
+            "array2": ["one", "two", "three"]
+          },
+
+          // include extraClaims data in /userinfo response
+          "includeInUserInfo": true,
+		      }
+		    ]
+		  }
+		},
 	],
 
 	"tests": [
