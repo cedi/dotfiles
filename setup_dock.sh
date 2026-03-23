@@ -156,7 +156,9 @@ configure_dock_apps() {
     add_app "/Applications/iTerm.app" "iTerm" ||
     add_app "/System/Applications/Utilities/Terminal.app" "Terminal"
 
-  add_app "/Applications/Cursor.app" "Cursor"
+  add_app "/Applications/cmux.app" "cmux"
+  add_app "/Applications/Cursor.app" "Cursor" ||
+    add_app "/Applications/Visual Studio Code.app" "VSCode"
 
   add_spacer ""
 }

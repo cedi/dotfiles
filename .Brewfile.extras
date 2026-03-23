@@ -28,6 +28,8 @@ tap "robusta-dev/holmesgpt"
 tap "sandreas/tap"
 # A CLI for configuring "Night Shift" on macOS
 tap "smudge/smudge"
+# A lightweight, native macOS terminal built on Ghostty for managing multiple AI coding agents
+tap manaflow-ai/cmux
 
 # ========================================
 # Kubernetes Extras
@@ -142,6 +144,8 @@ cask "inkscape"
 cask "jordanbaird-ice"
 # Terminal emulator with platform-native UI and GPU acceleration
 cask "ghostty"
+# Terminal emulator with a lightweight, native macOS terminal built on Ghostty for managing multiple AI coding agents. 
+cask "cmux"
 # Note-taking with Markdown and bidirectional linking
 cask "obsidian"
 # VPN mesh networking

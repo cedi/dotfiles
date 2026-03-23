@@ -30,6 +30,10 @@ permission:
     "git status*": allow
     "git blame*": allow
     "git stash list*": allow
+    "gh pr diff *": allow
+    "gh pr view *": allow
+    "gh repo view *": allow
+    "git fetch *": allow
     # system/environment
     "which *": allow
     "env": allow
@@ -37,6 +41,7 @@ permission:
     "uname*": allow
     "sw_vers*": allow
     "defaults read*": allow
+    "echo*": allow
     # dependency/package
     "brew list*": allow
     "brew info*": allow
@@ -52,12 +57,15 @@ permission:
     "tree*": allow
     "du *": allow
     "grep *": allow
+    "head *": allow
     # network/config
     "curl --head*": allow
     "curl -I*": allow
     "host *": allow
     "dig *": allow
     "ping -c*": allow
+    # jira
+    "jira issue view *": allow
   webfetch: allow
 color: "#81c8be"
 temperature: 0.8
