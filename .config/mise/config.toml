@@ -41,7 +41,7 @@ experimental = true
 node = "lts"
 
 # Python - latest 3.12.x
-python = "3.14.3"
+python = "3.14.4"
 
 # Go - latest stable
 go = "latest"
