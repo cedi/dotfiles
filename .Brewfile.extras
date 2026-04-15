@@ -166,10 +166,6 @@ cask "orbstack"
 #cask "synology-drive"
 # Elgato Stream Deck configuration software
 cask "elgato-stream-deck"
-# Elgato device control center (lights, etc.)
-cask "elgato-control-center"
-# Elgato Facecam configuration software
-cask "elgato-camera-hub"
 # YubiKey management utility
 cask "yubico-authenticator"
 # Write OS images to SD cards
