@@ -62,11 +62,9 @@ configure_appearance() {
 configure_menubar() {
   print_header "Menu Bar"
 
-  # Auto-hide menu bar: In Full Screen Only
-  # 0 = Never, 1 = In Full Screen Only, 2 = Always
-  defaults write NSGlobalDomain AppleMenuBarVisibleInFullscreen -bool true
+  # Don't auto-hide the menu bar
   defaults write NSGlobalDomain _HIHideMenuBar -bool false
-  print_status "Menu bar: visible (auto-hide in full screen only)"
+  print_status "Menu bar: visible (no auto-hide)"
 
   # Recent documents, applications and servers
   defaults write NSGlobalDomain NSRecentDocumentsLimit -int 10
@@ -167,6 +165,10 @@ configure_finder() {
   defaults write com.apple.finder ShowPathbar -bool true
   print_status "Show path bar"
 
+  # Show full POSIX path in Finder window title (pairs with column view)
+  defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+  print_status "Show full POSIX path in title"
+
   # Show status bar
   defaults write com.apple.finder ShowStatusBar -bool true
   print_status "Show status bar"
@@ -187,6 +189,14 @@ configure_finder() {
   defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
   defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
   print_status "Disabled .DS_Store on network/USB volumes"
+
+  # Save new documents to disk (not iCloud) by default
+  defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+  print_status "Default save location: local disk"
+
+  # Don't auto-launch Photos when a camera or SD card is connected
+  defaults write com.apple.ImageCapture disableHotPlug -bool true
+  print_status "Disabled Photos auto-launch on camera connect"
 }
 
 # ═══════════════════════════════════════════════════════════════
@@ -203,6 +213,10 @@ configure_keyboard() {
   # Short delay until repeat
   defaults write NSGlobalDomain InitialKeyRepeat -int 15
   print_status "Short delay until key repeat"
+
+  # Disable press-and-hold accent picker so vim/Neovim key repeat works
+  defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+  print_status "Press-and-hold disabled (key repeat for vim/Neovim)"
 
   # Disable auto-correct
   defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
@@ -304,7 +318,8 @@ configure_screenshots() {
   print_status "Screenshot format: PNG"
 
   # Disable shadow in screenshots
-  defaults write com.apple.screencapture disable-shadow -bool false
+  defaults write com.apple.screencapture disable-shadow -bool true
+  print_status "Screenshot shadow: disabled"
 }
 
 # ═══════════════════════════════════════════════════════════════
@@ -364,6 +379,7 @@ configure_remote_login() {
   # Check if already enabled
   if sudo systemsetup -getremotelogin 2>/dev/null | grep -q "On"; then
     print_status "Remote Login already enabled"
+    return 0
   fi
 
   echo -e "  ${BLUE}→${NC} Enabling Remote Login (requires password)..."
@@ -390,7 +406,7 @@ configure_security() {
     print_status "Gatekeeper already enabled"
   else
     echo -e "  ${BLUE}→${NC} Enabling Gatekeeper (requires password)..."
-    sudo spctl --master-enable
+    sudo spctl --global-enable
     print_status "Gatekeeper enabled"
   fi
   print_status "Allow apps from: App Store & Known Developers"
@@ -445,6 +461,11 @@ configure_computer_name() {
 
 configure_night_shift() {
   print_header "Night Shift"
+
+  if ! command -v nightlight &>/dev/null; then
+    echo -e "  ${YELLOW}○${NC} nightlight not installed (brew install smudge/smudge/nightlight)"
+    return 0
+  fi
 
   nightlight schedule start
   nightlight temp 50
@@ -506,14 +527,9 @@ configure_login_items() {
   add_login_item "/Applications/Raycast.app" "Raycast"
   add_login_item "/Applications/1Password.app" "1Password"
   add_login_item "/Applications/iStatistica Pro.app" "iStatistica Pro"
-  add_login_item "/Applications/Rectangle.app" "Rectangle"
   add_login_item "/Applications/Ice.app" "Ice"
-  add_login_item "/Applications/BetterMouse.app" "BetterMouse"
   add_login_item "/Applications/OrbStack.app" "OrbStack"
   add_login_item "/Applications/Elgato Control Center.app" "Elgato Control Center"
-  add_login_item "/Applications/Bartender 5.app" "Bartender 5"
-  add_login_item "/Applications/Alfred 5.app" "Alfred 5"
-  add_login_item "/Applications/Synology Drive Client.app" "Synology Drive Client"
 }
 
 # ═══════════════════════════════════════════════════════════════

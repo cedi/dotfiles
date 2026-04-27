@@ -57,7 +57,7 @@ CORE_APT_PACKAGES=(
 # Extra packages (networking, media, build tools)
 EXTRAS_APT_PACKAGES=(
   mosh socat rsync tcpdump
-  lldpad neofetch
+  lldpad fastfetch
   apt-transport-https
 )
 
@@ -518,7 +518,7 @@ run_custom_menu() {
 
   confirm "  Server APT packages (fish, tmux, neovim, etc.)?" && components+=("server_apt")
   confirm "  Core APT packages (build-essential, jq, python)?" && components+=("core_apt")
-  confirm "  Extra APT packages (mosh, tcpdump, neofetch)?" && components+=("extras_apt")
+  confirm "  Extra APT packages (mosh, tcpdump, fastfetch)?" && components+=("extras_apt")
   confirm "  eza (modern ls)?" && components+=("eza")
   confirm "  GitHub CLI?" && components+=("gh")
   confirm "  oh-my-posh (prompt theme)?" && components+=("oh_my_posh")
