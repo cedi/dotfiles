@@ -69,6 +69,8 @@ brew "yq"
 brew "tree"
 # Render Markdown files in terminal
 brew "glow"
+# Modern command runner (Makefile alternative)
+brew "just"
 
 # ========================================
 # Version Control
@@ -80,8 +82,10 @@ brew "git"
 brew "gh"
 # Enhanced diff viewer for Git output
 brew "git-delta"
-# Colorized diff utility
-brew "colordiff"
+# Structural diff that understands syntax
+brew "difftastic"
+# Terminal UI for git operations
+brew "lazygit"
 
 # ========================================
 # Editor
@@ -166,3 +170,5 @@ brew "hcloud"
 
 # Language server for Terraform configuration
 brew "hashicorp/tap/terraform-ls"
+# OpenTofu - open-source Terraform fork
+brew "opentofu"

@@ -77,6 +77,8 @@
 
 [delta]
     navigate = true    # use n and N to move between diff sections
+    dark = true        # skip OSC 11 background-color query (cmux PTY can't proxy responses)
+    syntax-theme = Dracula
 
 [merge]
     conflictstyle = diff3

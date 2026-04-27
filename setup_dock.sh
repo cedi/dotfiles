@@ -118,12 +118,12 @@ configure_dock_apps() {
   # Browser: Chrome on work mac (zoe), Safari elsewhere
   if [[ "$(hostname -s)" == "zoe" ]]; then
     add_app "/Applications/Google Chrome.app" "Chrome" ||
-      add_app "/Applications/Arc.app" "Arc" ||
+      add_app "/Applications/Helium.app" "Helium" ||
       add_app "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" "Safari"
   else
-    add_app "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" "Safari" ||
+    add_app "/Applications/Helium.app" "Helium" ||
+      add_app "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" "Safari" ||
       add_app "/Applications/Safari.app" "Safari" ||
-      add_app "/Applications/Arc.app" "Arc" ||
       add_app "/Applications/Google Chrome.app" "Chrome"
   fi
 
@@ -152,11 +152,11 @@ configure_dock_apps() {
   # ────────────────────────────────────────────────────────────
   # Group 4: Development Tools
   # ────────────────────────────────────────────────────────────
-  add_app "/Applications/Ghostty.app" "Ghostty" ||
+  add_app "/Applications/cmux.app" "cmux" ||
+    add_app "/Applications/Ghostty.app" "Ghostty" ||
     add_app "/Applications/iTerm.app" "iTerm" ||
     add_app "/System/Applications/Utilities/Terminal.app" "Terminal"
 
-  add_app "/Applications/cmux.app" "cmux"
   add_app "/Applications/Cursor.app" "Cursor" ||
     add_app "/Applications/Visual Studio Code.app" "VSCode"
 

@@ -29,7 +29,9 @@ tap "sandreas/tap"
 # A CLI for configuring "Night Shift" on macOS
 tap "smudge/smudge"
 # A lightweight, native macOS terminal built on Ghostty for managing multiple AI coding agents
-tap manaflow-ai/cmux
+tap "manaflow-ai/cmux"
+# Flux GitOps toolkit
+tap "fluxcd/tap"
 
 # ========================================
 # Kubernetes Extras
@@ -39,6 +41,16 @@ tap manaflow-ai/cmux
 brew "kind"
 # Validate Kubernetes manifests against schemas
 brew "kubeconform"
+# Explore Docker image layers and find wasted space
+brew "dive"
+# Manage SealedSecrets for GitOps workflows
+brew "kubeseal"
+# Flux CLI for GitOps continuous delivery
+brew "fluxcd/tap/flux"
+# Argo CD CLI for declarative GitOps
+brew "argocd"
+# Inspect and manage container images and registries
+brew "crane"
 
 # ========================================
 # Build & Compilation Tools
@@ -67,10 +79,12 @@ brew "ipcalc"
 brew "iproute2mac"
 # Mobile shell for resilient SSH connections
 brew "mosh"
-# Classic telnet client for legacy systems
-brew "telnet"
 # Non-interactive network downloader
 brew "wget"
+# Modern HTTP client (HTTPie clone, in Rust)
+brew "xh"
+# Statistical command-line benchmarking tool
+brew "hyperfine"
 
 # ========================================
 # Media & Imaging
@@ -93,22 +107,36 @@ brew "libheif"
 # CLI Utilities & Productivity
 # ========================================
 
+# Magical shell history with sync, search, and stats
+brew "atuin"
 # Interactive cheatsheet navigator for the terminal
 brew "navi"
-# System info dashboard for shell screenshots
-brew "neofetch"
-# Context-aware correction of previous console commands
-brew "thefuck"
+# Modern system info dashboard (replaces archived neofetch)
+brew "fastfetch"
 # Community-driven TL;DR cheatsheets viewer
 brew "tldr"
 # Count lines of code across languages
 brew "cloc"
+# Fast, accurate code statistics by language
+brew "tokei"
 # Capture terminal output as shareable images
 brew "homeport/tap/termshot"
 # Markdown linter with extensible rules
 brew "markdownlint-cli2"
-# GNU indent for C/C++ source formatting
-brew "gnu-indent"
+# Prose linter for documentation
+brew "vale"
+# Terminal file manager with image previews
+brew "yazi"
+# More intuitive du in Rust
+brew "dust"
+# Modern, colorful ps replacement
+brew "procs"
+# Intuitive find/sed alternative
+brew "sd"
+# Make JSON greppable
+brew "gron"
+# AI on the command line (Charm)
+brew "mods"
 # A CLI for configuring "Night Shift" on macOS
 brew "smudge/smudge/nightlight"
 
@@ -118,12 +146,6 @@ brew "smudge/smudge/nightlight"
 
 # Run GitHub Actions workflows locally
 brew "act"
-# ========================================
-# Cloud Storage
-# ========================================
-
-# Backblaze B2 storage management utilities
-brew "b2-tools"
 
 # ========================================
 # Mac App Store CLI
@@ -136,24 +158,22 @@ brew "mas"
 # Homebrew Casks (GUI Applications)
 # ========================================
 
-# Remove outdated Xcode caches to reclaim disk space
-cask "devcleaner"
 # Vector illustration editor for SVG workflows
 cask "inkscape"
 # Customize macOS menu bar icons
 cask "jordanbaird-ice"
 # Terminal emulator with platform-native UI and GPU acceleration
 cask "ghostty"
-# Terminal emulator with a lightweight, native macOS terminal built on Ghostty for managing multiple AI coding agents. 
-cask "cmux"
+# Lightweight native macOS terminal built on Ghostty for managing multiple AI coding agents
+# Pinned manually to 0.62.2 Build 77 due to cmux PTY regression in 0.63.x
+# See https://github.com/manaflow-ai/cmux/issues/2636
+# cask "cmux"
 # Note-taking with Markdown and bidirectional linking
 cask "obsidian"
 # VPN mesh networking
 cask "tailscale"
 # Spotlight replacement with extensions
 cask "raycast"
-# Kubernetes IDE
-cask "lens"
 # Encrypted messaging
 cask "signal"
 # Messaging app
@@ -174,8 +194,8 @@ cask "raspberry-pi-imager"
 cask "slack"
 # Voice, video, and text chat
 #cask "discord"
-# API development and testing
-cask "postman"
+# API client and design platform (Postman alternative)
+cask "bruno"
 # AI-powered code editor
 cask "cursor"
 
