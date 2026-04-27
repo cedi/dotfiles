@@ -30,12 +30,12 @@
   "secondary_prompt": {
     "template": " ❯❯ ",
     "foreground": "p:foreground",
-    "background": "transparent"
+    "background": "p:background"
   },
   "transient_prompt": {
     "template": "{{ .PWD }} ❯ ",
     "foreground": "p:foreground",
-    "background": "transparent"
+    "background": "p:background"
   },
   "console_title_template": "{{ .PWD }} :: {{ .UserName }}@{{ .HostName }}",
   "blocks": [
