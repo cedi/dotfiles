@@ -34,10 +34,6 @@ tap "manaflow-ai/cmux"
 tap "fluxcd/tap"
 # Talos Linux CLI for homelab clusters
 tap "siderolabs/tap"
-# Azure AD authentication plugin for kubectl
-tap "Azure/kubelogin"
-# Generic OIDC kubectl plugin
-tap "int128/kubelogin"
 
 # ========================================
 # Kubernetes Extras
@@ -59,11 +55,6 @@ brew "argocd"
 brew "siderolabs/tap/talosctl"
 # Inspect and manage container images and registries
 brew "crane"
-# Azure AD client-go credential plugin (kubectl + AKS)
-brew "Azure/kubelogin/kubelogin"
-# OIDC kubectl plugin (kubectl oidc-login). Note: binary name `kubelogin` collides
-# with Azure/kubelogin/kubelogin above; pick one if `brew bundle` complains.
-brew "int128/kubelogin/kubelogin"
 
 # ========================================
 # Build & Compilation Tools
