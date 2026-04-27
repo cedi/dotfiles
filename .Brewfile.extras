@@ -32,8 +32,6 @@ tap "smudge/smudge"
 tap "manaflow-ai/cmux"
 # Flux GitOps toolkit
 tap "fluxcd/tap"
-# Talos Linux CLI for homelab clusters
-tap "siderolabs/tap"
 
 # ========================================
 # Kubernetes Extras
@@ -51,8 +49,6 @@ brew "kubeseal"
 brew "fluxcd/tap/flux"
 # Argo CD CLI for declarative GitOps
 brew "argocd"
-# Talos Linux CLI for managing homelab clusters
-brew "siderolabs/tap/talosctl"
 # Inspect and manage container images and registries
 brew "crane"
 
