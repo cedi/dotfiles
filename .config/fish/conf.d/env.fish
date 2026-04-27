@@ -9,6 +9,11 @@ set -q EDITOR; or set -x EDITOR nvim
 set -q VISUAL; or set -x VISUAL nvim
 set -q PAGER; or set -x PAGER less
 
+# Tell terminal-aware tools we're dark-on-light so they skip OSC 11 / ?997
+# capability queries. Respected by bat, delta, vim, and most ratatui TUIs.
+# Also a small per-prompt perf win on every terminal.
+set -q COLORFGBG; or set -x COLORFGBG "15;0"
+
 # Go settings (persistent defaults)
 set -q GO111MODULE; or set -x GO111MODULE on
 
