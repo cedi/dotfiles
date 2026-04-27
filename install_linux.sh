@@ -50,6 +50,8 @@ CORE_APT_PACKAGES=(
   "${SERVER_APT_PACKAGES[@]}"
   build-essential
   ca-certificates
+  libdbus-1-3 libdbus-1-dev
+  pkg-config
   jq
   python3 python3-pip
 )
@@ -482,6 +484,52 @@ install_mise_runtimes() {
   fi
 }
 
+install_git_tool() {
+  print_header "Git-Tool"
+
+  if is_installed git-tool; then
+    print_status "skip" "git-tool"
+    return 0
+  fi
+
+  if ! is_installed mise; then
+    print_status "error" "mise not installed - install binary tools first"
+    return 1
+  fi
+
+  print_status "install" "Installing Linux keychain build dependencies..."
+  sudo apt-get update
+  if ! sudo apt-get install -y libdbus-1-dev libdbus-1-3 pkg-config; then
+    print_status "error" "git-tool dependencies failed to install"
+    return 1
+  fi
+
+  # Make mise shims available and ensure Rust/Cargo exists for the source build.
+  eval "$(~/.local/bin/mise activate bash 2>/dev/null || mise activate bash)"
+
+  if ! is_installed cargo; then
+    print_status "install" "Installing Rust toolchain for git-tool..."
+    if ! mise install rust --yes 2>/dev/null; then
+      print_status "error" "Rust toolchain failed to install"
+      return 1
+    fi
+    eval "$(~/.local/bin/mise activate bash 2>/dev/null || mise activate bash)"
+  fi
+
+  if ! is_installed cargo; then
+    print_status "error" "cargo not available after Rust installation"
+    return 1
+  fi
+
+  print_status "install" "Installing git-tool via Cargo..."
+  if cargo install --git https://github.com/SierraSoftworks/git-tool.git; then
+    print_status "ok" "git-tool installed"
+  else
+    print_status "error" "git-tool installation failed"
+    return 1
+  fi
+}
+
 # ═══════════════════════════════════════════════════════════════
 # Main Menu
 # ═══════════════════════════════════════════════════════════════
@@ -528,6 +576,7 @@ run_custom_menu() {
   confirm "  delta (git diff)?" && components+=("delta")
   confirm "  Symlink dotfiles (stow)?" && components+=("stow")
   confirm "  Language runtimes (mise install)?" && components+=("runtimes")
+  confirm "  Git-Tool (repo workflow helper)?" && components+=("git_tool")
   confirm "  Kubernetes tools (kubectl, kubectx, k9s, helm)?" && components+=("k8s")
   confirm "  Krew (kubectl plugin manager)?" && components+=("krew")
 
@@ -547,6 +596,7 @@ run_full() {
   install_delta
   install_stow
   install_mise_runtimes
+  install_git_tool
   install_kubectl
   install_kubectx
   install_k9s
@@ -565,6 +615,7 @@ run_core() {
   install_yq
   install_delta
   install_stow
+  install_git_tool
   install_kubectl
   install_kubectx
   install_k9s
@@ -603,6 +654,7 @@ run_custom() {
     delta) install_delta ;;
     stow) install_stow ;;
     runtimes) install_mise_runtimes ;;
+    git_tool) install_git_tool ;;
     k8s)
       install_kubectl
       install_kubectx

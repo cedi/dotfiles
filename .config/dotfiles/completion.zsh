@@ -14,6 +14,10 @@ if [[ $(command -v calendarapi) ]]; then
   eval "$(calendarapi completion zsh)"
 fi
 
+if [[ $(command -v git-tool) ]]; then
+  eval "$(git-tool shell-init zsh)"
+fi
+
 # enable teleport completion
 if [[ $(command -v tsh) ]]; then
   eval "$(tsh --completion-script-zsh)"

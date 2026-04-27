@@ -317,6 +317,45 @@ install_mise_runtimes() {
   fi
 }
 
+install_git_tool() {
+  print_header "Git-Tool"
+
+  if is_installed git-tool; then
+    print_status "skip" "git-tool"
+    return 0
+  fi
+
+  if ! is_installed mise; then
+    print_status "error" "mise not installed - run Brewfile first"
+    return 1
+  fi
+
+  # Make mise shims available and ensure Rust/Cargo exists for the source build.
+  eval "$(mise activate bash)"
+
+  if ! is_installed cargo; then
+    print_status "install" "Installing Rust toolchain for git-tool..."
+    if ! mise install rust --yes 2>/dev/null; then
+      print_status "error" "Rust toolchain failed to install"
+      return 1
+    fi
+    eval "$(mise activate bash)"
+  fi
+
+  if ! is_installed cargo; then
+    print_status "error" "cargo not available after Rust installation"
+    return 1
+  fi
+
+  print_status "install" "Installing git-tool via Cargo..."
+  if cargo install --git https://github.com/SierraSoftworks/git-tool.git; then
+    print_status "ok" "git-tool installed"
+  else
+    print_status "error" "git-tool installation failed"
+    return 1
+  fi
+}
+
 install_krew() {
   print_header "Krew (kubectl plugins)"
 
@@ -406,6 +445,7 @@ run_custom_menu() {
   confirm "  Symlink dotfiles (stow)?" && components+=("stow")
   confirm "  Set fish as default login shell?" && components+=("shell")
   confirm "  Language runtimes (mise: node, python, go, rust)?" && components+=("mise")
+  confirm "  Git-Tool (repo workflow helper)?" && components+=("git_tool")
   confirm "  Krew (kubectl plugin manager)?" && components+=("krew")
   confirm "  Dock configuration (layout and spacers)?" && components+=("dock")
   confirm "  macOS defaults (appearance, finder, keyboard)?" && components+=("macos")
@@ -447,6 +487,7 @@ main() {
       install_stow
       set_default_shell
       install_mise_runtimes
+      install_git_tool
       install_krew
       configure_macos_defaults
       configure_dock
@@ -458,6 +499,7 @@ main() {
       install_fonts
       install_stow
       set_default_shell
+      install_git_tool
       configure_macos_defaults
       configure_dock
       ;;
@@ -477,6 +519,7 @@ main() {
           stow)     install_stow ;;
           shell)    set_default_shell ;;
           mise)     install_mise_runtimes ;;
+          git_tool) install_git_tool ;;
           krew)     install_krew ;;
           dock)     configure_dock ;;
           macos)    configure_macos_defaults ;;

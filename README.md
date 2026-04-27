@@ -54,6 +54,10 @@ Language runtimes are handled by [mise](https://mise.jdx.dev/) instead of Homebr
 
 Global defaults in `.config/mise/config.toml`, override per-project with `.mise.toml`.
 
+### Git-Tool
+
+[Git-Tool](https://git-tool.sierrasoftworks.com/) is installed from source with Cargo during full/core setup once Rust is available. Its config lives in `.config/git-tool/git-tool.yml`, with `GITTOOL_CONFIG` exported by the shell config and `gt` set up as an alias.
+
 ## Install Options
 
 The installer presents a menu:

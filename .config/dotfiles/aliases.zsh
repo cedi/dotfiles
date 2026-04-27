@@ -80,6 +80,10 @@ elif [[ $(command -v bat) ]]; then
 	alias ybat='bat -lyaml'
 fi
 
+if [[ $(command -v git-tool) ]]; then
+	alias gt='git-tool'
+fi
+
 if [ $(command -v kubeval) ]; then
 	alias kubeval='kubeval --ignore-missing-schemas --strict --schema-location https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/'
 fi
