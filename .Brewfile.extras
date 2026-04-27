@@ -165,7 +165,9 @@ cask "jordanbaird-ice"
 # Terminal emulator with platform-native UI and GPU acceleration
 cask "ghostty"
 # Lightweight native macOS terminal built on Ghostty for managing multiple AI coding agents
-cask "cmux"
+# Pinned manually to 0.62.2 Build 77 due to cmux PTY regression in 0.63.x
+# See https://github.com/manaflow-ai/cmux/issues/2636
+# cask "cmux"
 # Note-taking with Markdown and bidirectional linking
 cask "obsidian"
 # VPN mesh networking
