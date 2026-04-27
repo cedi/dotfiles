@@ -263,6 +263,41 @@ install_stow() {
   fi
 }
 
+set_default_shell() {
+  print_header "Default Shell"
+
+  if ! is_installed fish; then
+    print_status "error" "fish not installed - run Brewfile first"
+    return 1
+  fi
+
+  local fish_path
+  fish_path="$(command -v fish)"
+
+  # macOS stores the user's login shell in Directory Services, not $SHELL
+  local current_shell
+  current_shell="$(dscl . -read "/Users/$USER" UserShell 2>/dev/null | awk '{print $2}')"
+
+  if [[ "$current_shell" == "$fish_path" ]]; then
+    print_status "skip" "fish is already the default shell"
+    return 0
+  fi
+
+  # /etc/shells must list fish before chsh will accept it
+  if ! grep -qxF "$fish_path" /etc/shells; then
+    print_status "install" "Adding $fish_path to /etc/shells (requires password)..."
+    echo "$fish_path" | sudo tee -a /etc/shells >/dev/null
+  fi
+
+  print_status "install" "Setting fish as default login shell..."
+  if chsh -s "$fish_path"; then
+    print_status "ok" "Default shell: $fish_path (takes effect on next login)"
+  else
+    print_status "error" "chsh to $fish_path failed"
+    return 1
+  fi
+}
+
 install_mise_runtimes() {
   print_header "Language Runtimes (mise)"
 
@@ -369,6 +404,7 @@ run_custom_menu() {
   confirm "  VS Code extensions?" && components+=("vscode")
   confirm "  System fonts (FiraCode, Nerd Fonts)?" && components+=("fonts")
   confirm "  Symlink dotfiles (stow)?" && components+=("stow")
+  confirm "  Set fish as default login shell?" && components+=("shell")
   confirm "  Language runtimes (mise: node, python, go, rust)?" && components+=("mise")
   confirm "  Krew (kubectl plugin manager)?" && components+=("krew")
   confirm "  Dock configuration (layout and spacers)?" && components+=("dock")
@@ -409,6 +445,7 @@ main() {
       install_brewfile "$DOTFILES_DIR/.Brewfile.vscode" "VS Code"
       install_fonts
       install_stow
+      set_default_shell
       install_mise_runtimes
       install_krew
       configure_macos_defaults
@@ -420,6 +457,7 @@ main() {
       install_brewfile "$DOTFILES_DIR/.Brewfile.core" "Core"
       install_fonts
       install_stow
+      set_default_shell
       configure_macos_defaults
       configure_dock
       ;;
@@ -437,6 +475,7 @@ main() {
           vscode)   install_brewfile "$DOTFILES_DIR/.Brewfile.vscode" "VS Code" ;;
           fonts)    install_fonts ;;
           stow)     install_stow ;;
+          shell)    set_default_shell ;;
           mise)     install_mise_runtimes ;;
           krew)     install_krew ;;
           dock)     configure_dock ;;
