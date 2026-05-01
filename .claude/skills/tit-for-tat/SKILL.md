@@ -1,5 +1,5 @@
 ---
-name: game-theory-tit-for-tat
+name: tit-for-tat
 description:
   Apply Tit for Tat strategy for negotiations, relationships, and repeated
   interactions. Use when navigating workplace dynamics, building partnerships,

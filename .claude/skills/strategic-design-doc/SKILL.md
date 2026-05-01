@@ -24,7 +24,7 @@ the analysis, not from language that claims importance.
 - Writing docs that will be reviewed by engineering leadership
 
 Do **not** use this skill for purely technical implementation docs (use the
-`doc-coauthoring` skill instead), API documentation, runbooks, or how-to guides.
+`documentation` skill instead), API documentation, runbooks, or how-to guides.
 
 ## Document Anatomy
 
@@ -153,12 +153,12 @@ anchor.
 
 4. Identify which mental models are relevant and load the corresponding skills
    silently:
-   - **Adoption/behavior change** -> Load `fogg-behavior-model`
-   - **Multi-party dynamics, reciprocity** -> Load `game-theory-tit-for-tat`
+   - **Adoption/behavior change** -> Load `fogg-behavior-mode`
+   - **Multi-party dynamics, reciprocity** -> Load `tit-for-tat`
    - **Stakeholder buy-in, perceived risk** -> Load `trust-psychology`
    - **Cognitive burden of proposed changes** -> Load `cognitive-load`
    - **Complex dependency mapping** -> Load `graph-thinking`
-   - **Root cause analysis** -> Load `five-whys`
+   - **Root cause analysis** -> Load `five-why`
 
    Apply their frameworks to deepen the analysis. Do not name the frameworks in
    the document. Let their insights shape the content naturally.
@@ -222,7 +222,7 @@ For each section, follow this cycle:
    justifications help calibrate for subsequent sections.
 4. **Draft:** Write the section. Use the author's voice: direct, specific,
    concrete. Name teams, tools, metrics.
-5. **Refine:** Author provides feedback. Make surgical edits via `str_replace`.
+5. **Refine:** Author provides feedback. Make surgical edits via the `Edit` tool.
    Iterate until the section lands.
 
 **Section ordering:** Start with the section that has the most unknowns (usually
@@ -306,8 +306,8 @@ When writing documents to the vault
 ### File Placement
 
 Place documents under `Projects/<project-name>/`. If the project directory does
-not exist, create it. Use the glob tool to check existing project directories
-before creating a new one to avoid duplicates.
+not exist, create it. Use Bash (`ls` or a glob) to check existing project
+directories before creating a new one to avoid duplicates.
 
 ### Frontmatter
 
@@ -372,12 +372,12 @@ SORT file.mtime desc
 
 | Skill                       | When to Load                                       | How It Helps                                              |
 | --------------------------- | -------------------------------------------------- | --------------------------------------------------------- |
-| **fogg-behavior-model**     | Doc involves adoption or behavior change           | Diagnose ability/motivation barriers in the adoption plan |
-| **game-theory-tit-for-tat** | Multi-party dynamics or reciprocal structures      | Stress-test governance for defection, design enforcement  |
+| **fogg-behavior-mode**      | Doc involves adoption or behavior change           | Diagnose ability/motivation barriers in the adoption plan |
+| **tit-for-tat**             | Multi-party dynamics or reciprocal structures      | Stress-test governance for defection, design enforcement  |
 | **trust-psychology**        | Stakeholder buy-in is critical                     | Design trust signals into the rollout, address hesitation |
 | **cognitive-load**          | Proposal adds cognitive burden to people           | Evaluate cognitive cost of the proposed change            |
 | **graph-thinking**          | Complex dependencies across teams or systems       | Map dependency structures, find hidden coupling           |
-| **five-whys**               | Problem statement needs deeper root cause analysis | Push past symptoms to structural causes                   |
+| **five-why**                | Problem statement needs deeper root cause analysis | Push past symptoms to structural causes                   |
 
 Load skills silently when relevant. Apply their frameworks to deepen the analysis
 without naming the frameworks in the document.

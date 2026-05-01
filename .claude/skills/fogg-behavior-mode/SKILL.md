@@ -1,5 +1,5 @@
 ---
-name: fogg-behavior-model
+name: fogg-behavior-mode
 description:
   Design behavior change using the B=MAP framework. Use when designing
   onboarding flows, improving conversion, building habits, increasing feature

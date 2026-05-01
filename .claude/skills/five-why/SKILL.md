@@ -1,5 +1,5 @@
 ---
-name: five-whys
+name: five-why
 description: Conduct root cause analysis using the Five Whys technique. Use when
   investigating problems, debugging issues, understanding failures, analyzing
   churn, or finding the underlying cause of any issue.

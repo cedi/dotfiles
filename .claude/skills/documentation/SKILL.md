@@ -1,5 +1,5 @@
 ---
-name: doc-coauthoring
+name: documentation
 description: Guide users through a structured workflow for co-authoring documentation. Use when user wants to write documentation, proposals, technical specs, decision docs, or similar structured content. This workflow helps users efficiently transfer context, refine content through iteration, and verify the doc works for readers. Trigger when user mentions writing docs, creating proposals, drafting specs, or similar documentation tasks.
 ---
 
@@ -191,21 +191,7 @@ Ask if this structure works, or if they want to adjust it.
 
 Create the initial document structure with placeholder text for all sections.
 
-**If access to artifacts is available:**
-Use `create_file` to create an artifact. This gives both Claude and the user a scaffold to work from.
-
-Inform them that the initial structure with placeholders for all sections will be created.
-
-Create artifact with all section headers and brief placeholder text like "[To be written]" or "[Content here]".
-
-Provide the scaffold link and indicate it's time to fill in each section.
-
-**If no access to artifacts:**
-Create a markdown file in the working directory. Name it appropriately (e.g., `decision-doc.md`, `technical-spec.md`).
-
-Inform them that the initial structure with placeholders for all sections will be created.
-
-Create file with all section headers and placeholder text.
+Use the `Write` tool to create a markdown file in the working directory. Name it appropriately (e.g., `decision-doc.md`, `technical-spec.md`). The file should contain all section headers with brief placeholder text like "[To be written]" or "[Content here]".
 
 Confirm the filename has been created and indicate it's time to fill in each section.
 
@@ -247,19 +233,11 @@ Based on what they've selected, ask if there's anything important missing for th
 
 ### Step 5: Drafting
 
-Use `str_replace` to replace the placeholder text for this section with the actual drafted content.
+Use the `Edit` tool to replace the placeholder text for this section with the actual drafted content.
 
 Announce the [SECTION NAME] section will be drafted now based on what they've selected.
 
-**If using artifacts:**
-After drafting, provide a link to the artifact.
-
-Ask them to read through it and indicate what to change. Note that being specific helps learning for the next sections.
-
-**If using a file (no artifacts):**
-After drafting, confirm completion.
-
-Inform them the [SECTION NAME] section has been drafted in [filename]. Ask them to read through it and indicate what to change. Note that being specific helps learning for the next sections.
+After drafting, inform them the [SECTION NAME] section has been drafted in [filename]. Ask them to read through it and indicate what to change. Note that being specific helps learning for the next sections.
 
 **Key instruction for user (include when drafting the first section):**
 Provide a note: Instead of editing the doc directly, ask them to indicate what to change. This helps learning of their style for future sections. For example: "Remove the X bullet - already covered by Y" or "Make the third paragraph more concise".
@@ -268,10 +246,9 @@ Provide a note: Instead of editing the doc directly, ask them to indicate what t
 
 As user provides feedback:
 
-- Use `str_replace` to make edits (never reprint the whole doc)
-- **If using artifacts:** Provide link to artifact after each edit
-- **If using files:** Just confirm edits are complete
-- If user edits doc directly and asks to read it: mentally note the changes they made and keep them in mind for future sections (this shows their preferences)
+- Use the `Edit` tool to make changes (never reprint the whole doc)
+- Confirm edits are complete after each change
+- If user edits the doc directly and asks to read it: mentally note the changes they made and keep them in mind for future sections (this shows their preferences)
 
 **Continue iterating** until user is satisfied with the section.
 
@@ -313,9 +290,7 @@ Explain that testing will now occur to see if the document actually works for re
 
 ### Testing Approach
 
-**If access to sub-agents is available (e.g., in Claude Code):**
-
-Perform the testing directly without user involvement.
+Perform the testing directly using a sub-agent. The user does not need to do anything during this phase.
 
 ### Step 1: Predict Reader Questions
 
@@ -327,7 +302,7 @@ Generate 5-10 questions that readers would realistically ask.
 
 Announce that these questions will be tested with a fresh Claude instance (no context from this conversation).
 
-For each question, invoke a sub-agent with just the document content and the question.
+For each question, invoke a sub-agent (via the Agent tool) with just the document content and the question.
 
 Summarize what Reader Claude got right/wrong for each question.
 
@@ -335,7 +310,7 @@ Summarize what Reader Claude got right/wrong for each question.
 
 Announce additional checks will be performed.
 
-Invoke sub-agent to check for ambiguity, false assumptions, contradictions.
+Invoke a sub-agent to check for ambiguity, false assumptions, and contradictions.
 
 Summarize any issues found.
 
@@ -350,51 +325,7 @@ Indicate intention to fix these gaps.
 
 Loop back to refinement for problematic sections.
 
----
-
-**If no access to sub-agents (e.g., claude.ai web interface):**
-
-The user will need to do the testing manually.
-
-### Step 1: Predict Reader Questions
-
-Ask what questions people might ask when trying to discover this document. What would they type into Claude.ai?
-
-Generate 5-10 questions that readers would realistically ask.
-
-### Step 2: Setup Testing
-
-Provide testing instructions:
-
-1. Open a fresh Claude conversation: <https://claude.ai>
-2. Paste or share the document content (if using a shared doc platform with connectors enabled, provide the link)
-3. Ask Reader Claude the generated questions
-
-For each question, instruct Reader Claude to provide:
-
-- The answer
-- Whether anything was ambiguous or unclear
-- What knowledge/context the doc assumes is already known
-
-Check if Reader Claude gives correct answers or misinterprets anything.
-
-### Step 3: Additional Checks
-
-Also ask Reader Claude:
-
-- "What in this doc might be ambiguous or unclear to readers?"
-- "What knowledge or context does this doc assume readers already have?"
-- "Are there any internal contradictions or inconsistencies?"
-
-### Step 4: Iterate Based on Results
-
-Ask what Reader Claude got wrong or struggled with. Indicate intention to fix those gaps.
-
-Loop back to refinement for any problematic sections.
-
----
-
-### Exit Condition (Both Approaches)
+### Exit Condition
 
 When Reader Claude consistently answers questions correctly and doesn't surface new gaps or ambiguities, the doc is ready.
 
@@ -436,12 +367,12 @@ Announce document completion. Provide a few final tips:
 - Throughout, if context is missing on something mentioned, proactively ask
 - Don't let gaps accumulate - address them as they come up
 
-**Artifact Management:**
+**File Management:**
 
-- Use `create_file` for drafting full sections
-- Use `str_replace` for all edits
-- Provide artifact link after every change
-- Never use artifacts for brainstorming lists - that's just conversation
+- Use `Write` for creating the initial document scaffold
+- Use `Edit` for all subsequent changes — never reprint the whole doc
+- Confirm completion after each change
+- Never write brainstorming lists to the file — that's just conversation
 
 **Quality over Speed:**
 
