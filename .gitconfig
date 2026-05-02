@@ -91,5 +91,3 @@
 
 [diff "sopsdiffer"]
     textconv = sops --decrypt --config /dev/null
-[blame]
-	ignoreRevsFile = .git-blame-ignore-revs
