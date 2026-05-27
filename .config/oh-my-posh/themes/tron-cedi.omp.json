@@ -35,7 +35,7 @@
   "transient_prompt": {
     "template": "{{ .PWD }} ❯ ",
     "foreground": "p:foreground",
-    "background": "p:background"
+    "background": "transparent"
   },
   "console_title_template": "{{ .PWD }} :: {{ .UserName }}@{{ .HostName }}",
   "blocks": [
