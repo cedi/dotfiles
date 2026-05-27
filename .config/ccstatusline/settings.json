@@ -1,0 +1,109 @@
+{
+  "version": 3,
+  "lines": [
+    [
+      {
+        "id": "0a5f9c57-5125-40da-8323-164b423d7a8a",
+        "type": "current-working-dir",
+        "color": "brightBlue"
+      },
+      {
+        "id": "fa11fbef-177d-439c-9146-6aa671c3ec84",
+        "type": "flex-separator"
+      },
+      {
+        "id": "1",
+        "type": "model",
+        "color": "brightMagenta"
+      },
+      {
+        "id": "a4ec6b0a-7eea-464a-8876-7efd9929b748",
+        "type": "separator"
+      },
+      {
+        "id": "dc76a531-6dcc-429f-b9e6-922731b1dc18",
+        "type": "output-style",
+        "color": "magenta"
+      }
+    ],
+    [
+      {
+        "id": "a2eacc9e-65d7-4933-b2a2-884246f46915",
+        "type": "context-bar",
+        "color": "brightMagenta"
+      },
+      {
+        "id": "0c0af20e-a930-41db-821e-950e2c4e9b12",
+        "type": "separator"
+      },
+      {
+        "id": "a32e149c-872d-41fc-9005-fd9dfa78eb5a",
+        "type": "flex-separator"
+      },
+      {
+        "id": "2d85eb9c-118b-4b54-a9ab-bb6b6c27fe64",
+        "type": "session-usage"
+      },
+      {
+        "id": "fdb6f5b9-4bbe-4a02-ac41-cab6ed15b771",
+        "type": "separator"
+      },
+      {
+        "id": "559c5eee-cb1f-4ffa-949e-0b618adc7396",
+        "type": "weekly-usage"
+      }
+    ],
+    [
+      {
+        "id": "35e33c79-03d9-431a-9353-fbad9dedcf9e",
+        "type": "git-branch"
+      },
+      {
+        "id": "cb3b2695-1567-4315-9290-d0a85a2fef30",
+        "type": "separator"
+      },
+      {
+        "id": "e6db86e4-778b-44b3-b6f2-4fcd09b6f09e",
+        "type": "git-changes"
+      },
+      {
+        "id": "1cbba3ab-4aa8-4435-a769-4b615b683f40",
+        "type": "separator"
+      },
+      {
+        "id": "f69c0ef4-ca4f-49f8-8a24-8fea2721cf78",
+        "type": "git-review"
+      },
+      {
+        "id": "26a092a9-a11c-48c5-b6fa-0b7916ee6101",
+        "type": "flex-separator"
+      },
+      {
+        "id": "4bd562c1-862b-4fbc-95cc-8499ef96216b",
+        "type": "skills",
+        "color": "white"
+      }
+    ]
+  ],
+  "flexMode": "full-until-compact",
+  "compactThreshold": 60,
+  "colorLevel": 2,
+  "defaultPadding": " ",
+  "inheritSeparatorColors": false,
+  "globalBold": false,
+  "minimalistMode": false,
+  "powerline": {
+    "enabled": false,
+    "separators": [
+      ""
+    ],
+    "separatorInvertBackground": [
+      false
+    ],
+    "startCaps": [],
+    "endCaps": [],
+    "theme": "tokyonight",
+    "autoAlign": false,
+    "continueThemeAcrossLines": false
+  }
+}
