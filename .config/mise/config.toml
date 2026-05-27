@@ -48,6 +48,3 @@ go = "1.26.1"
 
 # Rust - stable toolchain
 rust = "stable"
-
-# Terraform - latest (projects should pin specific versions)
-terraform = "latest"
