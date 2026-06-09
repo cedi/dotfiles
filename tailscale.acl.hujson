@@ -28,6 +28,7 @@
 	"tagOwners": {
 		"tag:core-infra":     ["group:admins"], // Devices tagged with tag:core-infra are critical services in the infrastructure that need to be treated more carefully and should not be as exposed
 		"tag:core-services":  ["group:admins"], // Devices tagged with tag:core-services are the services that every user gets access to
+		"tag:tsidp":          ["group:admins"], // Devices tagged with tag:tsidp are allowed to run tsidp with Tailscale Funnel
 		"tag:smarthome":      ["group:admins"], // Devices tagged with tag:smarthome are smart-home devices with should be treated with tighter access controll restrictions
 		"tag:k8s-operator":   ["group:admins"], // tag:k8s-operator is the tailscale operator running on my k8s clusters
 		"tag:k3s-operator":   ["group:admins"], // tag:k8s-operator is the tailscale operator running on my k8s clusters
@@ -49,13 +50,18 @@
 			"attr":   ["funnel"],
 		},
 
+		// allow tsidp to enable funnel
+		{
+			"target": ["tag:tsidp"],
+			"attr":   ["funnel"],
+		},
+
 		// group:vpn has access to mullvad exit nodes
 		{
 			"target": ["group:vpn"],
 			"attr":   ["mullvad"],
 		},
 	],
-
 	"ssh": [
 		// admins can access the homelab unrestricted
 		{
