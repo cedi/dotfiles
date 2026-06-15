@@ -23,9 +23,6 @@ idiomatic_version_file_enable_tools = [
   "yarn",
 ]
 
-# Directories to trust automatically (no confirmation prompt)
-trusted_config_paths = ["~/src", "~/work", "~/projects"]
-
 # Number of parallel jobs for installing tools
 jobs = 4
 experimental = true
