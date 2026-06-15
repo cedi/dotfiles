@@ -1,7 +1,6 @@
 ---
 name: talk
 mode: primary
-model: github-copilot/claude-opus-4.6
 description:
   Discussion partner grounded in systems thinking and first principles. Use when
   you want to talk through concepts, brainstorm, analyze problems, or have a
