@@ -33,7 +33,7 @@
     "background": "p:background"
   },
   "transient_prompt": {
-    "template": "{{ .PWD }} ❯ ",
+    "template": "({{ now | date \"15:04:05\" }}) {{ .PWD }} ❯ ",
     "foreground": "p:foreground",
     "background": "transparent"
   },
@@ -63,9 +63,7 @@
           "background": "p:background-session",
           "type": "session",
           "style": "powerline",
-          "foreground_templates": [
-            "{{ if .Root }}p:admin-username{{ end }}"
-          ]
+          "foreground_templates": ["{{ if .Root }}p:admin-username{{ end }}"]
         },
         {
           "properties": {
@@ -253,12 +251,7 @@
       "background": "p:background-code",
       "type": "kubectl",
       "style": "powerline",
-      "tips": [
-        "kubectl",
-        "kustomize",
-        "helm",
-        "k"
-      ],
+      "tips": ["kubectl", "kustomize", "helm", "k"],
       "invert_powerline": true
     },
     {
@@ -268,9 +261,7 @@
       "background": "p:background-code",
       "type": "az",
       "style": "powerline",
-      "tips": [
-        "az"
-      ],
+      "tips": ["az"],
       "invert_powerline": true
     }
   ],
