@@ -5,8 +5,17 @@
 		"group:admins": [
 			"cedi@github",
 		],
+		"group:sre": [
+			"cedi@github",
+		],
 		// group:vpn is given access to (mullvad) exit nodes
 		"group:vpn": [
+			"cedi@github",
+			"x1bay@github",
+			"x545vpxsbj@privaterelay.appleid.com",
+		],
+		// group:synology-users is given access to the Synology NAS
+		"group:synology-users": [
 			"cedi@github",
 			"x1bay@github",
 			"x545vpxsbj@privaterelay.appleid.com",
@@ -206,39 +215,53 @@
 				"9666", // compute-blade-agent
 			],
 		},
-		// Manage tsidp extraClaims
+		// Synology users can reach the NAS over Tailscale
 		{
-		  "src": ["group:admins"],
-		  "dst": ["*"],
-		  "ip":  ["*"],
-		  "app": {
-		    "tailscale.com/cap/tsidp": [
-		      {
-          // allow access to UI
-          "allow_admin_ui": true,
-
-          // allow dynamic client registration
-          "allow_dcr": true,
-
-          // Secure Token Service (STS) controls
-          "users":     ["*"],
-          "resources": ["*"],
-
-          // extraClaims are included in the id_token
-          // recommend: keep this small and simple
-          "extraClaims": {
-            "bools": true,
-            "strings": "Mon Jan 2 15:04:05 MST 2006",
-            "numbers": 180,
-            "array1": [1,2,3],
-            "array2": ["one", "two", "three"]
-          },
-
-          // include extraClaims data in /userinfo response
-          "includeInUserInfo": true,
-		      }
-		    ]
-		  }
+			"src": ["group:synology-users"],
+			"dst": ["nas"],
+			"ip":  ["5000", "5001"], // DSM HTTP/HTTPS
+		},
+		// Admins can manage tsidp and register OIDC clients.
+		{
+			"src": ["group:admins"],
+			"dst": ["tag:tsidp"],
+			"ip":  ["*"],
+			"app": {
+				"tailscale.com/cap/tsidp": [
+					{
+						"allow_admin_ui": true,
+						"allow_dcr":      true,
+					},
+				],
+			},
+		},
+		// Synology users can authenticate to Synology through tsidp.
+		{
+			"src": ["group:synology-users"],
+			"dst": ["tag:tsidp"],
+			"ip":  ["*"],
+			"app": {
+				"tailscale.com/cap/tsidp": [
+					{
+						"users":     ["group:synology-users"],
+						"resources": ["synology"],
+					},
+				],
+			},
+		},
+		// SRE users can authenticate to ArgoCD through tsidp.
+		{
+			"src": ["group:sre"],
+			"dst": ["tag:tsidp"],
+			"ip":  ["*"],
+			"app": {
+				"tailscale.com/cap/tsidp": [
+					{
+						"users":     ["group:sre"],
+						"resources": ["argocd"],
+					},
+				],
+			},
 		},
 	],
 
@@ -259,8 +282,13 @@
 		{
 			"src":    "x1bay@github",
 			"proto":  "tcp",
-			"accept": ["nas:5000", "hass:8123"],
+			"accept": ["nas:5000", "nas:5001", "hass:8123"],
 			"deny":   ["hass-schiltach:8123"],
+		},
+		{
+			"src":    "group:synology-users",
+			"proto":  "tcp",
+			"accept": ["nas:5000", "nas:5001"],
 		},
 		{
 			"src":   "group:vpn",
