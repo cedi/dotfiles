@@ -45,3 +45,46 @@ go = "1.26.1"
 
 # Rust - stable toolchain
 rust = "stable"
+
+# ========================================
+# Global CLI Tools (moved off Homebrew)
+# ========================================
+# Productivity CLIs pinned to "latest" - low-risk, single-binary tools we
+# always want current. Update them independently of `brew upgrade` with
+# `mise up`.
+difftastic = "latest"   # structural diff
+dust       = "latest"   # du in Rust
+glow       = "latest"   # render Markdown in terminal
+gron       = "latest"   # make JSON greppable
+delta      = "latest"   # git diff pager (formerly brew "git-delta")
+hyperfine  = "latest"   # CLI benchmarking
+jq         = "latest"   # JSON processor
+just       = "latest"   # command runner
+lazygit    = "latest"   # git TUI
+sd         = "latest"   # find/sed alternative
+tokei      = "latest"   # code statistics
+yazi       = "latest"   # terminal file manager
+yq         = "latest"   # YAML processor
+
+# Ops & security CLIs pinned to exact versions for reproducibility. Renovate
+# can bump these via PR; a surprise version jump in cluster/secret tooling is
+# not worth the convenience of "latest".
+age          = "1.3.1"     # encryption
+cosign       = "3.1.1"     # container signing
+sops         = "3.13.1"    # secret management
+argocd       = "3.4.3"     # Argo CD CLI
+helm         = "4.2.1"     # k8s package manager
+helm-ls      = "0.5.4"     # Helm language server
+kind         = "0.32.0"    # k8s in Docker
+kubectl      = "1.36.2"    # k8s CLI (formerly brew "kubernetes-cli")
+kubectx      = "0.11.0"    # context/namespace switcher
+kubeseal     = "0.37.0"    # SealedSecrets CLI
+k9s          = "0.51.0"    # k8s TUI
+stern        = "1.34.0"    # multi-pod log tailing
+crane        = "0.21.6"    # container registry tool
+dive         = "0.13.1"    # image layer explorer
+flux2        = "2.8.8"     # Flux GitOps CLI
+hcloud       = "1.65.0"    # Hetzner Cloud CLI
+opentofu     = "1.12.2"    # IaC (Terraform fork)
+terraform-ls = "0.38.7"    # Terraform language server
+awscli       = "2.35.6"    # AWS CLI

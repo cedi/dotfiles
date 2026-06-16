@@ -30,27 +30,6 @@ tap "sandreas/tap"
 tap "smudge/smudge"
 # A lightweight, native macOS terminal built on Ghostty for managing multiple AI coding agents
 tap "manaflow-ai/cmux"
-# Flux GitOps toolkit
-tap "fluxcd/tap"
-
-# ========================================
-# Kubernetes Extras
-# ========================================
-
-# Lightweight Kubernetes clusters inside Docker
-brew "kind"
-# Validate Kubernetes manifests against schemas
-brew "kubeconform"
-# Explore Docker image layers and find wasted space
-brew "dive"
-# Manage SealedSecrets for GitOps workflows
-brew "kubeseal"
-# Flux CLI for GitOps continuous delivery
-brew "fluxcd/tap/flux"
-# Argo CD CLI for declarative GitOps
-brew "argocd"
-# Inspect and manage container images and registries
-brew "crane"
 
 # ========================================
 # Build & Compilation Tools
@@ -83,8 +62,6 @@ brew "mosh"
 brew "wget"
 # Modern HTTP client (HTTPie clone, in Rust)
 brew "xh"
-# Statistical command-line benchmarking tool
-brew "hyperfine"
 
 # ========================================
 # Media & Imaging
@@ -109,43 +86,20 @@ brew "libheif"
 
 # Magical shell history with sync, search, and stats
 brew "atuin"
-# Interactive cheatsheet navigator for the terminal
-brew "navi"
 # Modern system info dashboard (replaces archived neofetch)
 brew "fastfetch"
 # Community-driven TL;DR cheatsheets viewer
 brew "tldr"
 # Count lines of code across languages
 brew "cloc"
-# Fast, accurate code statistics by language
-brew "tokei"
 # Capture terminal output as shareable images
 brew "homeport/tap/termshot"
-# Markdown linter with extensible rules
-brew "markdownlint-cli2"
-# Prose linter for documentation
-brew "vale"
-# Terminal file manager with image previews
-brew "yazi"
-# More intuitive du in Rust
-brew "dust"
 # Modern, colorful ps replacement
 brew "procs"
-# Intuitive find/sed alternative
-brew "sd"
-# Make JSON greppable
-brew "gron"
 # AI on the command line (Charm)
 brew "mods"
 # A CLI for configuring "Night Shift" on macOS
 brew "smudge/smudge/nightlight"
-
-# ========================================
-# CI/CD & Automation
-# ========================================
-
-# Run GitHub Actions workflows locally
-brew "act"
 
 # ========================================
 # Mac App Store CLI

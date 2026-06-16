@@ -8,8 +8,6 @@
 # Homebrew Taps
 # ========================================
 
-# HashiCorp maintained releases (Terraform language server)
-tap "hashicorp/tap"
 # Prompt theming via Oh My Posh
 tap "jandedobbeleer/oh-my-posh"
 
@@ -61,16 +59,8 @@ brew "eza"
 brew "bat"
 # Fast recursive search across files
 brew "ripgrep"
-# Command-line JSON processor
-brew "jq"
-# YAML processor mirroring jq syntax
-brew "yq"
 # Visual directory tree listing
 brew "tree"
-# Render Markdown files in terminal
-brew "glow"
-# Modern command runner (Makefile alternative)
-brew "just"
 
 # ========================================
 # Version Control
@@ -80,12 +70,6 @@ brew "just"
 brew "git"
 # GitHub CLI for repo management and workflows
 brew "gh"
-# Enhanced diff viewer for Git output
-brew "git-delta"
-# Structural diff that understands syntax
-brew "difftastic"
-# Terminal UI for git operations
-brew "lazygit"
 
 # ========================================
 # Editor
@@ -111,12 +95,6 @@ brew "mise"
 
 # GNU Privacy Guard for encryption and signing
 brew "gnupg"
-# Modern encryption tool for simple key management
-brew "age"
-# Secret management tool compatible with GitOps
-brew "sops"
-# Container image signing and verification
-brew "cosign"
 
 # ========================================
 # System Configuration
@@ -135,40 +113,9 @@ brew "htop"
 brew "watch"
 
 # ========================================
-# Kubernetes & Container Tooling
-# ========================================
-
-# Official kubectl CLI
-brew "kubernetes-cli"
-# Quickly switch between contexts and namespaces
-brew "kubectx"
-# Terminal UI for navigating Kubernetes clusters
-brew "k9s"
-# Tail multiple pod logs centrally
-brew "stern"
-# Package manager for Kubernetes applications
-brew "helm"
-# Language server for Helm charts
-brew "helm-ls"
-# Template-free Kubernetes configuration management
-brew "kustomize"
-
-# ========================================
 # Cloud Provider CLIs
 # ========================================
 
-# AWS command-line interface
-brew "awscli"
-# Azure command-line tools
+# Azure command-line tools (kept on brew: mise only offers it via pipx,
+# which is more fragile for this large Python app than the brew bottle)
 brew "azure-cli"
-# Hetzner Cloud CLI
-brew "hcloud"
-
-# ========================================
-# Infrastructure as Code
-# ========================================
-
-# Language server for Terraform configuration
-brew "hashicorp/tap/terraform-ls"
-# OpenTofu - open-source Terraform fork
-brew "opentofu"
