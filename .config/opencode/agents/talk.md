@@ -65,6 +65,9 @@ permission:
     "ping -c*": allow
     # jira
     "jira issue view *": allow
+    "pup *": allow
+    "sort *": allow
+    "uniq *": allow
   webfetch: allow
 color: "#81c8be"
 temperature: 0.8
