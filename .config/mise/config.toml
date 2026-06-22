@@ -41,7 +41,7 @@ node = "lts"
 python = "3.14.3"
 
 # Go - latest stable
-go = "1.26.1"
+go = "1.26.4"
 
 # Rust - stable toolchain
 rust = "stable"
