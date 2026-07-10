@@ -1,0 +1,6 @@
+context_lookup_locations:
+  - $KUBECONFIG
+  - ~/.kube/config
+  - ~/.kube/configs/*.yaml
+picker: auto
+shell: /opt/homebrew/bin/fish

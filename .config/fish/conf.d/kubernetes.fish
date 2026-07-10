@@ -44,3 +44,27 @@ end
 if type -q operator-sdk
     operator-sdk completion fish | source
 end
+
+if type -q kush
+    kush completion fish | source
+
+    # @description Wrapper for kubectl that verifies it's running under kush,
+    # except for read-only commands that never touch a live cluster.
+    function kubectl --wraps kubectl
+        set -l safe cluster-info krew ctx config plugin version completion options api-resources
+        if test (count $argv) -eq 0
+            or contains -- "$argv[1]" $safe
+            or contains -- --help $argv
+            or contains -- -h $argv
+            command kubectl $argv
+            return
+        end
+
+        if not set -q KUSH_ACTIVE; or test "$KUSH_ACTIVE" != 1
+            echo "Error: only run kubectl in safe environments using kush" >&2
+            return 1
+        end
+
+        command kubectl $argv
+    end
+end

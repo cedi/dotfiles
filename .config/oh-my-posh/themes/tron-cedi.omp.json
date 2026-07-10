@@ -232,7 +232,7 @@
           "properties": {
             "cache_duration": "none"
           },
-          "template": " ❯ ",
+          "template": "{{ if eq .Env.KUSH_ACTIVE \"1\" }}⎈ {{ end }}❯ ",
           "foreground": "p:foreground",
           "powerline_symbol": "\ue0b0",
           "background": "p:background",
