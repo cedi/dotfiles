@@ -51,7 +51,7 @@ if type -q kush
     # @description Wrapper for kubectl that verifies it's running under kush,
     # except for read-only commands that never touch a live cluster.
     function kubectl --wraps kubectl
-        set -l safe cluster-info krew ctx config plugin version completion options api-resources
+        set -l safe cluster-info krew ctx config plugin version completion options api-resources kush
         if test (count $argv) -eq 0
             or contains -- "$argv[1]" $safe
             or contains -- --help $argv

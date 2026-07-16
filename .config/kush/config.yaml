@@ -4,3 +4,5 @@ context_lookup_locations:
   - ~/.kube/configs/*.yaml
 picker: auto
 shell: /opt/homebrew/bin/fish
+post_exec_hook:
+  - "set --global --export KUSH_ENVIRONMENT (tshx kube env 2>/dev/null); or set --erase KUSH_ENVIRONMENT"

@@ -58,6 +58,43 @@ function _tsh_fzf_select
     $cmd | jq -r "$final_jq_filter" | fzf $fzf_opts | awk '{print $1}'
 end
 
+# @description Print the environment of the Kubernetes cluster in the current context.
+function _tsh_kube-environment
+    set -l context_details (kubectl config view --minify --output=json 2>/dev/null | jq --exit-status --raw-output \
+        '.["current-context"], ((.contexts[0].context.extensions // [] | map(select(.name == "teleport.kube.name")))[0].extension // empty)')
+    if test $status -ne 0; or test -z "$context_details[1]"
+        echo "Error: no current Kubernetes context is set" >&2
+        return 1
+    end
+
+    # Teleport stores the Kubernetes resource name in this context extension.
+    set -l context $context_details[1]
+    set -l cluster $context_details[2]
+    if test -z "$cluster"
+        echo "Error: current Kubernetes context '$context' is not managed by Teleport" >&2
+        return 1
+    end
+
+    for cached in $__kube_environment_cache
+        set -l entry (string split --max=1 = "$cached")
+        if test "$entry[1]" = "$cluster"
+            echo $entry[2]
+            return
+        end
+    end
+
+    set -l environment (tsh kube ls --format=json --search="$cluster" | jq --exit-status --raw-output \
+        --arg cluster "$cluster" \
+        'map(select(.kube_cluster_name == $cluster))[0].labels.environment // empty')
+    if test $status -ne 0; or test -z "$environment"
+        echo "Error: no Teleport environment label found for cluster '$cluster'" >&2
+        return 1
+    end
+
+    set --universal --append __kube_environment_cache "$cluster=$environment"
+    echo $environment
+end
+
 # @description Wrapper for tsh that provides fzf-powered 'ls' commands.
 function tshx --wraps tsh
     # We check the arguments passed to the function to decide what to do.
@@ -88,6 +125,9 @@ function tshx --wraps tsh
             if test -n "$selection"
                 command tsh ssh $selection
             end
+
+        case "kube env"
+            _tsh_kube-environment
 
         case '*'
             # For any other command, just pass it to tsh.
