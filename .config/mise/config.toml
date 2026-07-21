@@ -85,6 +85,6 @@ crane        = "0.21.6"    # container registry tool
 dive         = "0.13.1"    # image layer explorer
 flux2        = "2.8.8"     # Flux GitOps CLI
 hcloud       = "1.65.0"    # Hetzner Cloud CLI
-opentofu     = "1.12.2"    # IaC (Terraform fork)
+opentofu     = "1.12.5"    # IaC (Terraform fork)
 terraform-ls = "0.38.7"    # Terraform language server
 awscli       = "2.35.6"    # AWS CLI
