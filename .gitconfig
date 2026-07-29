@@ -28,7 +28,7 @@
     ls = status --short
     lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' -n 20
     fixup = "!f(){ git reset --soft HEAD~${1-1} && git commit --amend -C HEAD; };f"
-    fpush = push --force
+    fpush = push --force-with-lease
     change-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --env-filter \"if [[ \\\"$`echo $VAR`\\\" = '$OLD' ]]; then export $VAR='$NEW'; fi\" $@; }; f"
     squash = "!f(){ git reset --soft HEAD~${1} && git commit --edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\"; };f"
     refresh-ignore = !"f(){ git stash save && git rm -r --cached . && git add . && git commit -m\"refresh gitignore\" && git stash pop; }; f"
@@ -38,6 +38,7 @@
     remotes = remote -v
     main = !git checkout main && git pull
     co = "!f() { if git checkout \"$1\" 2>/dev/null; then git pull; elif git fetch && git checkout \"$1\" 2>/dev/null; then git pull; else git checkout -b \"$1\"; fi; }; f"
+    autopr = "!f() { claude --model \"claude-sonnet-5\" -p \"Commit all changes and raise a new pull-request to main. If you are currently on main check out a new branch first and only commit there. Use conventional commit format for the commit and for the PR title. Once you created the pull-request ONLY return the URL to the pull request.\"; }; f"
     fzf = "!f() { \
       git log --graph --abbrev-commit --decorate \
         --format=format:'%h (%ar) - %s - %an%d' | \

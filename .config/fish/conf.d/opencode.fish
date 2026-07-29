@@ -1,3 +1,5 @@
-if test -d $HOME/.opencode/bin
-    fish_add_path $HOME/.opencode/bin
+if not test -d $HOME/.opencode/bin
+    exit
 end
+
+fish_add_path $HOME/.opencode/bin

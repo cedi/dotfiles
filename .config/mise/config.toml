@@ -34,8 +34,7 @@ experimental = true
 # Projects can override specific versions with .mise.toml
 
 [tools]
-# Node.js - LTS version for stability
-node = "lts"
+bun = "latest"
 
 # Python - latest 3.12.x
 python = "3.14.3"
