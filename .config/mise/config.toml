@@ -40,7 +40,7 @@ bun = "latest"
 python = "3.14.3"
 
 # Go - latest stable
-go = "1.26.1"
+go = "1.27.1"
 
 # Rust - stable toolchain
 rust = "stable"
