@@ -1,0 +1,1 @@
+gcx completion fish | source

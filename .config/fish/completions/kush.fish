@@ -1,0 +1,1 @@
+kush completion fish | source

@@ -1,3 +1,7 @@
+if not type -q tsh
+    exit
+end
+
 # helper function to list, format, and select Teleport resources.
 #
 # Arguments:
@@ -58,6 +62,76 @@ function _tsh_fzf_select
     $cmd | jq -r "$final_jq_filter" | fzf $fzf_opts | awk '{print $1}'
 end
 
+# helper function to list, format, and select Teleport resources from search
+#
+# Arguments:
+# name_path    The jq path to the resource's name (e.g., '.metadata.name').
+# labels_path: The jq path to the resource's labels object or string (e.g., '.metadata.labels').
+# command      The `tsh` command to execute (e.g., 'tsh db ls --format=json').
+# --output-path overrides the jq path printed after selection (defaults to name_path).
+function _tsh_fzf_search
+    argparse --stop-nonopt 'output-path=' -- $argv; or return
+    set -l name_path $argv[1]
+    set -l labels_path $argv[2]
+    set -l cmd $argv[3..-1]
+    set -l output_path $name_path
+    if set -q _flag_output_path
+        set output_path $_flag_output_path
+    end
+
+    # reusable jq template. We'll inject the correct paths into it.
+    set -l jq_template '
+      [
+        .[] | {
+          name: (##NAME_PATH##),
+          labels: (
+            (##LABELS_PATH##)
+            | if type == "string" then .
+              else
+                (. // {})
+                | to_entries
+                | map("\(.key)=\(.value | gsub(" "; ""))")
+                | join(",")
+              end
+          ),
+          json: .
+        }
+      ]
+      | . as $items
+      | (map(.name | length) | max) as $max_len
+      | "                                                                                " as $spaces
+      | $items[]
+      | "\(.name)\($spaces[0:($max_len + 4 - (.name | length))])\(.labels)\t\(.json | @json)"
+    '
+
+    # Substitute the placeholders with the actual paths provided as arguments.
+    set -l final_jq_filter (string replace '##NAME_PATH##' "$name_path" -- (string replace '##LABELS_PATH##' "$labels_path" -- $jq_template))
+
+    # fzf options for the fuzzy picker
+    set -l fzf_opts \
+        --height=60% \
+        --border=rounded \
+        --preview-window=right:33%:border-rounded:wrap \
+        --prompt=" ❯ " \
+        --marker="*" \
+        --pointer="→" \
+        --separator="─" \
+        --scrollbar="│" \
+        --layout=reverse \
+        --info=inline \
+        --cycle \
+        --keep-right \
+        --bind=btab:up,tab:down \
+        --tabstop=1 \
+        --delimiter='\t' \
+        --with-nth=1 \
+        --preview='echo {2} | yq -P | bat --language=yaml --paging=never --color=always -n' \
+        --no-hscroll
+
+    # Extract the selected value from the original resource JSON.
+    $cmd | jq -r "$final_jq_filter" | fzf $fzf_opts | cut -f2- | jq -r "$output_path"
+end
+
 # @description Print the environment of the Kubernetes cluster in the current context.
 function _tsh_kube-environment
     set -l context_details (kubectl config view --minify --output=json 2>/dev/null | jq --exit-status --raw-output \
@@ -102,6 +176,9 @@ function tshx --wraps tsh
         # fzf-powered cases
         case "kube ls"
             _tsh_fzf_select '.kube_cluster_name' '.labels' tsh kube ls --format=json
+
+        case "kube search"
+            _tsh_fzf_search '.Name' '.Labels' tsh request search --kind=kube_cluster --format=json
 
         case "kube login"
             set -l selection (_tsh_fzf_select '.kube_cluster_name' '.labels' tsh kube ls --format=json)
