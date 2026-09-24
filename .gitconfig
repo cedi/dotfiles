@@ -92,3 +92,9 @@
 
 [diff "sopsdiffer"]
     textconv = sops --decrypt --config /dev/null
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential

@@ -255,7 +255,16 @@
       "background": "p:background-code",
       "type": "kubectl",
       "style": "powerline",
-      "tips": ["kubectl", "kustomize", "helm", "k"],
+      "tips": [
+        "kubectl",
+        "kustomize",
+        "helm",
+        "k",
+        "stern",
+        "kind",
+        "kubeval",
+        "kubeconform"
+      ],
       "invert_powerline": true
     },
     {

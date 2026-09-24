@@ -7,12 +7,9 @@
     "commit": "",
     "pr": ""
   },
-  "model": "opus[1m]",
   "permissions": {
-    "defaultMode": "auto",
     "allow": [],
     "deny": [
-      "Edit",
       "Read(//**/.aws/**)",
       "Read(//**/.azure/**)",
       "Read(//**/.kube/**)",
@@ -38,8 +35,10 @@
       "Read(//**/.idea/**)",
       "Read(//**/mcp.json)"
     ],
-    "ask": []
+    "ask": [],
+    "defaultMode": "auto"
   },
+  "model": "haiku",
   "hooks": {
     "PostToolUse": [
       {
@@ -105,16 +104,17 @@
     "rust-analyzer-lsp@claude-plugins-official": true,
     "lua-lsp@claude-plugins-official": true,
     "frontend-design@claude-plugins-official": true,
-    "typescript-lsp@claude-plugins-official": true,
-    "gcx@gcx-marketplace": true,
     "superpowers@claude-plugins-official": true,
     "claude-md-management@claude-plugins-official": true,
-    "gopls-lsp@claude-plugins-official": true,
     "git-workflows@cedi-agent-plugins": true,
     "documentation@cedi-agent-plugins": true,
     "tpm@cedi-agent-plugins": true,
     "product-design@cedi-agent-plugins": true,
-    "mental-models@cedi-agent-plugins": true
+    "mental-models@cedi-agent-plugins": true,
+    "typescript-lsp@claude-plugins-official": true,
+    "gcx@gcx-marketplace": true,
+    "faro-setup@grafana-frontend-observability": true,
+    "gopls-lsp@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "cedi-agent-plugins": {
@@ -129,9 +129,18 @@
         "source": "github",
         "repo": "grafana/gcx"
       }
+    },
+    "grafana-frontend-observability": {
+      "source": {
+        "source": "github",
+        "repo": "grafana/faro-web-sdk"
+      }
     }
   },
+  "effortLevel": "high",
+  "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark",
+  "agentPushNotifEnabled": true,
   "useAutoModeDuringPlan": true
 }
