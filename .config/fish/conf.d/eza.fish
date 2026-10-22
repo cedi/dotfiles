@@ -1,5 +1,5 @@
 if type -q eza
-    if eza --git &> /dev/null
+    if eza --git &> /dev/null < /dev/null
         alias ls='eza --git --icons --group-directories-first'
     else
         alias ls='eza --icons --group-directories-first'
