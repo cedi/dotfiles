@@ -1,0 +1,3 @@
+*.yml diff=dyff
+*.yaml diff=dyff
+*.json diff=dyff
