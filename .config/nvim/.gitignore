@@ -1,0 +1,2 @@
+# Machine specific, never committed (see trusted-roots.local.json in lua/config/options.lua).
+trusted-roots.local.json
