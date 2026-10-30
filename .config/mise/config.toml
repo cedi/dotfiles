@@ -93,6 +93,6 @@ flux2 = "2.8.8"         # Flux GitOps CLI
 hcloud = "1.65.0"       # Hetzner Cloud CLI
 opentofu = "1.12.2"     # IaC (Terraform fork)
 terraform-ls = "0.38.7" # Terraform language server
-awscli = "2.35.6"       # AWS CLI
+awscli = "2.39.3"       # AWS CLI
 "github:SpechtLabs/sigil" = "0.8.0"
 dyff = "latest"
