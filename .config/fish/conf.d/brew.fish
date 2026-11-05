@@ -22,7 +22,8 @@ for app in $HOMEBREW_KEG_ONLY_APPS
     end
 end
 
-set HOMEBREW_COMMAND_NOT_FOUND_HANDLER (brew --repository)/Library/Homebrew/command-not-found/handler.fish
+# $HOMEBREW_REPOSITORY is exported by `brew shellenv`; avoids spawning brew (~100ms each).
+set HOMEBREW_COMMAND_NOT_FOUND_HANDLER $HOMEBREW_REPOSITORY/Library/Homebrew/command-not-found/handler.fish
 if test -f $HOMEBREW_COMMAND_NOT_FOUND_HANDLER
     source $HOMEBREW_COMMAND_NOT_FOUND_HANDLER
 end
@@ -39,7 +40,7 @@ set -q HOMEBREW_NO_ANALYTICS || set -gx HOMEBREW_NO_ANALYTICS 1
 set -q prepath && fish_add_path --prepend --move $prepath
 
 
-set HB_CNF_HANDLER (brew --repository)"/Library/Taps/homebrew/homebrew-command-not-found/handler.fish"
+set HB_CNF_HANDLER $HOMEBREW_REPOSITORY"/Library/Taps/homebrew/homebrew-command-not-found/handler.fish"
 if test -f $HB_CNF_HANDLER
   source $HB_CNF_HANDLER
 end

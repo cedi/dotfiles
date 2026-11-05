@@ -71,6 +71,7 @@ sd = "latest"         # find/sed alternative
 tokei = "latest"      # code statistics
 yazi = "latest"       # terminal file manager
 yq = "latest"         # YAML processor
+zoxide = "0.10.0"     # smarter cd (>=0.10 needed: older init reads fish's on-disk cd.fish, absent in fish 4.x)
 
 # Ops & security CLIs pinned to exact versions for reproducibility. Renovate
 # can bump these via PR; a surprise version jump in cluster/secret tooling is
