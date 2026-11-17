@@ -50,6 +50,7 @@
 		"tag:jumphost":       ["group:admins"], // Devices tagged with tag:jumphost are allowed to initiate SSH connections via tailscale-ssh
 		"tag:homelab":        ["group:admins", "tag:k3s-operator"], // Devices tagged with tag:homelab should be considered as experimental devices running test workloads
 		"tag:opencode":       ["group:admins"], // Devices tagged with tag:opencode are running the OpenCode Web UI
+    "tag:buckle-server":  ["autogroup:admin"],
 	},
 
 	"nodeAttrs": [
@@ -263,6 +264,18 @@
 				],
 			},
 		},
+    // buckle agents dial out to the server's gRPC port
+    {
+      "src": ["tag:homelab", "tag:core-infra", "tag:core-services"],
+      "dst": ["tag:buckle-server"],
+      "ip": ["tcp:7700"]
+    },
+    // you, for the UI and API
+    {
+      "src": ["autogroup:admin"],
+      "dst": ["tag:buckle-server"],
+      "ip": ["tcp:7701"]
+    }
 	],
 
 	"tests": [
