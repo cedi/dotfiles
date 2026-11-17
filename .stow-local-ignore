@@ -50,9 +50,8 @@ setup_macos_defaults\.sh
 # Fish universal variables (machine-specific, contains paths with usernames)
 \.config/fish/fish_variables
 
-# Tailscale ACL and github workflows
+# GitHub repo config (the tailnet policy moved to github.com/cedi/homelab)
 \.github
-tailscale.acl.hujson
 
 
 Dracula.itermcolors
