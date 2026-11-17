@@ -9,36 +9,11 @@
   },
   "permissions": {
     "allow": [],
-    "deny": [
-      "Read(//**/.aws/**)",
-      "Read(//**/.azure/**)",
-      "Read(//**/.kube/**)",
-      "Read(//**/.config/gcloud/**)",
-      "Read(//**/.env*)",
-      "Read(//**/local.settings.json)",
-      "Read(//**/*.tfstate*)",
-      "Read(//**/*.tfplan)",
-      "Read(//**/.terraform.d/**)",
-      "Read(//**/.terraform.lock.hcl)",
-      "Read(//**/.terraform/**)",
-      "Read(//**/.terragrunt-cache/**)",
-      "Read(//**/.ssh/**)",
-      "Read(//**/.bash_history)",
-      "Read(//**/.zsh_history)",
-      "Read(//**/.python_history)",
-      "Read(//**/.npmrc)",
-      "Read(//**/.gitconfig)",
-      "Read(//**/.git/**)",
-      "Read(//**/.dockercfg)",
-      "Read(//**/.docker/config.json)",
-      "Read(//**/.vscode/**)",
-      "Read(//**/.idea/**)",
-      "Read(//**/mcp.json)"
-    ],
+    "deny": [],
     "ask": [],
     "defaultMode": "auto"
   },
-  "model": "haiku",
+  "model": "opus",
   "hooks": {
     "PostToolUse": [
       {
@@ -104,7 +79,6 @@
     "rust-analyzer-lsp@claude-plugins-official": true,
     "lua-lsp@claude-plugins-official": true,
     "frontend-design@claude-plugins-official": true,
-    "superpowers@claude-plugins-official": true,
     "claude-md-management@claude-plugins-official": true,
     "git-workflows@cedi-agent-plugins": true,
     "documentation@cedi-agent-plugins": true,
@@ -138,6 +112,11 @@
     }
   },
   "effortLevel": "high",
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "high"
+    }
+  },
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark",
