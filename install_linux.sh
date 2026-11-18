@@ -190,6 +190,13 @@ ensure_dirs() {
   print_header "Preparing directories"
   mkdir -p "$HOME/.config"
   mkdir -p "$HOME/.local/bin"
+  # Tools land in ~/.local/bin (mise, ...) and ~/.cargo/bin (git-tool); later
+  # steps look them up with command -v, which fails where they aren't on PATH
+  # (Buckle, cron, ssh -c): mise looks missing, and git-tool gets rebuilt.
+  local dir
+  for dir in "$HOME/.cargo/bin" "$HOME/.local/bin"; do
+    case ":$PATH:" in *":$dir:"*) ;; *) export PATH="$dir:$PATH" ;; esac
+  done
   print_status "ok" "~/.config and ~/.local/bin exist"
 }
 
@@ -540,7 +547,7 @@ install_git_tool() {
   fi
 
   print_status "install" "Installing git-tool via Cargo..."
-  if cargo install --git https://github.com/SierraSoftworks/git-tool.git; then
+  if cargo install --git https://github.com/SierraSoftworks/git-tool.git git-tool; then
     print_status "ok" "git-tool installed"
   else
     print_status "error" "git-tool installation failed"

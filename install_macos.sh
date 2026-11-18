@@ -348,7 +348,7 @@ install_git_tool() {
   fi
 
   print_status "install" "Installing git-tool via Cargo..."
-  if cargo install --git https://github.com/SierraSoftworks/git-tool.git; then
+  if cargo install --git https://github.com/SierraSoftworks/git-tool.git git-tool; then
     print_status "ok" "git-tool installed"
   else
     print_status "error" "git-tool installation failed"
