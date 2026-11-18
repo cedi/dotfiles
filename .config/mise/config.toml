@@ -43,6 +43,9 @@ trusted_config_paths = [
 [tools]
 bun = "latest"
 
+# Node - LTS; needed globally for npx-launched tools (e.g. Claude Code's ccstatusline)
+node = "24.22.3"
+
 # Python - latest 3.12.x
 python = "3.14.3"
 
