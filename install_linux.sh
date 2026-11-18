@@ -553,7 +553,7 @@ install_git_tool() {
 # ═══════════════════════════════════════════════════════════════
 
 show_welcome() {
-  clear
+  [[ -t 1 ]] && clear  # only on a terminal: no TERM under Buckle or cron, and set -e
   echo -e "${CYAN}"
   echo "  ╔═══════════════════════════════════════════════════════╗"
   echo "  ║           Linux Dotfiles Bootstrap                    ║"
