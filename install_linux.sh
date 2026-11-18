@@ -144,9 +144,13 @@ detect_arch() {
 # ═══════════════════════════════════════════════════════════════
 
 bootstrap_dotfiles() {
-  # If dotfiles already exist, pull latest updates
+  # If dotfiles already exist, pull latest updates, unless the checkout is
+  # pinned by a config manager (Buckle sets DOTFILES_NO_UPDATE=1 and checks out
+  # the commit it wants installed).
   if [[ -d "$DOTFILES_DIR" ]]; then
-    if [[ -d "$DOTFILES_DIR/.git" ]]; then
+    if [[ "${DOTFILES_NO_UPDATE:-}" == "1" ]]; then
+      print_status "skip" "Dotfiles update skipped (DOTFILES_NO_UPDATE=1)"
+    elif [[ -d "$DOTFILES_DIR/.git" ]]; then
       print_status "install" "Updating dotfiles repository..."
       if git -C "$DOTFILES_DIR" pull --ff-only 2>/dev/null; then
         print_status "ok" "Dotfiles updated"
