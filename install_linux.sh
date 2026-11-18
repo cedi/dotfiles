@@ -149,7 +149,7 @@ bootstrap_dotfiles() {
   # the commit it wants installed).
   if [[ -d "$DOTFILES_DIR" ]]; then
     if [[ "${DOTFILES_NO_UPDATE:-}" == "1" ]]; then
-      print_status "skip" "Dotfiles update skipped (DOTFILES_NO_UPDATE=1)"
+      print_status "ok" "Dotfiles update skipped (DOTFILES_NO_UPDATE=1)"
     elif [[ -d "$DOTFILES_DIR/.git" ]]; then
       print_status "install" "Updating dotfiles repository..."
       if git -C "$DOTFILES_DIR" pull --ff-only 2>/dev/null; then
@@ -454,6 +454,20 @@ install_stow() {
 
   print_status "install" "Symlinking dotfiles..."
   cd "$DOTFILES_DIR"
+
+  # A regular file where a dotfile link belongs (the distro's stock ~/.bashrc,
+  # say) makes stow refuse the whole tree. Move such files aside, keeping them.
+  local target ts conflict
+  target="$(dirname "$DOTFILES_DIR")"
+  ts="$(date +%Y%m%d%H%M%S)"
+  stow -n . 2>&1 |
+    sed -n 's/.*existing target is neither a link nor a directory: //p' |
+    while IFS= read -r conflict; do
+      if [[ -f "$target/$conflict" && ! -L "$target/$conflict" ]]; then
+        mv "$target/$conflict" "$target/$conflict.pre-dotfiles-$ts"
+        print_status "install" "Moved $conflict aside to $conflict.pre-dotfiles-$ts"
+      fi
+    done
 
   # Stow will skip already-linked files; use --restow to handle updates
   if stow --restow . 2>/dev/null; then
