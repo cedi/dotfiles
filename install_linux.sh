@@ -467,8 +467,11 @@ install_stow() {
   local target ts conflict
   target="$(dirname "$DOTFILES_DIR")"
   ts="$(date +%Y%m%d%H%M%S)"
+  # Stow < 2.4: "existing target is neither a link nor a directory: X";
+  # 2.4+: "cannot stow S over existing target X since neither a link nor a directory".
   stow -n . 2>&1 |
-    sed -n 's/.*existing target is neither a link nor a directory: //p' |
+    sed -n -e 's/.*existing target is neither a link nor a directory: //p' \
+           -e 's/.*over existing target \(.*\) since neither a link nor a directory.*/\1/p' |
     while IFS= read -r conflict; do
       if [[ -f "$target/$conflict" && ! -L "$target/$conflict" ]]; then
         mv "$target/$conflict" "$target/$conflict.pre-dotfiles-$ts"
